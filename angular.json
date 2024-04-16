@@ -30,6 +30,9 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css", 
+              "node_modules/primeng/resources/primeng.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -102,6 +105,6 @@
     }
   },
   "cli": {
-    "analytics": "a2d18cc7-15dd-4c14-96cc-bf4e8b1fedb2"
+    "analytics": "fcd25994-9cb2-4ea3-95bf-18929279535b"
   }
 }
