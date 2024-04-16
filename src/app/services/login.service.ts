@@ -11,7 +11,7 @@ export class LoginService {
   private apiUrl = 'http://127.0.0.1:8000/' + ruta
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(this.apiUrl, { username, password });
+  login(Username: string, Password: string){
+    return this.http.post(this.apiUrl, [Username, Password] );
   }
 }

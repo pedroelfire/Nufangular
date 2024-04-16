@@ -10,18 +10,18 @@ import { LoginService } from 'src/app/services/login.service';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private authService: LoginService) {
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService) {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      Username: ['', Validators.required],
+      Password: ['', Validators.required]
     });
   }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const username = this.loginForm.value.username;
-      const password = this.loginForm.value.password;
-      this.authService.login(username, password).subscribe(response => {
+      const username = this.loginForm.value.Username;
+      const password = this.loginForm.value.Password;
+      this.loginService.login(username, password).subscribe(response => {
           console.log(response);
         }, error => {
           console.error(error);
