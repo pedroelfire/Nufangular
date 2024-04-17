@@ -12,23 +12,12 @@ export class LoginService {
 
   login(username: string, password: string): Observable<any> {
     // Obtener el token CSRF de la cookie
-    const csrfToken = this.getCookie('csrftoken');
-
     // Construir el encabezado con el token CSRF
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-CSRFToken': csrfToken
     });
 
     // Realizar la solicitud POST con el encabezado personalizado
     return this.http.post<any>(this.apiUrl, { username, password }, { headers });
-  }
-
-  private getCookie(name: string): string {
-    const cookieValue = document.cookie
-      .split('; ')
-      .find(row => row.startsWith(name))
-      ?.split('=')[1];
-    return cookieValue || '';
   }
 }
