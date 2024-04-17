@@ -18,12 +18,12 @@ import { RippleModule } from 'primeng/ripple';
   imports: [
     CommonModule,
     LoginRoutingModule,
-      CommonModule,
-      FormsModule, // For forms
-      InputTextModule,
-      CheckboxModule,
-      ButtonModule,
-      RippleModule 
+    CommonModule,
+    FormsModule, // For forms
+    InputTextModule,
+    CheckboxModule,
+    ButtonModule,
+    RippleModule 
     
   ]
 })
