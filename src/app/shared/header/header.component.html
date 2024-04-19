@@ -1,0 +1,7 @@
+<header class="nav-bar">
+  <a routerLink="./diet-plan" class="nav-bar__link">Planes Alimenticios</a>
+  <a routerLink="./login" class="nav-bar__link login" [ngSwitch]="isLoggedIn">
+    <span *ngSwitchCase="true"> Round user icon </span>
+    <span *ngSwitchDefault>Inicia Sesión</span>
+  </a>
+</header>
