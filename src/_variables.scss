@@ -1,0 +1,40 @@
+// Font sizes
+$font-size-base: 16px;
+
+// Primitives
+$dark-gray: #171617;
+$bermuda-gray: #7383a3;
+$blush: #b1476a;
+$silver-chalice: #a2a2a2;
+$fedora: #747374;
+$moody-blue: #7e77d5;
+$oxford-blue: #002147;
+
+$silver: #c0c0c0;
+$pastel-blue: #374e7b;
+$light-blue: #bed8d9;
+$light-purple: #d2c8c7;
+$dark-gray-2: #d2c8c7;
+
+// Tokenization
+$background-main: $silver;
+$background-main-accent: #ffffff;
+
+$surface-primary: $light-blue;
+$surface-primary-accent: $moody-blue;
+
+$surface-secodary: $pastel-blue;
+$surface-secodary-accent: $blush;
+
+$surface-tertiary: $light-purple;
+$surface-tertiary-accent: $oxford-blue;
+
+$text-primary: $dark-gray;
+$text-secondary: $silver;
+$text-primary-dim: $silver-chalice;
+$text-secondary-dim: $fedora;
+
+// Responsive breakpoints
+$breakpoint-sm: 768px;
+$breakpoint-md: 992px;
+$breakpoint-lg: 1200px;
