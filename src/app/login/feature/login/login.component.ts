@@ -6,16 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  showError = false;
+  userExists = false;
+  step = 'username';
+  username = '';
+  password = '';
 
-  logIn = () => {
-    const success = false;
-
-    if (success) {
-      console.log('Ingresado con éxito');
-    } else {
-      this.showError = true;
-      console.log('toast shown');
-    }
+  validUser = () => {
+    this.userExists = true;
+    this.step = 'password';
   };
 }

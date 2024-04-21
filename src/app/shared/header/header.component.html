@@ -1,17 +1,7 @@
-<header>
-  <a href="">
-    <h1>Nufogy</h1>
-  </a>
-  <a href="">
-    <h2>Diario</h2>
-  </a>
-  <a href="">
-    <h2>Planes Alimenticios</h2>
-  </a>
-  <a href="">
-    <h2>Dashboard</h2>
-  </a>
-  <a href="">
-    <i></i>
+<header class="nav-bar">
+  <a routerLink="./diet-plan" class="nav-bar__link">Planes Alimenticios</a>
+  <a routerLink="./login" class="nav-bar__link login" [ngSwitch]="isLoggedIn">
+    <span *ngSwitchCase="true"> Round user icon </span>
+    <span *ngSwitchDefault>Inicia Sesión</span>
   </a>
 </header>

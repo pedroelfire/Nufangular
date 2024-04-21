@@ -1,2 +1,9 @@
-@import "primeng/resources/themes/lara-light-purple/theme.css";
-@import "primeng/resources/primeng.css";
+@import "variables";
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: $h1-font-size;
+}

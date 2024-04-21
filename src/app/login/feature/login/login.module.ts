@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms'; // Needed for input and [(ngModel)
 
 // Import PrimeNG Modules
 import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
@@ -20,10 +21,10 @@ import { RippleModule } from 'primeng/ripple';
     CommonModule,
     FormsModule, // For forms
     InputTextModule,
+    PasswordModule,
     CheckboxModule,
     ButtonModule,
     RippleModule,
-    ToastModule,
   ],
 })
 export class LoginModule {}
