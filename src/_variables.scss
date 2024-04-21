@@ -1,5 +1,23 @@
 // Font sizes
 $font-size-base: 16px;
+$font-size-scale: 1.2;
+
+$h1-font-size: calc(
+  #{$font-size-base} * #{$font-size-scale} * #{$font-size-scale} * #{$font-size-scale}
+); // h1 size (increase scale factor as needed)
+$h2-font-size: calc(
+  #{$font-size-base} * #{$font-size-scale} * #{$font-size-scale}
+); // h2 size
+$h3-font-size: calc(#{$font-size-base} * #{$font-size-scale}); // h3 size
+$body-font-size: #{$font-size-base}; // Body text
+$span-font-size: calc(
+  #{$font-size-base} / #{$font-size-scale}
+); // Smaller size for spans
+$label-font-size: #{$body-font-size};
+
+// Btns
+$btn-primary-font-size: #{$body-font-size};
+$btn-primary-border-radius: 1rem;
 
 // Primitives
 $dark-gray: #171617;
@@ -33,6 +51,9 @@ $text-primary: $dark-gray;
 $text-secondary: $silver;
 $text-primary-dim: $silver-chalice;
 $text-secondary-dim: $fedora;
+
+// spacing
+$card-mx: 2rem;
 
 // Responsive breakpoints
 $breakpoint-sm: 768px;
