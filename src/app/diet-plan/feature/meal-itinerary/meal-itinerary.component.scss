@@ -1,0 +1,45 @@
+@import "src/variables";
+
+.meals-day-view {
+  display: flex;
+  flex-direction: row;
+
+  .hours {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-right: 4rem;
+  }
+
+  .meals {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    background-color: $surface-tertiary-accent;
+  }
+}
+
+.meal {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: $surface-tertiary;
+  padding: 1.5rem 1rem;
+}
+
+.meal__macros {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 0.35rem;
+}
+
+.macros__item {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+}

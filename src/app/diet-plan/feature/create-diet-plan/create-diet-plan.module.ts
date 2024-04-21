@@ -3,15 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { CreateDietPlanRoutingModule } from './create-diet-plan-routing.module';
 import { CreateDietPlanComponent } from './create-diet-plan.component';
-
+import { MealItineraryComponent } from '../meal-itinerary/meal-itinerary.component';
 
 @NgModule({
-  declarations: [
-    CreateDietPlanComponent
-  ],
-  imports: [
-    CommonModule,
-    CreateDietPlanRoutingModule
-  ]
+  declarations: [CreateDietPlanComponent, MealItineraryComponent],
+  imports: [CommonModule, CreateDietPlanRoutingModule],
 })
-export class CreateDietPlanModule { }
+export class CreateDietPlanModule {}
