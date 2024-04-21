@@ -3,7 +3,7 @@
 </div>
 <form class="login-form" action="submit">
   <h1 class="login-form__title">Iniciar Sesión</h1>
-  <div class="input-field-container" [ngSwitch]="step">
+  <ng-container class="input-field-container" [ngSwitch]="step">
     <span class="p-float-label" *ngSwitchCase="'username'">
       <input
         pInputText
@@ -24,7 +24,7 @@
       />
       <label for="password">Ingresa tu contraseña</label>
     </span>
-  </div>
+  </ng-container>
   <span class="login-form__msg">
     <span>¿No tienes una cuenta?&nbsp;</span>
     <a href="" class="guest_link">Continua como invitado</a>
@@ -35,7 +35,7 @@
       <span>Crear cuenta</span>
     </button>
     <button class="btn ok-btn" (click)="validUser()">
-      <span> Siguiente </span>
+      <span>Siguiente</span>
     </button>
   </div>
 </form>

@@ -1,4 +1,15 @@
 @import "src/variables";
+app-login {
+  display: flex;
+  width: 100vw;
+  height: 100%;
+}
+
+.container {
+  width: 100vw;
+  height: 100%;
+}
+
 .upper-banner {
   min-height: 35%;
 }
@@ -27,6 +38,10 @@
 
 .p-float-label {
   width: 312px;
+}
+
+.p-float-label input {
+  width: 100%;
 }
 
 .login-form__field {
