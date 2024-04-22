@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { CreateComponent } from './components/diets/create/create.component';
 
-const routes: Routes = [{ path: 'login', loadChildren: () => import('./login/feature/login/login.module').then(m => m.LoginModule) }, { path: 'diet-plan', loadChildren: () => import('./diet-plan/feature/create-diet-plan/create-diet-plan.module').then(m => m.CreateDietPlanModule) }];
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'diets', children: [{ path: 'create', component: CreateComponent }] },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
