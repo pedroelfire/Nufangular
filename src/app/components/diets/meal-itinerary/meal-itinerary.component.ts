@@ -48,6 +48,9 @@ export class MealItineraryComponent {
       },
     },
   ];
+  isAddMealFormShown = false;
 
-  displayAddMealForm = () => {};
+  displayAddMealForm = () => {
+    this.isAddMealFormShown = true;
+  };
 }

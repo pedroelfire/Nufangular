@@ -1,8 +1,17 @@
 <ng-container class="itinerary">
   <div class="itinerary__options">
-    <span class="itinerary__option save">Guardar</span>
-    <span class="itinerary__option import">Importar</span>
-    <span class="itinerary__option export">Exportar</span>
+    <span class="itinerary__option save">
+      <i class="pi pi-save"></i>
+      <span> Guardar </span>
+    </span>
+    <span class="itinerary__option import">
+      <i class="pi pi-upload"></i>
+      <span> Importar </span>
+    </span>
+    <span class="itinerary__option export">
+      <i class="pi pi-file-export"></i>
+      <span> Exportar </span>
+    </span>
   </div>
   <div class="week">
     <h2 class="week__title">Semana 1</h2>
@@ -52,6 +61,7 @@
           <i class="pi pi-plus-circle"></i>
           <span>Añadir comida</span>
         </button>
+        <app-add-meal-form></app-add-meal-form>
         <button class="jack-btn">
           <i class="pi pi-bolt"></i>
           <span>Generar con Jack</span>
