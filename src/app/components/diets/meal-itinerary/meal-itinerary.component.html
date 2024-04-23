@@ -46,6 +46,17 @@
       <ng-container
         *ngTemplateOutlet="mealItinerary; context: { $implicit: mockMealData }"
       ></ng-container>
+
+      <div class="control-panel">
+        <button class="add-btn" (click)="(displayAddMealForm)">
+          <i class="pi pi-plus-circle"></i>
+          <span>Añadir comida</span>
+        </button>
+        <button class="jack-btn">
+          <i class="pi pi-bolt"></i>
+          <span>Generar con Jack</span>
+        </button>
+      </div>
     </div>
   </div>
 </ng-container>

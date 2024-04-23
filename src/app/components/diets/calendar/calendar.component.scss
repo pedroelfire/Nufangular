@@ -1,0 +1,20 @@
+.calendar-container {
+  /* Set a width for the container */
+  width: 400px;
+
+  .cal-cell-row {
+    /* Adjust cell height to fit within the container */
+    height: 50px; /* Adjust as needed */
+
+    .cal-day-cell {
+      /* Adjust font size, padding, etc. for elements within the cells */
+      font-size: 12px;
+      padding: 5px; /* Adjust as needed */
+    }
+  }
+
+  /* Optionally, target other calendar elements for further styling */
+  .cal-header {
+    font-size: 14px; /* Adjust as needed */
+  }
+}

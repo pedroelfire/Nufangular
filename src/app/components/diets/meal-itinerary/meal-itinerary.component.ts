@@ -6,8 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./meal-itinerary.component.scss'],
 })
 export class MealItineraryComponent {
-  hours = [...Array(24).keys()];
-
   mockMealData = [
     {
       meal_name: 'Desayuno',
@@ -50,4 +48,6 @@ export class MealItineraryComponent {
       },
     },
   ];
+
+  displayAddMealForm = () => {};
 }

@@ -1,3 +1,5 @@
+@import "src/variables";
+
 :host {
   display: flex;
   flex-direction: column;
@@ -7,6 +9,9 @@
   margin-top: 4rem;
 }
 
+.title {
+  margin-bottom: 4rem;
+}
 main {
   display: flex;
   flex-direction: row;
@@ -19,7 +24,7 @@ main {
   display: flex;
   flex-direction: column;
   height: 100%;
-  margin-right: 4rem;
+  margin-right: 2rem;
 }
 
 app-meal-itinerary {
