@@ -16,17 +16,28 @@
     flex-direction: column;
     gap: 0.5rem;
     width: 100%;
-    background-color: $surface-tertiary-accent;
   }
 }
 
 .meal {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  align-items: center;
   justify-content: flex-start;
-  background-color: $surface-tertiary;
   padding: 1.5rem 1rem;
+  margin: 0 2rem;
+  border: 1px solid $text-primary;
+  border-radius: $card-radius;
+  background-color: $background-main-accent;
+
+  .l-meal {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.meal__icon {
+  padding: 1rem;
 }
 
 .meal__macros {
@@ -42,4 +53,14 @@
   display: flex;
   flex-direction: row;
   gap: 0.25rem;
+}
+
+.selector__icon {
+  font-size: 1rem;
+}
+
+.itinerary__options {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }

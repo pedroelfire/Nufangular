@@ -2,6 +2,20 @@
 @import "primeicons/primeicons.css";
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("assets/fonts/Josefin_Sans/static/JosefinSans-Regular.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Josefin Sans";
+  font-size: $font-size-base;
+  background-color: $background-main;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +24,10 @@
 
 h1 {
   font-size: $h1-font-size;
+}
+
+h2 {
+  font-size: $h2-font-size;
 }
 
 ul {

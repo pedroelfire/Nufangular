@@ -3,11 +3,9 @@ $font-size-base: 16px;
 $font-size-scale: 1.2;
 
 $h1-font-size: calc(
-  #{$font-size-base} * #{$font-size-scale} * #{$font-size-scale} * #{$font-size-scale}
-); // h1 size (increase scale factor as needed)
-$h2-font-size: calc(
   #{$font-size-base} * #{$font-size-scale} * #{$font-size-scale}
-); // h2 size
+); // h1 size (increase scale factor as needed)
+$h2-font-size: calc(#{$font-size-base} * #{$font-size-scale}); // h2 size
 $h3-font-size: calc(#{$font-size-base} * #{$font-size-scale}); // h3 size
 $body-font-size: #{$font-size-base}; // Body text
 $span-font-size: calc(
@@ -27,16 +25,18 @@ $silver-chalice: #a2a2a2;
 $fedora: #747374;
 $moody-blue: #7e77d5;
 $oxford-blue: #002147;
+$porcelain: #e8eeee;
 
 $silver: #c0c0c0;
 $pastel-blue: #374e7b;
 $light-blue: #bed8d9;
 $light-purple: #d2c8c7;
 $dark-gray-2: #d2c8c7;
+$cararra: #eeeee8;
 
 // Tokenization
-$background-main: $silver;
-$background-main-accent: #ffffff;
+$background-main: $porcelain;
+$background-main-accent: $cararra;
 
 $surface-primary: $light-blue;
 $surface-primary-accent: $moody-blue;
@@ -54,6 +54,9 @@ $text-secondary-dim: $fedora;
 
 // spacing
 $card-mx: 2rem;
+
+// radius
+$card-radius: 1rem;
 
 // Responsive breakpoints
 $breakpoint-sm: 768px;

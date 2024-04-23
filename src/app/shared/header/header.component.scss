@@ -1,7 +1,10 @@
+@import "src/variables";
+
 .nav-bar {
   width: 100vw;
   height: 4rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background-color: $surface-primary;
 }
