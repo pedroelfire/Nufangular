@@ -5,28 +5,40 @@ import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginService: LoginService
+  ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
+
+  step = 'username';
+
+  validUser = () => {
+    this.step = 'password';
+  };
 
   onSubmit(): void {
     if (this.loginForm.valid) {
       const username = this.loginForm.value.username;
       const password = this.loginForm.value.password;
-      console.log(username, password)
-      this.loginService.login(username, password).subscribe(response => {
+      console.log(username, password);
+      this.loginService.login(username, password).subscribe(
+        (response) => {
           console.log(response);
-        }, error => {
+        },
+        (error) => {
           console.error(error);
-        });
+        }
+      );
     }
   }
 }

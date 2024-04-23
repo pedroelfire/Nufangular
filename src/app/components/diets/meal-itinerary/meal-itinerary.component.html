@@ -39,11 +39,6 @@
     </div>
   </ng-template>
   <div class="meals-day-view">
-    <ul class="hours">
-      <li class="hour" *ngFor="let hour of hours">
-        {{ hour | date : "mediumTime" }}
-      </li>
-    </ul>
     <div class="meals">
       <ng-container
         *ngTemplateOutlet="mealItinerary; context: { $implicit: mockMealData }"

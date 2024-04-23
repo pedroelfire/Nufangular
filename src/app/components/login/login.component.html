@@ -1,15 +1,56 @@
-<div class="login-container">
-    <h2>Login</h2>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div>
-        <label for="username">username:</label>
-        <input type="text" id="username" formControlName="username" required>
-      </div>
-      <div>
-        <label for="password">password:</label>
-        <input type="password" id="password" formControlName="password" required>
-      </div>
-      <button type="submit">Login</button>
-    </form>
+<form
+  class="login-form"
+  action="submit"
+  [formGroup]="loginForm"
+  (ngSubmit)="onSubmit()"
+>
+  <h1 class="login-form__title">Iniciar Sesión</h1>
+  <ng-container class="input-field-container" [ngSwitch]="step">
+    <span class="p-float-label" *ngSwitchCase="'username'">
+      <input
+        pInputText
+        name="username"
+        id="username"
+        formControlName="username"
+        required
+        type="text"
+        class="login-form_field username-field"
+      />
+      <label for="username">Correo electrónico o teléfono</label>
+    </span>
+    <span class="p-float-label" *ngSwitchCase="'password'">
+      <input
+        pInputText
+        name="password"
+        id="password"
+        formControlName="password"
+        required
+        type="password"
+        class="login-form_field password-field"
+      />
+      <label for="password">Ingresa tu contraseña</label>
+    </span>
+  </ng-container>
+  <span class="login-form__msg">
+    <span>¿No tienes una cuenta?&nbsp;</span>
+    <a href="" class="guest_link">Continua como invitado</a>
+  </span>
+
+  <div class="login-form__btns">
+    <button class="btn register-btn">
+      <span>Crear cuenta</span>
+    </button>
+    <ng-container [ngSwitch]="step">
+      <button
+        class="btn ok-btn"
+        (click)="validUser()"
+        *ngSwitchCase="'username'"
+      >
+        <span>Siguiente</span>
+      </button>
+      <button class="btn ok-btn" type="submit" *ngSwitchCase="'password'">
+        <span>Terminar</span>
+      </button>
+    </ng-container>
   </div>
-  
+</form>
