@@ -1,1 +1,25 @@
-<p>add-meal-form works!</p>
+<form class="meal">
+  <header>
+    <div class="meal_calories">
+      <span class="amount"> 9999 </span>
+      <span class="label">Kcal</span>
+    </div>
+    <div class="ingredient__added-list">
+      <h1>Añadidos a Desayuno</h1>
+      <!-- Generate mockup data and use *ngFor directive -->
+      <div class="ingredient__list">
+        <div class="ingredient">
+          <span>Nombre del ingrediente</span>
+          <span>80 Kcal</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <input
+    pInputText
+    pKeyFilter="int"
+    placeholder="Integers"
+    [(ngModel)]="value"
+  />
+</form>
