@@ -57,11 +57,16 @@
       ></ng-container>
 
       <div class="control-panel">
-        <button class="add-btn" (click)="(displayAddMealForm)">
+        <button class="add-btn" (click)="showAddMealForm()">
           <i class="pi pi-plus-circle"></i>
           <span>Añadir comida</span>
         </button>
-        <app-add-meal-form></app-add-meal-form>
+
+        <app-add-meal-form
+          *ngIf="visible"
+          (close)="closeForm()"
+        ></app-add-meal-form>
+
         <button class="jack-btn">
           <i class="pi pi-bolt"></i>
           <span>Generar con Jack</span>

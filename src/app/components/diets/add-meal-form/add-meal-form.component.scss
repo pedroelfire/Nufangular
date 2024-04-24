@@ -1,0 +1,147 @@
+@import "src/variables";
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.meal {
+  background-color: white;
+  position: relative;
+  width: 50vw;
+  height: 80vh;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border: none;
+
+  i {
+    font-size: 2rem;
+    color: $text-primary;
+  }
+}
+
+.meal {
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+    width: 100%;
+    .meal__layout {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .meal__name {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .meal__ingredients {
+      flex-grow: 6;
+    }
+  }
+}
+
+.meal__name-input {
+  flex-grow: 1;
+  border-radius: $card-radius;
+  padding: 0.5rem 0.25rem;
+}
+
+.meal__calories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 2;
+
+  .amount {
+    font-size: $accent-font-size;
+  }
+}
+
+.ingredient__list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.ingredient {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  border: $card-border-width solid $text-primary;
+  border-radius: $card-radius;
+  padding: 1rem;
+  width: 8rem;
+  height: 8rem;
+
+  span {
+    width: 100%;
+    text-overflow: ellipsis;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+.search-bar {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    flex-grow: 1;
+    text-align: end;
+    padding: 0 1rem;
+  }
+
+  input {
+    flex-grow: 9;
+    border-radius: $search-bar-radius;
+    padding: 0.5rem 0.25rem;
+  }
+}
+
+.filters {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 0;
+}
+
+.filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: $card-radius;
+  border: $card-border-width solid $text-primary;
+  padding: 0.125rem 0.25rem;
+}

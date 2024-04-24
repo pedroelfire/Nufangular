@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './create-diet-plan.component.html',
   styleUrls: ['./create-diet-plan.component.scss'],
 })
-export class CreateDietPlanComponent {}
+export class CreateDietPlanComponent {
+  visible = false;
+}

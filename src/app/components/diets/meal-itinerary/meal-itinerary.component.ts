@@ -48,9 +48,16 @@ export class MealItineraryComponent {
       },
     },
   ];
-  isAddMealFormShown = false;
+  visible: boolean = false;
 
-  displayAddMealForm = () => {
-    this.isAddMealFormShown = true;
+  showAddMealForm = () => {
+    this.visible = true;
   };
+  closeForm = () => {
+    this.visible = false;
+  };
+
+  handleCloseFromForm(event: any) {
+    this.closeForm();
+  }
 }

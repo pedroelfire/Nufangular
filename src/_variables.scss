@@ -12,6 +12,9 @@ $span-font-size: calc(
   #{$font-size-base} / #{$font-size-scale}
 ); // Smaller size for spans
 $label-font-size: #{$body-font-size};
+$accent-font-size: calc(
+  #{$body-font-size} * #{$font-size-scale} * #{$font-size-scale} * #{$font-size-scale}
+);
 
 // Btns
 $btn-primary-font-size: #{$body-font-size};
@@ -58,6 +61,7 @@ $inline-buttons: 0.25rem;
 
 // radius
 $card-radius: 1rem;
+$search-bar-radius: 2.5rem;
 
 // border width
 $card-border-width: 0.125rem;

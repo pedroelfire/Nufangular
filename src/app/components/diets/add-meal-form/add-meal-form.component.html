@@ -1,25 +1,69 @@
-<form class="meal">
-  <header>
-    <div class="meal_calories">
-      <span class="amount"> 9999 </span>
-      <span class="label">Kcal</span>
+<div class="overlay">
+  <form class="meal" name="mealForm">
+    <button (click)="closeForm()" class="close-btn">
+      <i class="pi pi-times-circle"></i>
+    </button>
+    <header>
+      <h1>Crear comida</h1>
+      <div class="meal__layout">
+        <div class="meal__calories">
+          <span class="amount"> 9999 </span>
+          <span class="label">Kcal</span>
+        </div>
+        <div class="meal__ingredients">
+          <div class="meal__name">
+            <label for="mealName" class="meal__name-label"
+              >Nombre de la comida</label
+            >
+            <input
+              pInputText
+              placeholder="ej. Desayuno"
+              name="mealName"
+              class="meal__name-input"
+            />
+          </div>
+
+          <!-- Generate mockup data and use *ngFor directive -->
+          <div class="ingredient__list">
+            <div class="ingredient">
+              <span>Nombre del ingrediente</span>
+              <span>80 Kcal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="search-bar">
+      <i class="pi pi-search"></i>
+      <input
+        pInputText
+        placeholder="ej. Atún en agua masa drenada"
+        [(ngModel)]="searchQueryWord"
+      />
     </div>
-    <div class="ingredient__added-list">
-      <h1>Añadidos a Desayuno</h1>
-      <!-- Generate mockup data and use *ngFor directive -->
-      <div class="ingredient__list">
-        <div class="ingredient">
+    <div class="filters">
+      <i class="pi pi-filter"></i>
+      <div class="filter">
+        <span>+ Proteína</span>
+      </div>
+    </div>
+    <div class="ingredients">
+      <div class="ingredients__item">
+        <input type="checkbox" name="" id="" />
+        <div class="item__right-side">
           <span>Nombre del ingrediente</span>
-          <span>80 Kcal</span>
+          <div class="right__lower">
+            <span class="item__amount">
+              <input type="text" class="amount" />
+              <p-dropdown
+                [options]="units"
+                class="serving-unit"
+                [(ngModel)]="selectedServingUnit"
+              ></p-dropdown>
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  </header>
-
-  <input
-    pInputText
-    pKeyFilter="int"
-    placeholder="Integers"
-    [(ngModel)]="value"
-  />
-</form>
+  </form>
+</div>
