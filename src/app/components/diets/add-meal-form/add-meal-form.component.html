@@ -49,10 +49,16 @@
     </div>
     <div class="ingredients">
       <div class="ingredients__item">
-        <input type="checkbox" name="" id="" />
+        <input type="checkbox" name="" id="" class="checkbox" />
         <div class="item__right-side">
-          <span>Nombre del ingrediente</span>
-          <div class="right__lower">
+          <div class="upper">
+            <span class="ingredient-name">Nombre del ingrediente</span>
+            <span>
+              <input type="text" value="100" />
+              <span> kcal </span>
+            </span>
+          </div>
+          <div class="lower">
             <span class="item__amount">
               <input type="text" class="amount" />
               <p-dropdown
@@ -60,6 +66,29 @@
                 class="serving-unit"
                 [(ngModel)]="selectedServingUnit"
               ></p-dropdown>
+            </span>
+            <span class="macros">
+              <div class="macro protein">
+                <div class="circle protein-circle"></div>
+                <span class="amount">
+                  90
+                  <span class="unit">&nbsp;gr</span>
+                </span>
+              </div>
+              <div class="macro carb">
+                <div class="circle carb-circle"></div>
+                <span class="amount">
+                  90
+                  <span class="unit">&nbsp;gr</span>
+                </span>
+              </div>
+              <div class="macro fat">
+                <div class="circle fat-circle"></div>
+                <span class="amount">
+                  90
+                  <span class="unit">&nbsp;gr</span>
+                </span>
+              </div>
             </span>
           </div>
         </div>
