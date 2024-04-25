@@ -6,6 +6,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CreateDietPlanComponent } from './create-diet-plan.component';
 import { CalendarComponent } from '../calendar/calendar.component'; // Use primeng inline calendar. What form is submitted when adding new meal?
 import { MealItineraryModule } from '../meal-itinerary/meal-itinerary.module';
+import { DietSlidesModule } from '../diet-slides/diet-slides.module';
 
 @NgModule({
   declarations: [CreateDietPlanComponent, CalendarComponent],
@@ -17,6 +18,7 @@ import { MealItineraryModule } from '../meal-itinerary/meal-itinerary.module';
       useFactory: adapterFactory,
     }),
     MealItineraryModule,
+    DietSlidesModule,
   ],
   exports: [],
 })
