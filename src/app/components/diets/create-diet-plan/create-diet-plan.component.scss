@@ -23,10 +23,16 @@ main {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100%;
-  margin-right: 2rem;
+  margin-right: $card-mx;
+  gap: $card-my;
 }
 
+.patient {
+  width: 100%;
+}
 app-meal-itinerary {
   flex-grow: 3;
 }

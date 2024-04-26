@@ -37,3 +37,9 @@ a {
   color: inherit; /* Inherit the color from the parent element */
   text-decoration: none; /* Remove the default underline */
 }
+
+button {
+  span {
+    line-height: $btn-span-line-height;
+  }
+}

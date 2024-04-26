@@ -1,77 +1,75 @@
-<ng-container class="itinerary">
-  <div class="itinerary__options">
-    <span class="itinerary__option save">
-      <i class="pi pi-save"></i>
-      <span> Guardar </span>
-    </span>
-    <span class="itinerary__option import">
-      <i class="pi pi-upload"></i>
-      <span> Importar </span>
-    </span>
-    <span class="itinerary__option export">
-      <i class="pi pi-file-export"></i>
-      <span> Exportar </span>
-    </span>
+<div class="itinerary__options">
+  <button class="itinerary__option save">
+    <i class="pi pi-save"></i>
+    <span> Guardar </span>
+  </button>
+  <button class="itinerary__option import">
+    <i class="pi pi-upload"></i>
+    <span> Importar </span>
+  </button>
+  <button class="itinerary__option export">
+    <i class="pi pi-file-export"></i>
+    <span> Exportar </span>
+  </button>
+</div>
+<div class="week">
+  <h2 class="week__title">Semana 1</h2>
+  <div class="week__selector">
+    <span>Lunes</span>
+    <ng-container>
+      <i class="selector__icon pi pi-angle-left"></i>
+      <i class="selector__icon pi pi-angle-right"></i>
+    </ng-container>
   </div>
-  <div class="week">
-    <h2 class="week__title">Semana 1</h2>
-    <div class="week__selector">
-      <span>Lunes</span>
-      <ng-container>
-        <i class="selector__icon pi pi-angle-left"></i>
-        <i class="selector__icon pi pi-angle-right"></i>
-      </ng-container>
-    </div>
-  </div>
-  <ng-template #mealItinerary let-meals>
-    <div class="meal" *ngFor="let m of meals">
-      <i class="meal__icon pi pi-face-smile"></i>
-      <div class="l-meal">
-        <div class="meal__title">
-          <h1 class="meal__title-h1">{{ m.meal_name }}</h1>
-        </div>
-        <div class="meal__macros">
-          <span class="macros__item protein">
-            <div class="macros__icon protein_icon">icon</div>
-            <div class="macros__name">Proteina</div>
-            <span class="macros_amount">{{ m.macros.protein }}</span>
-          </span>
-          <span class="macros__item carbs">
-            <div class="macros__icon carbs_icon">icon</div>
-            <div class="macros__name">Carbohidratos</div>
-            <span class="macros_amount">{{ m.macros.carbs }}</span>
-          </span>
-          <span class="macros__item fat">
-            <div class="macros__icon fat_icon">icon</div>
-            <div class="macros__name">Grasa</div>
-            <span class="macros_amount">{{ m.macros.fat }}</span>
-          </span>
-        </div>
+</div>
+<ng-template #mealItinerary let-meals>
+  <div class="meal" *ngFor="let m of meals">
+    <i class="meal__icon pi pi-face-smile"></i>
+    <div class="l-meal">
+      <div class="meal__title">
+        <h1 class="meal__title-h1">{{ m.meal_name }}</h1>
       </div>
-    </div>
-  </ng-template>
-  <div class="meals-day-view">
-    <div class="meals">
-      <ng-container
-        *ngTemplateOutlet="mealItinerary; context: { $implicit: mockMealData }"
-      ></ng-container>
-
-      <div class="control-panel">
-        <button class="add-btn" (click)="showAddMealForm()">
-          <i class="pi pi-plus-circle"></i>
-          <span>Añadir comida</span>
-        </button>
-
-        <app-add-meal-form
-          *ngIf="visible"
-          (close)="closeForm()"
-        ></app-add-meal-form>
-
-        <button class="jack-btn">
-          <i class="pi pi-bolt"></i>
-          <span>Generar con Jack</span>
-        </button>
+      <div class="meal__macros">
+        <span class="macros__item protein">
+          <div class="macros__icon protein_icon">icon</div>
+          <div class="macros__name">Proteina</div>
+          <span class="macros_amount">{{ m.macros.protein }}</span>
+        </span>
+        <span class="macros__item carbs">
+          <div class="macros__icon carbs_icon">icon</div>
+          <div class="macros__name">Carbohidratos</div>
+          <span class="macros_amount">{{ m.macros.carbs }}</span>
+        </span>
+        <span class="macros__item fat">
+          <div class="macros__icon fat_icon">icon</div>
+          <div class="macros__name">Grasa</div>
+          <span class="macros_amount">{{ m.macros.fat }}</span>
+        </span>
       </div>
     </div>
   </div>
-</ng-container>
+</ng-template>
+<div class="meals-day-view">
+  <div class="meals">
+    <ng-container
+      *ngTemplateOutlet="mealItinerary; context: { $implicit: mockMealData }"
+    ></ng-container>
+
+    <div class="control-panel">
+      <button class="add-btn" (click)="showAddMealForm()">
+        <i class="pi pi-plus-circle"></i>
+        <span>Añadir comida</span>
+      </button>
+
+      <app-add-meal-form
+        *ngIf="visible"
+        (close)="closeForm()"
+      ></app-add-meal-form>
+
+      <button class="jack-btn">
+        <i class="pi pi-bolt"></i>
+        <span>Generar con Jack</span>
+      </button>
+    </div>
+  </div>
+</div>

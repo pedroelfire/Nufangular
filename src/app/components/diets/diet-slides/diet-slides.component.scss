@@ -1,5 +1,8 @@
 @import "src/variables";
 
+:host {
+  width: 100%;
+}
 .kcal-slide {
   display: flex;
   justify-content: center;
