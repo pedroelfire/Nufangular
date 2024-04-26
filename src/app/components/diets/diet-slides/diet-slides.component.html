@@ -1,7 +1,18 @@
 <div class="kcal-slide">
   <h2>Calorías</h2>
   <div class="body">
-    <div class="progress-circle-container">Circle progress</div>
+    <div class="progress-circle-container">
+      <circle-progress
+        [percent]="85"
+        [radius]="100"
+        [outerStrokeWidth]="16"
+        [innerStrokeWidth]="8"
+        [outerStrokeColor]="'#78C000'"
+        [innerStrokeColor]="'#C7E596'"
+        [animation]="true"
+        [animationDuration]="300"
+      ></circle-progress>
+    </div>
     <div class="info">
       <span class="info__item bmr-flag">
         <i class="pi pi-flag-fill"></i>

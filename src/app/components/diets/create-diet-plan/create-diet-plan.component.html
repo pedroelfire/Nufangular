@@ -1,6 +1,12 @@
 <h1 class="title">Crear plan alimenticio</h1>
 <main>
   <div class="side-panel">
+    <p-calendar
+      class="max-w-full"
+      [(ngModel)]="date"
+      [inline]="true"
+      [showWeek]="true"
+    ></p-calendar>
     <app-diet-slides></app-diet-slides>
     <div class="patient">
       <span>Pedro Sánchez Estrella</span>

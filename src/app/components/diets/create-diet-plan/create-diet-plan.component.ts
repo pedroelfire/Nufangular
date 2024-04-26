@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./create-diet-plan.component.scss'],
 })
 export class CreateDietPlanComponent {
+  date = new Date();
   visible = false;
 }
