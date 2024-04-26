@@ -1,12 +1,10 @@
-@import "src/variables";
-
 :host {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 8rem;
-  margin-top: 4rem;
+  margin: var(--main-my) var(--main-mx);
+  margin-top: var(--main-mt);
 }
 
 .title {
@@ -26,8 +24,8 @@ main {
   justify-content: center;
   align-items: center;
   height: 100%;
-  margin-right: $card-mx;
-  gap: $card-my;
+  margin-right: var(--card-mx);
+  gap: var(--card-my);
 }
 
 .patient {

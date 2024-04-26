@@ -11,8 +11,8 @@
 
 body {
   font-family: "Josefin Sans";
-  font-size: $font-size-base;
-  background-color: $background-main;
+  font-size: var(--font-size-base);
+  background-color: var(--bg-main);
 }
 
 * {
@@ -22,11 +22,11 @@ body {
 }
 
 h1 {
-  font-size: $h1-font-size;
+  font-size: var(--h1-font-size);
 }
 
 h2 {
-  font-size: $h2-font-size;
+  font-size: var(--h2-font-size);
 }
 
 ul {
@@ -40,6 +40,6 @@ a {
 
 button {
   span {
-    line-height: $btn-span-line-height;
+    line-height: var(--btn-span-line-height);
   }
 }

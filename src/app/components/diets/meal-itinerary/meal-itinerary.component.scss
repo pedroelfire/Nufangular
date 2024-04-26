@@ -1,7 +1,5 @@
-@import "src/variables";
-
 :host {
-  margin: 0 $card-mx;
+  margin: 0 var(--card-mx);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,17 +11,10 @@
   flex-direction: row;
   width: 100%;
 
-  .hours {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-right: 4rem;
-  }
-
   .meals {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--card-my);
     width: 100%;
   }
 }
@@ -34,10 +25,10 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding: $card-padding-y $card-padding-x;
-  border: $card-border-width solid $text-primary;
-  border-radius: $card-radius;
-  background-color: $background-main-accent;
+  padding: var(--card-py) var(--card-px);
+  border: var(--card-border-width) solid var(--text-primary);
+  border-radius: var(--card-radius);
+  background-color: var(--bg-main-accent);
 
   .l-meal {
     display: flex;
@@ -72,7 +63,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: $inline-buttons;
+  gap: var(--inline-spacing);
   width: 100%;
 }
 
@@ -88,16 +79,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: $inline-buttons;
+  gap: var(--inline-spacing);
   button {
     display: flex;
     justify-content: center;
-    gap: $inline-buttons;
+    gap: var(--inline-spacing);
     align-items: center;
-    padding: $btn-padding-y $btn-padding-x;
-    border: $card-border-width solid $text-primary;
+    padding: var(--btn-py) var(--btn-px);
+    border: var(--card-border-width) solid var(--text-primary);
     background-color: transparent;
-    border-radius: $card-radius;
+    border-radius: var(--card-radius);
     width: 50%;
   }
 }
@@ -106,9 +97,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: $card-border-width solid $text-primary;
-  border-radius: $card-radius;
-  padding: $btn-padding-y $btn-padding-x;
+  border: var(--card-border-width) solid var(--text-primary);
+  border-radius: var(--card-radius);
+  padding: var(--btn-py) var(--btn-px);
   flex-grow: 1;
-  gap: $icon-btn-text-spacing;
+  gap: var(--btn-icon-text-spacing);
 }

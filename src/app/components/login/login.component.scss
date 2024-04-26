@@ -24,8 +24,8 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  border: $card-border-width solid $text-primary;
-  border-radius: $card-radius;
+  border: var(--card-border-width) solid var(--text-primary);
+  border-radius: var(--card-radius);
   padding: 2.5rem 1.25rem;
 }
 
@@ -67,17 +67,17 @@
   align-items: center;
 }
 .login-form__btns button {
-  font-size: $btn-primary-font-size;
+  font-size: var(btn-primary-font-size);
 }
 
 .register-btn span {
-  color: $text-primary;
+  color: var(--text-primary);
 }
 
 .ok-btn {
-  background-color: $surface-secodary;
-  padding: 1rem 0.5rem;
-  border-radius: $btn-primary-border-radius;
+  background-color: var(--surface-secondary);
+  padding: var(--btn-py) var(--btn-py);
+  border-radius: var(--btn-primary-radius);
 }
 
 .ok-btn span {

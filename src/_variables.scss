@@ -1,84 +1,102 @@
-// Font sizes
-$font-size-base: 16px;
-$font-size-scale: 1.2;
+:root {
+  // Font sizes
+  --font-size-base: 16px;
+  --font-size-scale: 1.2;
 
-$h1-font-size: calc(
-  #{$font-size-base} * #{$font-size-scale} * #{$font-size-scale}
-); // h1 size (increase scale factor as needed)
-$h2-font-size: calc(#{$font-size-base} * #{$font-size-scale}); // h2 size
-$h3-font-size: calc(#{$font-size-base} * #{$font-size-scale}); // h3 size
-$body-font-size: #{$font-size-base}; // Body text
-$span-font-size: calc(
-  #{$font-size-base} / #{$font-size-scale}
-); // Smaller size for spans
-$label-font-size: #{$body-font-size};
-$accent-font-size: calc(
-  #{$body-font-size} * #{$font-size-scale} * #{$font-size-scale} * #{$font-size-scale}
-);
+  --h1-font-size: calc(
+    var(--font-size-base) * var(--font-size-scale) * var(--font-size-scale)
+  ); // h1 size (increase scale factor as needed)
+  --h2-font-size: calc(
+    var(--font-size-base) * var(--font-size-scale)
+  ); // h2 size
+  --h3-font-size: calc(
+    var(--font-size-base) * var(--font-size-scale)
+  ); // h3 size
+  --body-font-size: var(--font-size-base); // Body text
+  --span-font-size: calc(
+    var(--font-size-base) / var(--font-size-scale)
+  ); // Smaller size for spans
+  --label-font-size: var(--body-font-size);
+  --accent-font-size: calc(
+    var(--body-font-size) * var(--font-size-scale) * var(--font-size-scale) *
+      var(--font-size-scale)
+  );
 
-// Btns
-$btn-primary-font-size: #{$body-font-size};
-$btn-primary-border-radius: 1rem;
+  // Btns
+  --btn-primary-font-size: var(--body-font-size);
+  --btn-primary-radius: 1rem;
 
-// Primitives
-$dark-gray: #171617;
-$bermuda-gray: #7383a3;
-$blush: #b1476a;
-$silver-chalice: #a2a2a2;
-$fedora: #747374;
-$moody-blue: #7e77d5;
-$oxford-blue: #002147;
-$porcelain: #e8eeee;
+  // Primitives
+  --dark-gray: #171617;
+  --bermuda-gray: #7383a3;
+  --blush: #b1476a;
+  --silver-chalice: #a2a2a2;
+  --fedora: #747374;
+  --moody-blue: #7e77d5;
+  --oxford-blue: #002147;
+  --porcelain: #e8eeee;
+  --silver: #c0c0c0;
+  --pastel-blue: #374e7b;
+  --light-blue: #bed8d9;
+  --light-purple: #d2c8c7;
+  --dark-gray-2: #d2c8c7;
+  --cararra: #eeeee8;
 
-$silver: #c0c0c0;
-$pastel-blue: #374e7b;
-$light-blue: #bed8d9;
-$light-purple: #d2c8c7;
-$dark-gray-2: #d2c8c7;
-$cararra: #eeeee8;
+  // Tokenization
+  --bg-main: var(--porcelain);
+  --bg-main-accent: var(--cararra);
 
-// Tokenization
-$background-main: $porcelain;
-$background-main-accent: $cararra;
+  --surface-primary: var(--light-blue);
+  --surface-primary-accent: var(--moody-blue);
 
-$surface-primary: $light-blue;
-$surface-primary-accent: $moody-blue;
+  --surface-secondary: var(--pastel-blue);
+  --surface-secondary-accent: var(--blush);
 
-$surface-secodary: $pastel-blue;
-$surface-secodary-accent: $blush;
+  --surface-tertiary: var(--light-purple);
+  --surface-tertiary-accent: var(--oxford-blue);
 
-$surface-tertiary: $light-purple;
-$surface-tertiary-accent: $oxford-blue;
+  --text-primary: var(--dark-gray);
+  --text-secondary: var(--silver);
+  --text-primary-dim: var(--silver-chalice);
+  --text-secondary-dim: var(--fedora);
 
-$text-primary: $dark-gray;
-$text-secondary: $silver;
-$text-primary-dim: $silver-chalice;
-$text-secondary-dim: $fedora;
+  // spacing
+  --card-mx: 2rem;
+  --inline-spacing: 0.25rem;
+  --btn-icon-text-spacing: 0.2rem;
+  --card-my: 1rem;
+  --main-mx: 8rem;
+  --main-my: 0;
+  --main-mt: 4rem;
 
-// spacing
-$card-mx: 2rem;
-$inline-buttons: 0.25rem;
-$icon-btn-text-spacing: 0.2rem;
-$card-my: 1rem;
+  // radius
+  --card-radius: 1rem;
+  --search-bar-radius: 2.5rem;
 
-// radius
-$card-radius: 1rem;
-$search-bar-radius: 2.5rem;
+  // border width
+  --card-border-width: 0.125rem;
 
-// border width
-$card-border-width: 0.125rem;
+  // line-height
+  --label-line-height: 0.5rem;
+  --btn-span-line-height: 0.25rem;
 
-// line-height
-$label-line-height: 0.5rem;
-$btn-span-line-height: 0.25rem;
+  // Padding
+  --card-px: 0.75rem;
+  --card-py: 0.5rem;
+  --btn-px: 0.75rem;
+  --btn-py: 1.25rem;
+  --input-px: 0.25rem;
+  --input-py: 0.5rem;
+}
 
-// Padding
-$card-padding-x: 0.75rem;
-$card-padding-y: 0.5rem;
-$btn-padding-x: 0.75rem;
-$btn-padding-y: 1.25rem;
+// @media (min-width: 768px) {
+//   :root {
 
-// Responsive breakpoints
-$breakpoint-sm: 768px;
-$breakpoint-md: 992px;
-$breakpoint-lg: 1200px;
+//   }
+// }
+
+// @media (min-width: 992px) {
+//   :root {
+
+//   }
+// }
