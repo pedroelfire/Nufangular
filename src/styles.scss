@@ -43,3 +43,18 @@ button {
     line-height: var(--btn-span-line-height);
   }
 }
+
+main {
+  margin: var(--main-my) var(--main-mx);
+}
+
+// Components (Mixins)
+
+@mixin btn-primary {
+  box-shadow: 0 3px 6px rgba(0, 0, 0), 0 3px 6px rgba(0, 0, 0);
+  transform: translateY(1px) translateX(-5px);
+  border: var(--btn-primary-outline) solid var(--text-primary);
+  border-radius: var(--btn-primary-radius);
+  background-color: var(--surface-primary);
+  padding: var(--btn-primary-py) var(--btn-primary-px);
+}

@@ -1,16 +1,18 @@
-<h1 class="title">Crear plan alimenticio</h1>
 <main>
-  <div class="side-panel">
-    <p-calendar
-      class="max-w-full"
-      [(ngModel)]="date"
-      [inline]="true"
-      [showWeek]="true"
-    ></p-calendar>
-    <app-diet-slides></app-diet-slides>
-    <div class="patient">
-      <app-client-info-card> </app-client-info-card>
+  <h1 class="title">Crear plan alimenticio</h1>
+  <div class="content">
+    <div class="side-panel">
+      <p-calendar
+        class="max-w-full"
+        [(ngModel)]="date"
+        [inline]="true"
+        [showWeek]="true"
+      ></p-calendar>
+      <app-diet-slides></app-diet-slides>
+      <div class="patient">
+        <app-client-info-card> </app-client-info-card>
+      </div>
     </div>
+    <app-meal-itinerary></app-meal-itinerary>
   </div>
-  <app-meal-itinerary></app-meal-itinerary>
 </main>

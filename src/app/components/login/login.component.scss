@@ -1,4 +1,4 @@
-@import "src/variables";
+@import "src/styles";
 :host {
   display: flex;
   width: 100vw;
@@ -75,12 +75,10 @@
 }
 
 .ok-btn {
-  background-color: var(--surface-secondary);
-  padding: var(--btn-py) var(--btn-py);
-  border-radius: var(--btn-primary-radius);
+  @include btn-primary;
 }
 
 .ok-btn span {
-  color: $text-secondary;
-  font-size: $span-font-size;
+  color: var(--text-primary);
+  font-size: var(--span-font-size);
 }
