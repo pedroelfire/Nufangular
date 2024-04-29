@@ -1,5 +1,5 @@
 <div class="overlay">
-  <form class="meal" name="mealForm">
+  <form class="meal" #mealForm="ngForm" (ngSubmit)="createMeal(mealForm)">
     <button (click)="closeForm()" class="close-btn">
       <i class="pi pi-times-circle"></i>
     </button>
@@ -19,16 +19,24 @@
               pInputText
               placeholder="ej. Desayuno"
               name="mealName"
+              #name="ngModel"
+              ngModel
               class="meal__name-input"
             />
           </div>
 
           <!-- Generate mockup data and use *ngFor directive -->
-          <div class="ingredient__list">
+          <div class="ingredient__list" *ngIf="selectedIngredients.length > 0">
             <div class="ingredient">
               <span>Nombre del ingrediente</span>
               <span>80 Kcal</span>
             </div>
+          </div>
+          <div
+            class="ingredient__list--empty"
+            *ngIf="selectedIngredients.length === 0"
+          >
+            <span>¡Agrega ingredientes!</span>
           </div>
         </div>
       </div>
@@ -38,7 +46,9 @@
       <input
         pInputText
         placeholder="ej. Atún en agua masa drenada"
-        [(ngModel)]="searchQueryWord"
+        #searchQueryWord="ngModel"
+        ngModel
+        name="searchQueryWord"
       />
     </div>
     <div class="filters">
@@ -49,7 +59,13 @@
     </div>
     <div class="ingredients">
       <div class="ingredients__item">
-        <input type="checkbox" name="" id="" class="checkbox" />
+        <input
+          type="checkbox"
+          name="selectedIngredient"
+          #name="ngModel"
+          ngModel
+          class="checkbox"
+        />
         <div class="item__right-side">
           <div class="upper">
             <span class="ingredient-name">Nombre del ingrediente</span>
@@ -64,7 +80,9 @@
               <p-dropdown
                 [options]="units"
                 class="serving-unit"
-                [(ngModel)]="selectedServingUnit"
+                name="selectedUnit"
+                #selectedUnit="ngModel"
+                ngModel
               ></p-dropdown>
             </span>
             <span class="macros">
@@ -93,6 +111,11 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="control-panel">
+      <button class="submit-btn" type="submit">
+        <span>Crear</span>
+      </button>
     </div>
   </form>
 </div>

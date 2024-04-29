@@ -1,3 +1,35 @@
 <main>
-  <p>nutritionist-dashboard works!</p>
+  <h1>Dashboard</h1>
+  <div class="itinerary">
+    <div class="current-event">
+      <i class="pi pi-bell"></i>
+      <span>Cita con Pedro Sánchez 17:00</span>
+    </div>
+    <div class="header">
+      <h1>Calendario</h1>
+      <i class="pi pi-plus-circle btn-add-event"></i>
+      <div class="date">
+        <button class="btn-today">
+          <span>Hoy</span>
+        </button>
+        <span class="date-string">26 de abril</span>
+      </div>
+      <div class="week-bar">
+        <div class="week-item">
+          <span class="day-shorthand">S</span>
+          <span class="day-number">26</span>
+        </div>
+      </div>
+      <!-- <full-calendar [options]="calendarOptions"></full-calendar> -->
+    </div>
+  </div>
+  <div class="client-management-card">
+    <span class="title">Clientes</span>
+    <span class="preview">+</span>
+    <i class="pi pi-angle-right"></i>
+  </div>
+  <div class="diet-plans-card">
+    <span class="title">Planes alimenticios</span>
+    <span class="preview">Keto</span>
+  </div>
 </main>
