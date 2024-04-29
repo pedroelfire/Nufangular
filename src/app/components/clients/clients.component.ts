@@ -12,7 +12,7 @@ export class ClientsComponent implements OnInit{
   constructor(private clientService: ClientsService ){ }
 
   ngOnInit(): void {
-    this.clientService.getAll().subscribe(response => {
+    this.clientService.getAllClient().subscribe(response => {
       this.DataClients = response
     })
   }

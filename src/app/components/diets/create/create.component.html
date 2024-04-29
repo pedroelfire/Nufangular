@@ -1,1 +1,15 @@
-<p>create works!</p>
+  <div class="login-container">
+      <h2>Crear comida</h2>
+      <form [formGroup]="dietForm" (ngSubmit)="onSubmit()">
+        <div>
+          <label for="nombre">Nombre de la dieta: </label>
+          <input type="text" id="nombre" formControlName="nombre" required>
+        </div>
+        <div>
+          <label for="comidas">Comidas: </label>
+          <p-dropdown [options]="catalogoComidas" formControlName="comidas" optionValue="id" optionLabel="name" placeholder="Selecciona las comidas"></p-dropdown>
+          <button type="submit">Crear</button>  
+      </div>
+      </form>
+    </div>
+    
