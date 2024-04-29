@@ -8,7 +8,7 @@ import { NgModel } from '@angular/forms';
   styleUrls: ['./add-meal-form.component.scss'],
 })
 export class AddMealFormComponent {
-  // Data gathered from FatSecret API. It should change when new Search Query is inputted
+  // Mock Up data gathered from FatSecret API. It should change when new Search Query is inputted
   food_items = [
     {
       food_id: '123456',
@@ -169,6 +169,10 @@ export class AddMealFormComponent {
   @Output() close = new EventEmitter<void>();
   // Tracks checkboxes state
   selectedIngredients: any[] = [];
+  // Stores food_item objs to display in header
+  // Should be updated on selectedIngredients change. get id of the checkbox that changed and then delete the obj with the same id.
+  // Use ingredients data structure to assign unique id to ingredients in a meal (handle same food_id register).
+  selectedIngredientsObjects: any[] = [];
 
   addIngredient(ingredient: any) {
     this.selectedIngredients.push(ingredient);
