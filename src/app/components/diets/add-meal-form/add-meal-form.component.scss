@@ -19,6 +19,10 @@ form {
   padding: var(--card-py) var(--card-px);
   border-radius: var(--card-radius);
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .close-btn {
@@ -192,5 +196,18 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+.control_panel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 1rem 0;
+
+  .submit-btn {
+    justify-self: flex-end;
   }
 }

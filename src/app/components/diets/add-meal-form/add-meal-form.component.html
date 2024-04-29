@@ -24,14 +24,17 @@
               class="meal__name-input"
             />
           </div>
-
-          <!-- Generate mockup data and use *ngFor directive -->
-          <div class="ingredient__list" *ngIf="selectedIngredients.length > 0">
-            <div class="ingredient">
-              <span>Nombre del ingrediente</span>
-              <span>80 Kcal</span>
+          <ng-container *ngIf="selectedIngredients.length > 0">
+            <div
+              class="ingredient__list"
+              *ngFor="let ingredient of getMealIngredients()"
+            >
+              <div class="ingredient">
+                <span>{{ ingredient.food_name }}</span>
+                <span>{{ ingredient.nutrients.calories }} kcal</span>
+              </div>
             </div>
-          </div>
+          </ng-container>
           <div
             class="ingredient__list--empty"
             *ngIf="selectedIngredients.length === 0"
@@ -57,26 +60,42 @@
         <span>+ Proteína</span>
       </div>
     </div>
-    <div class="ingredients">
-      <div class="ingredients__item">
-        <input
+    <div class="ingredients--empty" *ngIf="food_items.length === 0">
+      <span>¡No se encontraron ingredientes!</span>
+    </div>
+    <div class="ingredients" *ngIf="food_items.length > 0">
+      <div
+        class="ingredients__item"
+        *ngFor="let ingredient of food_items; let i = index"
+      >
+        <!-- <input
           type="checkbox"
           name="selectedIngredient"
           #name="ngModel"
           ngModel
+        /> -->
+        <p-checkbox
           class="checkbox"
-        />
+          [binary]="true"
+          [(ngModel)]="selectedIngredients[i]"
+          name="selectedIngredient"
+        >
+        </p-checkbox>
         <div class="item__right-side">
           <div class="upper">
-            <span class="ingredient-name">Nombre del ingrediente</span>
+            <span class="ingredient-name">{{ ingredient.food_name }}</span>
             <span>
-              <input type="text" value="100" />
+              <input type="text" value="ingredient.nutrients.calories" />
               <span> kcal </span>
             </span>
           </div>
           <div class="lower">
             <span class="item__amount">
-              <input type="text" class="amount" />
+              <input
+                type="text"
+                class="amount"
+                value="ingredients.serving.metric_serving_amount"
+              />
               <p-dropdown
                 [options]="units"
                 class="serving-unit"
@@ -89,21 +108,23 @@
               <div class="macro protein">
                 <div class="circle protein-circle"></div>
                 <span class="amount">
-                  90
+                  {{ ingredient.nutrients.protein }}
                   <span class="unit">&nbsp;gr</span>
                 </span>
               </div>
               <div class="macro carb">
                 <div class="circle carb-circle"></div>
                 <span class="amount">
-                  90
+                  {{ ingredient.nutrients.carbohydrates }}
+
                   <span class="unit">&nbsp;gr</span>
                 </span>
               </div>
               <div class="macro fat">
                 <div class="circle fat-circle"></div>
                 <span class="amount">
-                  90
+                  {{ ingredient.nutrients.total_fat }}
+
                   <span class="unit">&nbsp;gr</span>
                 </span>
               </div>
