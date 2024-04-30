@@ -180,16 +180,12 @@ export class AddMealFormComponent {
     console.log(this.selectedIngredients);
   }
   // Event handlers
-  onIngredientChange(food_item: any) {
-    const index = this.food_items.findIndex(
-      (item) => (item.food_id = food_item.food_id)
-    );
-
-    if (this.checkboxesState[index]) {
-      this.selectedIngredients.push(food_item);
+  onIngredientChange(event: any, ingredient: any) {
+    if (event.checked) {
+      this.selectedIngredients.push(ingredient);
     } else {
-      this.selectedIngredients.filter(
-        (item) => item.food_id != food_item.food_id
+      this.selectedIngredients = this.selectedIngredients.filter(
+        (item) => item.food_id != ingredient.food_id
       );
     }
   }

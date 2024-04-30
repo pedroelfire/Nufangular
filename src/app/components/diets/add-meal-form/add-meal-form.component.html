@@ -27,7 +27,7 @@
           <ng-container *ngIf="selectedIngredients.length > 0">
             <div
               class="ingredient__list"
-              *ngFor="let ingredient of getMealIngredients()"
+              *ngFor="let ingredient of selectedIngredients"
             >
               <div class="ingredient">
                 <span>{{ ingredient.food_name }}</span>
@@ -37,7 +37,7 @@
           </ng-container>
           <div
             class="ingredient__list--empty"
-            *ngIf="getMealIngredients().length === 0"
+            *ngIf="selectedIngredients.length === 0"
           >
             <span>¡Agrega ingredientes!</span>
           </div>
@@ -76,9 +76,10 @@
         /> -->
         <p-checkbox
           class="checkbox"
-          [(ngModel)]="selectedIngredients[i]"
+          [(ngModel)]="checkboxesState[i]"
+          [binary]="true"
           name="selectedIngredient"
-          (change)="(onIngredientChange)"
+          (onChange)="onIngredientChange($event, ingredient)"
         >
         </p-checkbox>
         <div class="item__right-side">
