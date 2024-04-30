@@ -165,28 +165,10 @@ export class AddMealFormComponent {
   units = ['gr', 'tablespoons', 'oz'];
   selectedServingUnit = '';
   searchQueryWord = '';
-  checked = false;
   @Output() close = new EventEmitter<void>();
   // Tracks checkboxes state
+  checkboxesState: boolean[] = [];
   selectedIngredients: any[] = [];
-  // Stores food_item objs to display in header
-  // Should be updated on selectedIngredients change. get id of the checkbox that changed and then delete the obj with the same id.
-  // Use ingredients data structure to assign unique id to ingredients in a meal (handle same food_id register).
-  selectedIngredientsObjects: any[] = [];
-
-  addIngredient(ingredient: any) {
-    this.selectedIngredients.push(ingredient);
-  }
-
-  removeIngredient(ingredient: any) {
-    this.selectedIngredients = this.selectedIngredients.filter(
-      (i) => i !== ingredient
-    );
-  }
-
-  getMealIngredients() {
-    return this.food_items.filter((e, i) => this.selectedIngredients[i]);
-  }
 
   createMeal(mealForm: NgForm) {
     if (mealForm.valid) {
@@ -198,12 +180,17 @@ export class AddMealFormComponent {
     console.log(this.selectedIngredients);
   }
   // Event handlers
-  onCheckboxChange(event: any, item: any) {
-    if (event.target.checked) {
-      this.selectedIngredients.push(item);
+  onIngredientChange(food_item: any) {
+    const index = this.food_items.findIndex(
+      (item) => (item.food_id = food_item.food_id)
+    );
+
+    if (this.checkboxesState[index]) {
+      this.selectedIngredients.push(food_item);
     } else {
-      const index = this.selectedIngredients.findIndex((i) => i.id === item.id);
-      this.selectedIngredients.splice(index, 1);
+      this.selectedIngredients.filter(
+        (item) => item.food_id != food_item.food_id
+      );
     }
   }
 

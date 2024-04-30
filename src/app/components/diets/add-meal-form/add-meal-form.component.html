@@ -76,9 +76,9 @@
         /> -->
         <p-checkbox
           class="checkbox"
-          [binary]="true"
           [(ngModel)]="selectedIngredients[i]"
           name="selectedIngredient"
+          (change)="(onIngredientChange)"
         >
         </p-checkbox>
         <div class="item__right-side">
