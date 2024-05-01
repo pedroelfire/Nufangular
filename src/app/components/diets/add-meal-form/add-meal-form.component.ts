@@ -41,7 +41,7 @@ export class AddMealFormComponent {
       },
     },
     {
-      food_id: '123456',
+      food_id: '123457',
       food_name: 'Banana, medium',
       food_type: 'Generic',
       food_url: 'https://www.example.com/nutrition/banana',
@@ -169,6 +169,12 @@ export class AddMealFormComponent {
   // Tracks checkboxes state
   checkboxesState: boolean[] = [];
   selectedIngredients: any[] = [];
+  mealSummary: any = {
+    calories: 0,
+    total_fat: 0,
+    carbohydrates: 0,
+    protein: 0,
+  };
 
   createMeal(mealForm: NgForm) {
     if (mealForm.valid) {
@@ -177,8 +183,56 @@ export class AddMealFormComponent {
     } else {
       console.log('Form is invalid');
     }
-    console.log(this.selectedIngredients);
   }
+
+  createMealSummary() {
+    this.mealSummary = {
+      calories: 0,
+      total_fat: 0,
+      carbohydrates: 0,
+      protein: 0,
+    };
+
+    this.selectedIngredients.forEach((ingredient) => {
+      this.mealSummary.calories += ingredient.nutrients.calories;
+      this.mealSummary.total_fat += ingredient.nutrients.total_fat;
+      this.mealSummary.carbohydrates += ingredient.nutrients.carbohydrates;
+      this.mealSummary.protein += ingredient.nutrients.protein;
+    });
+  }
+
+  // getMacrosChartData() {
+  //   return {
+  //     labels: ['Grasa', 'Carbohidratos', 'Proteína'],
+  //     datasets: [
+  //       {
+  //         label: 'Macronutrientes (g)',
+  //         data: [
+  //           this.mealSummary.total_fat,
+  //           this.mealSummary.carbohydrates,
+  //           this.mealSummary.protein,
+  //         ],
+  //         backgroundColor: [
+  //           'rgba(54, 162, 235, 0.2)',
+  //           'rgba(255, 206, 86, 0.2)',
+  //           'rgba(75, 192, 192, 0.2)',
+  //         ],
+  //         borderColor: [
+  //           'rgba(54, 162, 235, 1)',
+  //           'rgba(255, 206, 86, 1)',
+  //           'rgba(75, 192, 192, 1)',
+  //         ],
+  //         borderWidth: 1,
+  //       },
+  //     ],
+  //   };
+  // }
+
+  // getChartOptions() {
+  //   return {
+  //     cutout: '70%',
+  //   };
+  // }
   // Event handlers
   onIngredientChange(event: any, ingredient: any) {
     if (event.checked) {

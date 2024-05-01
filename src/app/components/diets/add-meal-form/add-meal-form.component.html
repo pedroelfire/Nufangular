@@ -7,7 +7,12 @@
       <h1>Crear comida</h1>
       <div class="meal__layout">
         <div class="meal__calories">
-          <span class="amount"> 9999 </span>
+          <!-- <p-chart
+            type="doughnut"
+            [data]="getMacrosChartData()"
+            [options]="getChartOptions()"
+          ></p-chart> -->
+          <span class="amount">{{ mealSummary.calories }}</span>
           <span class="label">Kcal</span>
         </div>
         <div class="meal__ingredients">
