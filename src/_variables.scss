@@ -44,8 +44,15 @@
   --light-purple: #d2c8c7;
   --dark-gray-2: #d2c8c7;
   --cararra: #eeeee8;
+  --digital-yellow: #f1e287;
+  --xoxo: #d88491;
+  --fleur-de-lis: #a48abb;
 
   // Tokenization
+  --protein: var(--xoxo);
+  --carbs: var(--fleur-de-lis);
+  --fat: var(--digital-yellow);
+
   --bg-main: var(--porcelain);
   --bg-main-accent: var(--cararra);
 
@@ -75,6 +82,7 @@
   // radius
   --card-radius: 1rem;
   --search-bar-radius: 2.5rem;
+  --input-radius: 0.5rem;
 
   // border width
   --card-border-width: 0.125rem;

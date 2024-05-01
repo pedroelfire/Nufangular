@@ -25,11 +25,11 @@
             />
           </div>
           <ng-container *ngIf="selectedIngredients.length > 0">
-            <div
-              class="ingredient__list"
-              *ngFor="let ingredient of selectedIngredients"
-            >
-              <div class="ingredient">
+            <div class="ingredient__list">
+              <div
+                class="ingredient"
+                *ngFor="let ingredient of selectedIngredients"
+              >
                 <span>{{ ingredient.food_name }}</span>
                 <span>{{ ingredient.nutrients.calories }} kcal</span>
               </div>
@@ -85,9 +85,10 @@
         <div class="item__right-side">
           <div class="upper">
             <span class="ingredient-name">{{ ingredient.food_name }}</span>
-            <span>
+            <span class="item__calories">
               <input
                 type="text"
+                class="calories"
                 name="calories"
                 [(ngModel)]="ingredient.nutrients.calories"
               />
@@ -112,14 +113,14 @@
             <span class="macros">
               <div class="macro protein">
                 <div class="circle protein-circle"></div>
-                <span class="amount">
+                <span class="macros__amount">
                   {{ ingredient.nutrients.protein }}
                   <span class="unit">&nbsp;gr</span>
                 </span>
               </div>
               <div class="macro carb">
-                <div class="circle carb-circle"></div>
-                <span class="amount">
+                <div class="circle carbs-circle"></div>
+                <span class="macros__amount">
                   {{ ingredient.nutrients.carbohydrates }}
 
                   <span class="unit">&nbsp;gr</span>
@@ -127,7 +128,7 @@
               </div>
               <div class="macro fat">
                 <div class="circle fat-circle"></div>
-                <span class="amount">
+                <span class="macros__amount">
                   {{ ingredient.nutrients.total_fat }}
 
                   <span class="unit">&nbsp;gr</span>

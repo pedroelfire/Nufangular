@@ -5,6 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { AddMealFormComponent } from './add-meal-form.component';
+
 @NgModule({
   declarations: [AddMealFormComponent],
   imports: [

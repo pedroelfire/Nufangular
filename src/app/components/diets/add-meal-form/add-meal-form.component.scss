@@ -91,8 +91,21 @@ form {
   align-items: center;
   justify-content: flex-start;
   gap: var(--inline-spacing);
+  max-width: 29rem;
+  overflow-x: auto;
 }
 
+.ingredient__list--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 8rem;
+  border: var(--card-border-width) dashed var(--text-primary);
+  background-color: var(--bg-main);
+  border-radius: var(--card-radius);
+}
 .ingredient {
   display: flex;
   flex-direction: column;
@@ -150,6 +163,16 @@ form {
   padding: var(--btn-py) var(--btn-py);
 }
 
+.ingredients {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex;
+  gap: calc(var(--card-my) / 2);
+  width: 100%;
+}
+
 .ingredients__item {
   display: flex;
   flex-direction: row;
@@ -189,8 +212,24 @@ form {
   .macros {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: var(--inline-spacing);
+    justify-content: space-between;
+    width: 12rem;
+    .circle {
+      width: 0.5rem;
+      height: 0.5rem;
+      margin-right: 0.125rem;
+      border-radius: 50%;
+      background-color: var(--text-primary);
+    }
+    .protein-circle {
+      background-color: var(--protein);
+    }
+    .carbs-circle {
+      background-color: var(--carbs);
+    }
+    .fat-circle {
+      background-color: var(--fat);
+    }
   }
   .macro {
     display: flex;
@@ -199,6 +238,41 @@ form {
   }
 }
 
+.ingredients__item {
+  .calories {
+    width: 2rem;
+  }
+  .amount {
+    width: 2rem;
+  }
+
+  .item__amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--inline-spacing);
+  }
+
+  .item__calories {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--inline-spacing);
+  }
+
+  .macros__amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--input-radius);
+  }
+}
 .control_panel {
   display: flex;
   flex-direction: row;
