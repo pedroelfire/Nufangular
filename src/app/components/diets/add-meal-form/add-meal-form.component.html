@@ -69,80 +69,10 @@
       <span>¡No se encontraron ingredientes!</span>
     </div>
     <div class="ingredients" *ngIf="food_items.length > 0">
-      <div
-        class="ingredients__item"
-        *ngFor="let ingredient of food_items; let i = index"
-      >
-        <!-- <input
-          type="checkbox"
-          name="selectedIngredient"
-          #name="ngModel"
-          ngModel
-        /> -->
-        <p-checkbox
-          class="checkbox"
-          [(ngModel)]="checkboxesState[i]"
-          [binary]="true"
-          name="selectedIngredient"
-          (onChange)="onIngredientChange($event, ingredient)"
-        >
-        </p-checkbox>
-        <div class="item__right-side">
-          <div class="upper">
-            <span class="ingredient-name">{{ ingredient.food_name }}</span>
-            <span class="item__calories">
-              <input
-                type="text"
-                class="calories"
-                name="calories"
-                [(ngModel)]="ingredient.nutrients.calories"
-              />
-              <span> kcal </span>
-            </span>
-          </div>
-          <div class="lower">
-            <span class="item__amount">
-              <input
-                type="text"
-                class="amount"
-                name="amount"
-                [(ngModel)]="ingredient.serving.metric_serving_amount"
-              />
-              <p-dropdown
-                [options]="units"
-                class="serving-unit"
-                name="selectedUnit"
-                [(ngModel)]="ingredient.serving.metric_serving_unit"
-              ></p-dropdown>
-            </span>
-            <span class="macros">
-              <div class="macro protein">
-                <div class="circle protein-circle"></div>
-                <span class="macros__amount">
-                  {{ ingredient.nutrients.protein }}
-                  <span class="unit">&nbsp;gr</span>
-                </span>
-              </div>
-              <div class="macro carb">
-                <div class="circle carbs-circle"></div>
-                <span class="macros__amount">
-                  {{ ingredient.nutrients.carbohydrates }}
-
-                  <span class="unit">&nbsp;gr</span>
-                </span>
-              </div>
-              <div class="macro fat">
-                <div class="circle fat-circle"></div>
-                <span class="macros__amount">
-                  {{ ingredient.nutrients.total_fat }}
-
-                  <span class="unit">&nbsp;gr</span>
-                </span>
-              </div>
-            </span>
-          </div>
-        </div>
-      </div>
+      <app-food-item
+        *ngFor="let food_item of food_items"
+        [food_item]="food_item"
+      />
     </div>
     <div class="control-panel">
       <button class="submit-btn" type="submit">

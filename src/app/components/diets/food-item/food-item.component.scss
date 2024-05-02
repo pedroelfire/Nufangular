@@ -1,0 +1,100 @@
+.ingredients__item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: var(--card-border-width) solid var(--text-primary);
+  padding: var(--card-py) var(--card-px);
+  border-radius: var(--card-radius);
+  .checkbox {
+    flex-grow: 1;
+    padding: 1rem;
+  }
+
+  .item__right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-grow: 15;
+  }
+
+  .upper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .lower {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .macros {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 12rem;
+    .circle {
+      width: 0.5rem;
+      height: 0.5rem;
+      margin-right: 0.125rem;
+      border-radius: 50%;
+      background-color: var(--text-primary);
+    }
+    .protein-circle {
+      background-color: var(--protein);
+    }
+    .carbs-circle {
+      background-color: var(--carbs);
+    }
+    .fat-circle {
+      background-color: var(--fat);
+    }
+  }
+  .macro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.ingredients__item {
+  .calories {
+    width: 2rem;
+  }
+  .amount {
+    width: 2rem;
+  }
+
+  .item__amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--inline-spacing);
+  }
+
+  .item__calories {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--inline-spacing);
+  }
+
+  .macros__amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var(--input-radius);
+  }
+}

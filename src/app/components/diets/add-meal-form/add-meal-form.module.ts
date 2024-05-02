@@ -5,6 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
 import { AddMealFormComponent } from './add-meal-form.component';
+import { FoodItemModule } from '../food-item/food-item.module';
 import { ChartModule } from 'primeng/chart';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ChartModule } from 'primeng/chart';
     CheckboxModule,
     DropdownModule,
     ChartModule,
+    FoodItemModule,
   ],
   exports: [AddMealFormComponent],
 })
