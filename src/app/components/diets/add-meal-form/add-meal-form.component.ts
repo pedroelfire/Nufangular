@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { NgModel } from '@angular/forms';
 
@@ -167,8 +168,8 @@ export class AddMealFormComponent {
   searchQueryWord = '';
   @Output() close = new EventEmitter<void>();
   // Tracks checkboxes state
-  checkboxesState: boolean[] = [];
   selectedIngredients: any[] = [];
+  checkboxesState: boolean[] = [];
   mealSummary: any = {
     calories: 0,
     total_fat: 0,
@@ -201,38 +202,38 @@ export class AddMealFormComponent {
     });
   }
 
-  // getMacrosChartData() {
-  //   return {
-  //     labels: ['Grasa', 'Carbohidratos', 'Proteína'],
-  //     datasets: [
-  //       {
-  //         label: 'Macronutrientes (g)',
-  //         data: [
-  //           this.mealSummary.total_fat,
-  //           this.mealSummary.carbohydrates,
-  //           this.mealSummary.protein,
-  //         ],
-  //         backgroundColor: [
-  //           'rgba(54, 162, 235, 0.2)',
-  //           'rgba(255, 206, 86, 0.2)',
-  //           'rgba(75, 192, 192, 0.2)',
-  //         ],
-  //         borderColor: [
-  //           'rgba(54, 162, 235, 1)',
-  //           'rgba(255, 206, 86, 1)',
-  //           'rgba(75, 192, 192, 1)',
-  //         ],
-  //         borderWidth: 1,
-  //       },
-  //     ],
-  //   };
-  // }
+  getMacrosChartData() {
+    return {
+      labels: ['Grasa', 'Carbohidratos', 'Proteína'],
+      datasets: [
+        {
+          label: 'Macronutrientes (g)',
+          data: [
+            this.mealSummary.total_fat,
+            this.mealSummary.carbohydrates,
+            this.mealSummary.protein,
+          ],
+          backgroundColor: [
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+          ],
+          borderColor: [
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+          ],
+          borderWidth: 1,
+        },
+      ],
+    };
+  }
 
-  // getChartOptions() {
-  //   return {
-  //     cutout: '70%',
-  //   };
-  // }
+  getChartOptions() {
+    return {
+      cutout: '70%',
+    };
+  }
   // Event handlers
   onIngredientChange(event: any, ingredient: any) {
     if (event.checked) {
@@ -242,6 +243,7 @@ export class AddMealFormComponent {
         (item) => item.food_id != ingredient.food_id
       );
     }
+    this.createMealSummary();
   }
 
   closeForm() {
