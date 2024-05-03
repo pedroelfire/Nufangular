@@ -35,3 +35,16 @@ export interface FoodSearchResult {
   food_type: string;
   food_url: string;
 }
+
+export interface Ingredient {
+  food_id: number;
+  food_name: string;
+  calories: number;
+  metric_serving_amount: number;
+  metric_serving_unit: string;
+  macros: {
+    protein: number;
+    carbs: number;
+    fat: number;
+  };
+}

@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BackendURLsService } from 'src/app/services/backend-urls.service';
+
 import { NgForm } from '@angular/forms';
+import { FoodItemsService } from 'src/app/services/food-items.service';
 import { FoodSearchResult } from 'src/types';
 
 @Component({
@@ -10,20 +10,11 @@ import { FoodSearchResult } from 'src/types';
   styleUrls: ['./add-meal-form.component.scss'],
 })
 export class AddMealFormComponent {
-  // Mock Up data gathered from FatSecret API. It should change when new Search Query is inputted
   food_items: FoodSearchResult[] = [];
 
-  constructor(
-    private http: HttpClient,
-    private backendURLs: BackendURLsService
-  ) {
-    this.http
-      .post(this.backendURLs.getListIngredientsURL(), {
-        query_search: this.searchQueryWord,
-      })
-      .subscribe((response: any) => {
-        this.food_items = response.data;
-      });
+  constructor(private foodItemsService: FoodItemsService) {}
+  ngOnInit() {
+    this.searchQueryFoodItems();
   }
   @Output() close = new EventEmitter<void>();
   searchQueryWord = 'Pechuga de pollo';
@@ -58,10 +49,6 @@ export class AddMealFormComponent {
       this.mealSummary.carbohydrates += ingredient.nutrients.carbohydrates;
       this.mealSummary.protein += ingredient.nutrients.protein;
     });
-  }
-
-  calculateKcalPerServing(serving: any) {
-    return Math.round(serving.calories / serving.number_of_units);
   }
 
   getMacrosChartData() {
@@ -107,6 +94,14 @@ export class AddMealFormComponent {
       (item) => item.food_id != food_id
     );
     this.createMealSummary();
+  }
+
+  searchQueryFoodItems() {
+    this.foodItemsService
+      .searchFoodItems(this.searchQueryWord)
+      .subscribe((response) => {
+        this.food_items = response.data;
+      });
   }
 
   closeForm() {
