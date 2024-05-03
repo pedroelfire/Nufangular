@@ -1,4 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BackendURLsService } from 'src/app/services/backend-urls.service';
 import { NgForm } from '@angular/forms';
 import { FoodItem } from 'src/types';
 
@@ -9,70 +11,23 @@ import { FoodItem } from 'src/types';
 })
 export class AddMealFormComponent {
   // Mock Up data gathered from FatSecret API. It should change when new Search Query is inputted
-  food_items: FoodItem[] = [
-    {
-      food_id: 1,
-      food_name: 'Apple',
-      food_type: 'Fruit',
-      food_url:
-        'https://www.fatsecret.com/calories-nutrition/generic/apple-raw',
-      brand_name: 'Generic',
-      serving: {
-        serving_id: '1',
-        serving_description: '1 medium',
-        number_of_units: 1,
-        metric_serving_amount: 182,
-        metric_serving_unit: 'g',
-      },
-      nutrients: {
-        calories: 95,
-        total_fat: 0.3,
-        saturated_fat: 0.1,
-        cholesterol: 0,
-        sodium: 2,
-        potassium: 195,
-        carbohydrates: 25,
-        dietary_fiber: 4.4,
-        sugars: 19,
-        protein: 0.5,
-        vitamin_a: 98,
-        vitamin_c: 8.4,
-      },
-    },
-    {
-      food_id: 2,
-      food_name: 'Banana',
-      food_type: 'Fruit',
-      food_url:
-        'https://www.fatsecret.com/calories-nutrition/generic/banana-raw',
-      brand_name: 'Generic',
-      serving: {
-        serving_id: '2',
-        serving_description: '1 medium',
-        number_of_units: 1,
-        metric_serving_amount: 118,
-        metric_serving_unit: 'g',
-      },
-      nutrients: {
-        calories: 105,
-        total_fat: 0.4,
-        saturated_fat: 0.1,
-        cholesterol: 0,
-        sodium: 1,
-        potassium: 422,
-        carbohydrates: 27,
-        dietary_fiber: 3.1,
-        sugars: 14,
-        protein: 1.3,
-        vitamin_a: 76,
-        vitamin_c: 10,
-      },
-    },
-  ];
+  food_items: FoodItem[] = [];
+
+  constructor(
+    private http: HttpClient,
+    private backendURLs: BackendURLsService
+  ) {
+    this.http
+      .post(this.backendURLs.getListIngredientsURL(), {
+        query_search: this.searchQueryWord,
+      })
+      .subscribe((response: any) => {
+        console.log(response.data);
+        this.food_items = response.data;
+      });
+  }
   @Output() close = new EventEmitter<void>();
-  selectedServingUnit = '';
-  searchQueryWord = '';
-  // Tracks checkboxes state
+  searchQueryWord = 'Pechuga de pollo';
   selectedIngredients: any[] = [];
   mealSummary: any = {
     calories: 0,

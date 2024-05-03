@@ -8,11 +8,11 @@ export interface FoodItem {
     serving_id: string;
     serving_description: string;
     number_of_units: number;
-    metric_serving_amount: number;
+    metric_serving_amount: number | string;
     metric_serving_unit: string;
   };
   nutrients: {
-    calories: number;
+    calories: number | string;
     total_fat: number;
     saturated_fat: number;
     cholesterol: number;

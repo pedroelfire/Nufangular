@@ -12,7 +12,7 @@
       <span class="ingredient-name">{{ ingredient.food_name }}</span>
       <span class="item__calories">
         <input
-          type="text"
+          type="number"
           class="calories"
           name="calories"
           [(ngModel)]="ingredient.nutrients.calories"
@@ -23,7 +23,7 @@
     <div class="lower">
       <span class="item__amount">
         <input
-          type="text"
+          type="number"
           class="amount"
           name="amount"
           [(ngModel)]="ingredient.serving.metric_serving_amount"

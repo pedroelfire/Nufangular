@@ -1,6 +1,7 @@
 :host {
   width: 100%;
 }
+
 .ingredients__item {
   display: flex;
   flex-direction: row;
@@ -15,12 +16,20 @@
     padding: 1rem;
   }
 
+  .ingredient-name {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+    max-width: 70%;
+  }
+
   .item__right-side {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     flex-grow: 15;
+    width: calc(100% - 2rem);
   }
 
   .upper {

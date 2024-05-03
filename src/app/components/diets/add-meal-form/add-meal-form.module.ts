@@ -7,6 +7,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { AddMealFormComponent } from './add-meal-form.component';
 import { FoodItemModule } from '../food-item/food-item.module';
 import { ChartModule } from 'primeng/chart';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AddMealFormComponent],
@@ -18,6 +19,7 @@ import { ChartModule } from 'primeng/chart';
     DropdownModule,
     ChartModule,
     FoodItemModule,
+    HttpClientModule,
   ],
   exports: [AddMealFormComponent],
 })
