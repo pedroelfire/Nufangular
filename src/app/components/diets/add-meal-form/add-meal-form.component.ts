@@ -1,36 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
 import { NgForm } from '@angular/forms';
-import { NgModel } from '@angular/forms';
-
-interface FoodItem {
-  food_id: string;
-  food_name: string;
-  food_type: string;
-  food_url: string;
-  brand_name: string;
-  serving: {
-    serving_id: string;
-    serving_description: string;
-    number_of_units: number;
-    metric_serving_amount: number;
-    metric_serving_unit: string;
-  };
-  nutrients: {
-    calories: number;
-    total_fat: number;
-    saturated_fat: number;
-    cholesterol: number;
-    sodium: number;
-    potassium: number;
-    carbohydrates: number;
-    dietary_fiber: number;
-    sugars: number;
-    protein: number;
-    vitamin_a: number;
-    vitamin_c: number;
-  };
-}
+import { FoodItem } from 'src/types';
 
 @Component({
   selector: 'app-add-meal-form',
@@ -41,7 +11,7 @@ export class AddMealFormComponent {
   // Mock Up data gathered from FatSecret API. It should change when new Search Query is inputted
   food_items: FoodItem[] = [
     {
-      food_id: '1',
+      food_id: 1,
       food_name: 'Apple',
       food_type: 'Fruit',
       food_url:
@@ -70,7 +40,7 @@ export class AddMealFormComponent {
       },
     },
     {
-      food_id: '2',
+      food_id: 2,
       food_name: 'Banana',
       food_type: 'Fruit',
       food_url:
@@ -173,14 +143,15 @@ export class AddMealFormComponent {
     };
   }
   // Event handlers
-  onIngredientChange(event: any, ingredient: any) {
-    if (event.checked) {
-      this.selectedIngredients.push(ingredient);
-    } else {
-      this.selectedIngredients = this.selectedIngredients.filter(
-        (item) => item.food_id != ingredient.food_id
-      );
-    }
+  addIngredient(ingredient: any) {
+    this.selectedIngredients.push(ingredient);
+    this.createMealSummary();
+  }
+
+  removeIngredient(food_id: number) {
+    this.selectedIngredients = this.selectedIngredients.filter(
+      (item) => item.food_id != food_id
+    );
     this.createMealSummary();
   }
 

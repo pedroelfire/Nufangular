@@ -3,7 +3,7 @@
     <button (click)="closeForm()" class="close-btn">
       <i class="pi pi-times-circle"></i>
     </button>
-    <header>
+    <div class="header">
       <h1>Crear comida</h1>
       <div class="meal__layout">
         <div class="meal__calories">
@@ -48,31 +48,35 @@
           </div>
         </div>
       </div>
-    </header>
-    <div class="search-bar">
-      <i class="pi pi-search"></i>
-      <input
-        pInputText
-        placeholder="ej. Atún en agua masa drenada"
-        #searchQueryWord="ngModel"
-        ngModel
-        name="searchQueryWord"
-      />
     </div>
-    <div class="filters">
-      <i class="pi pi-filter"></i>
-      <div class="filter">
-        <span>+ Proteína</span>
+    <div class="body">
+      <div class="search-bar">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          placeholder="ej. Atún en agua masa drenada"
+          #searchQueryWord="ngModel"
+          ngModel
+          name="searchQueryWord"
+        />
       </div>
-    </div>
-    <div class="ingredients--empty" *ngIf="food_items.length === 0">
-      <span>¡No se encontraron ingredientes!</span>
-    </div>
-    <div class="ingredients" *ngIf="food_items.length > 0">
-      <app-food-item
-        *ngFor="let food_item of food_items"
-        [food_item]="food_item"
-      />
+      <div class="filters">
+        <i class="pi pi-filter"></i>
+        <div class="filter">
+          <span>+ Proteína</span>
+        </div>
+      </div>
+      <div class="ingredients--empty" *ngIf="food_items.length === 0">
+        <span>¡No se encontraron ingredientes!</span>
+      </div>
+      <div class="ingredients" *ngIf="food_items.length > 0">
+        <app-food-item
+          *ngFor="let food_item of food_items"
+          [food_item]="food_item"
+          (addIngredient)="addIngredient($event)"
+          (removeIngredient)="removeIngredient($event)"
+        />
+      </div>
     </div>
     <div class="control-panel">
       <button class="submit-btn" type="submit">
