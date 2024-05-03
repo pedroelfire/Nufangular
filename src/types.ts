@@ -26,3 +26,12 @@ export interface FoodItem {
     vitamin_c: number;
   };
 }
+
+export interface FoodSearchResult {
+  brand_name: string;
+  food_description: string;
+  food_id: number;
+  food_name: string;
+  food_type: string;
+  food_url: string;
+}

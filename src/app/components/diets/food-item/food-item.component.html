@@ -1,16 +1,19 @@
 <div class="ingredients__item">
-  <p-checkbox
+  <div class="item__left-side">
+    <fa-icon [icon]="faUtensils"></fa-icon>
+  </div>
+  <!-- <p-checkbox
     class="checkbox"
     [(ngModel)]="isChecked"
     [binary]="true"
     name="selectedIngredient"
     (onChange)="handleChange()"
   >
-  </p-checkbox>
+  </p-checkbox> -->
   <div class="item__right-side">
     <div class="upper">
-      <span class="ingredient-name">{{ ingredient.food_name }}</span>
-      <span class="item__calories">
+      <span class="ingredient-name">{{ food_item.food_name }}</span>
+      <!-- <span class="item__calories">
         <input
           type="number"
           class="calories"
@@ -18,10 +21,14 @@
           [(ngModel)]="ingredient.nutrients.calories"
         />
         <span> kcal </span>
-      </span>
+      </span> -->
     </div>
     <div class="lower">
-      <span class="item__amount">
+      <span class="ingredient-description">
+        {{ food_item.food_description }}
+      </span>
+
+      <!-- <span class="item__amount">
         <input
           type="number"
           class="amount"
@@ -59,7 +66,7 @@
             <span class="unit">&nbsp;gr</span>
           </span>
         </div>
-      </span>
+      </span> -->
     </div>
   </div>
 </div>

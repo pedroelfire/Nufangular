@@ -2,7 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BackendURLsService } from 'src/app/services/backend-urls.service';
 import { NgForm } from '@angular/forms';
-import { FoodItem } from 'src/types';
+import { FoodSearchResult } from 'src/types';
 
 @Component({
   selector: 'app-add-meal-form',
@@ -11,7 +11,7 @@ import { FoodItem } from 'src/types';
 })
 export class AddMealFormComponent {
   // Mock Up data gathered from FatSecret API. It should change when new Search Query is inputted
-  food_items: FoodItem[] = [];
+  food_items: FoodSearchResult[] = [];
 
   constructor(
     private http: HttpClient,
@@ -22,7 +22,6 @@ export class AddMealFormComponent {
         query_search: this.searchQueryWord,
       })
       .subscribe((response: any) => {
-        console.log(response.data);
         this.food_items = response.data;
       });
   }
