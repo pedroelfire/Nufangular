@@ -51,11 +51,11 @@ a {
   text-decoration: none; /* Remove the default underline */
 }
 
-button {
-  span {
-    line-height: var(--btn-span-line-height);
-  }
-}
+// button {
+//   span {
+//     line-height: var(--btn-span-line-height);
+//   }
+// }
 
 main {
   margin: var(--main-my) var(--main-mx);

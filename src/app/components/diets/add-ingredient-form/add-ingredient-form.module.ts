@@ -7,6 +7,7 @@ import { AddIngredientFormComponent } from './add-ingredient-form.component';
 
 @NgModule({
   declarations: [AddIngredientFormComponent],
-  imports: [CommonModule, NgModule, HttpClientModule, FormsModule],
+  imports: [CommonModule, FormsModule, NgModule],
+  exports: [AddIngredientFormComponent],
 })
 export class AddIngredientFormModule {}

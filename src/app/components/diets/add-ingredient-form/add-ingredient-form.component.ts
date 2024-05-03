@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Ingredient } from 'src/types';
-import { HttpClient } from '@angular/common/http';
+import { NgForm, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-ingredient-form',
@@ -9,6 +9,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AddIngredientFormComponent {
   ingredient!: Ingredient;
+
+  addIngredient(ingredientForm: NgForm) {
+    if (ingredientForm.valid) {
+      const ingredient = ingredientForm.value;
+      console.log(ingredient);
+    } else {
+      console.log('Form is invalid');
+    }
+  }
 
   constructor() {}
 }

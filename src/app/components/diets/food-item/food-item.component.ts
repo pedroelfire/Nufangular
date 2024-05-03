@@ -35,4 +35,8 @@ export class FoodItemComponent {
   //     this.removeIngredient.emit(this.ingredient.food_id);
   //   }
   // }
+
+  handleClick() {
+    this.addIngredient.emit(this.food_item);
+  }
 }
