@@ -1,0 +1,9 @@
+<div class="flex md:hidden justify-between items-center py-4 px-2">
+  <h1 class="flex-grow-[3]">Nufogy</h1>
+  <span class="flex flex-grow justify-end">
+    <a routerLink="./login" class="nav-bar__link login" [ngSwitch]="isLoggedIn">
+      <i *ngSwitchCase="true" class="pi pi-user"></i>
+      <span *ngSwitchDefault>Inicia Sesión</span>
+    </a>
+  </span>
+</div>

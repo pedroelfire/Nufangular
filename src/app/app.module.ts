@@ -13,7 +13,9 @@ import {
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { TopBarModule } from './shared/top-bar/top-bar.module';
 import { CreateDietPlanModule } from './components/diets/create-diet-plan/create-diet-plan.module';
+import { BottomTabsModule } from './shared/bottom-tabs/bottom-tabs.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { CreateDietPlanModule } from './components/diets/create-diet-plan/create
     ReactiveFormsModule,
     HttpClientModule,
     CreateDietPlanModule,
+    BottomTabsModule,
+    TopBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
