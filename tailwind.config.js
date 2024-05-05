@@ -33,6 +33,12 @@ module.exports = {
           dim: "var(--text-secondary-dim)",
         },
       },
+      colors: {
+        primary: "var(--text-primary)",
+        // secondary: "var(--secondary)",
+        // tertiary: "var(--tertiary)",
+        // quaternary: "var(--quaternary)",
+      },
     },
   },
   plugins: [],

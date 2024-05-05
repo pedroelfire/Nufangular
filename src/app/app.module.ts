@@ -16,6 +16,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { TopBarModule } from './shared/top-bar/top-bar.module';
 import { CreateDietPlanModule } from './components/diets/create-diet-plan/create-diet-plan.module';
 import { BottomTabsModule } from './shared/bottom-tabs/bottom-tabs.module';
+import { HomeMainModule } from './components/home/home-main/home-main.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { BottomTabsModule } from './shared/bottom-tabs/bottom-tabs.module';
     CreateDietPlanModule,
     BottomTabsModule,
     TopBarModule,
+    // HomeMainModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
