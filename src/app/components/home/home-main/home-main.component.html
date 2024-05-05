@@ -1,4 +1,6 @@
-<div class="flex flex-col items-center justify-center h-full w-full bg-main">
+<div
+  class="flex flex-col items-center justify-center h-full w-full bg-main px-6 gap-2"
+>
   <h1 class="self-start text-xl md:text-3xl font-bold">
     ¡Bienvenido a Nufogy!
   </h1>
@@ -9,22 +11,56 @@
     <app-quest></app-quest>
   </div>
   <h2 class="self-start text-lg font-bold">Prueba a Jack</h2>
-  <div
-    class="border-solid border-primary border-2 rounded-2xl px-3 py-2 flex flex-row"
-  >
-    <div class="flex flex-col items-center justify-start flex-grow-[3]">
-      <h3 class="self-start text-md font-bold">Jack: Asistente Virtual</h3>
-      <button
-        class="flex items-center justify-center rounded-3xl border-solid border-2 border-primary px-3 py-2"
+  <app-jack-card></app-jack-card>
+  <!-- Stats -->
+  <div class="flex flex-col w-full items-center justify-center gap-2">
+    <!-- Streak -->
+    <div class="flex gap-2 items-center justify-center w-full">
+      <div
+        class="flex flex-col border-solid border-primary border-2 rounded-2xl px-2 py-4 items-center justify-around w-[calc(50%-0.25rem)] h-48 md:w-[11.6875rem] gap-2"
       >
-        <i class="pi pi-sparkles"></i>
-        <span> ¿Cuál es mi lista de compras? </span>
-      </button>
+        <div class="w-16 h-16">
+          <img
+            ngSrc="assets/images/streak-active.webp"
+            alt="Fueguito"
+            width="128"
+            height="128"
+          />
+        </div>
+        <h2 class="text-4xl font-bold text-primary">1</h2>
+        <span class="text-sm text-primary-dim">Tu racha actual</span>
+      </div>
+      <div
+        class="flex flex-col border-solid border-primary border-2 rounded-2xl px-2 py-4 items-center justify-around w-[calc(50%-0.25rem)] h-48 md:w-[11.6875rem] gap-2"
+      >
+        <div class="w-16 h-16">
+          <img
+            ngSrc="assets/images/longest-streak-active.webp"
+            alt="Fueguito morado"
+            width="128"
+            height="128"
+          />
+        </div>
+        <h2 class="text-4xl font-bold text-primary">12</h2>
+        <span class="text-sm text-primary-dim">Tu racha más larga</span>
+      </div>
     </div>
-    <div class="flex items-center justify-center flex-grow">
-      <button>
-        <i class="pi pi-microphone"></i>
-      </button>
+
+    <!-- Lost weight card -->
+    <div
+      class="flex items-center justify-center w-full border-solid border-primary border-2 rounded-2xl px-2 py-4"
+    >
+      <i class="pi pi-arrow-down flex-grow" style="font-size: 2rem"></i>
+      <div class="flex flex-col items-center justify-center flex-grow-[4]">
+        <div class="flex flex-col items-center justify-center">
+          <span class="text-sm text-primary">Última semana</span>
+          <h2 class="text-4xl font-bold text-primary">1.5 kg</h2>
+        </div>
+        <span class="text-base text-primary"> Tu peso objetivo: </span>
+        <span class="w-full h-6">
+          <p-progressBar [value]="weightObjectiveProgress"> </p-progressBar>
+        </span>
+      </div>
     </div>
   </div>
 </div>
