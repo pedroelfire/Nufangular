@@ -66,6 +66,8 @@ main {
 }
 
 // Components (Mixins)
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
 
 @mixin btn-primary {
   box-shadow: 0 3px 6px rgba(0, 0, 0), 0 3px 6px rgba(0, 0, 0);

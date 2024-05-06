@@ -4,12 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { LoginComponent } from './components/login/login.component';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -17,6 +12,7 @@ import { TopBarModule } from './shared/top-bar/top-bar.module';
 import { CreateDietPlanModule } from './components/diets/create-diet-plan/create-diet-plan.module';
 import { BottomTabsModule } from './shared/bottom-tabs/bottom-tabs.module';
 import { HomeMainModule } from './components/home/home-main/home-main.module';
+import { DataViewModule } from 'primeng/dataview';
 
 @NgModule({
   declarations: [
@@ -36,8 +32,8 @@ import { HomeMainModule } from './components/home/home-main/home-main.module';
     BottomTabsModule,
     TopBarModule,
     // HomeMainModule,
+    DataViewModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

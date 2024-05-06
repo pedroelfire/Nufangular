@@ -5,6 +5,7 @@
 .ingredients__item {
   display: flex;
   flex-direction: row;
+  cursor: pointer;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -115,5 +116,52 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     text-wrap: nowrap;
+  }
+}
+ui-dialog {
+  &.edit-profile-dialog {
+      // Cambiar el ancho del diálogo
+      max-width: 25rem;
+
+      // Estilo para el encabezado
+      .ui-dialog-title {
+          font-weight: bold;
+          font-size: 1.25rem; // 20px
+          padding: 1rem;
+      }
+
+      // Estilo para el contenido
+      .ui-dialog-content {
+          padding: 1rem;
+
+          // Estilo para el texto secundario
+          .p-text-secondary {
+              display: block;
+              margin-bottom: 1.25rem; // 20px
+          }
+
+          // Estilo para los campos de entrada
+          .flex {
+              align-items: center;
+              gap: 0.75rem; // 12px
+
+              // Estilo para la etiqueta
+              label {
+                  font-weight: bold;
+                  width: 6rem;
+              }
+
+              // Estilo para el campo de entrada
+              input {
+                  flex: 1;
+              }
+          }
+
+          // Estilo para los botones
+          .flex.justify-content-end {
+              gap: 0.5rem; // 8px
+              margin-top: 1.5rem; // 24px
+          }
+      }
   }
 }
