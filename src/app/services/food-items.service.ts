@@ -18,5 +18,4 @@ export class FoodItemsService {
     return this.http.post(apiEndpoint, {
       query_search: query,
     });
-  }
-}
+  }}

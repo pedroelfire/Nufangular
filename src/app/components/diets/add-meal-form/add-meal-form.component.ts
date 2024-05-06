@@ -3,6 +3,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FoodItemsService } from 'src/app/services/food-items.service';
 import { FoodSearchResult } from 'src/types';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-add-meal-form',
@@ -14,8 +15,14 @@ export class AddMealFormComponent {
 
   constructor(private foodItemsService: FoodItemsService) {}
   ngOnInit() {
-    this.searchQueryFoodItems();
+    this.searchQueryFoodItems("");
   }
+
+  onChangeQueryInput(event: any){
+    this.searchQueryWord = event.target.value;
+    this.searchQueryFoodItems(this.searchQueryWord)
+  }
+
   @Output() close = new EventEmitter<void>();
   searchQueryWord = 'Pechuga de pollo';
   selectedIngredients: any[] = [];
@@ -96,9 +103,9 @@ export class AddMealFormComponent {
     this.createMealSummary();
   }
 
-  searchQueryFoodItems() {
+  searchQueryFoodItems(ingredient: string) {
     this.foodItemsService
-      .searchFoodItems(this.searchQueryWord)
+      .searchFoodItems(ingredient)
       .subscribe((response) => {
         this.food_items = response.data;
       });

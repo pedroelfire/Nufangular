@@ -5,8 +5,6 @@ import { AppComponent } from './app.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { LoginComponent } from './components/login/login.component';
 import {
-  FormBuilder,
-  FormGroup,
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -14,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './components/register/register.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { CreateDietPlanModule } from './components/diets/create-diet-plan/create-diet-plan.module';
+import { DataViewModule } from 'primeng/dataview';
+
+
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CreateDietPlanModule } from './components/diets/create-diet-plan/create
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -30,8 +32,9 @@ import { CreateDietPlanModule } from './components/diets/create-diet-plan/create
     ReactiveFormsModule,
     HttpClientModule,
     CreateDietPlanModule,
+    DataViewModule,
+
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

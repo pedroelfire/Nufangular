@@ -1,72 +1,47 @@
-<div class="ingredients__item">
+<div class="ingredients__item" (click)="handelIngredientCard(food_item.food_id)">
   <div class="item__left-side">
     <fa-icon [icon]="faUtensils"></fa-icon>
   </div>
-  <!-- <p-checkbox
-    class="checkbox"
-    [(ngModel)]="isChecked"
-    [binary]="true"
-    name="selectedIngredient"
-    (onChange)="handleChange()"
-  >
-  </p-checkbox> -->
   <div class="item__right-side">
     <div class="upper">
       <span class="ingredient-name">{{ food_item.food_name }}</span>
-      <!-- <span class="item__calories">
-        <input
-          type="number"
-          class="calories"
-          name="calories"
-          [(ngModel)]="ingredient.nutrients.calories"
-        />
-        <span> kcal </span>
-      </span> -->
     </div>
     <div class="lower">
-      <span class="ingredient-description">
-        {{ food_item.food_description }}
-      </span>
-
-      <!-- <span class="item__amount">
-        <input
-          type="number"
-          class="amount"
-          name="amount"
-          [(ngModel)]="ingredient.serving.metric_serving_amount"
-        />
-        <p-dropdown
-          [options]="units"
-          class="serving-unit"
-          name="selectedUnit"
-          [(ngModel)]="ingredient.serving.metric_serving_unit"
-        ></p-dropdown>
-      </span>
-      <span class="macros">
-        <div class="macro protein">
-          <div class="circle protein-circle"></div>
-          <span class="macros__amount">
-            {{ ingredient.nutrients.protein }}
-            <span class="unit">&nbsp;gr</span>
-          </span>
-        </div>
-        <div class="macro carb">
-          <div class="circle carbs-circle"></div>
-          <span class="macros__amount">
-            {{ ingredient.nutrients.carbohydrates }}
-
-            <span class="unit">&nbsp;gr</span>
-          </span>
-        </div>
-        <div class="macro fat">
-          <div class="circle fat-circle"></div>
-          <span class="macros__amount">
-            {{ ingredient.nutrients.total_fat }}
-
-            <span class="unit">&nbsp;gr</span>
-          </span>
-        </div>
-      </span> -->
+      <span class="ingredient-description">{{ food_item.food_description }}</span>
     </div>
   </div>
 </div>
+
+<div *ngIf="showIngredientCard">
+  <form [formGroup]="formIngredient">
+  <p-dialog header="Agregar Ingrediente" [modal]="true" [(visible)]="showIngredientCard" [style]="{ width: '50rem', height: '35rem' }">
+
+  <span class="p-text-primary block mb-5 text-3xl">{{food_object.food_name}}</span>
+  <div class="flex overflow-hidden">
+  <div [style]="{ width: '18rem', height: '18rem' }" class="mt-3">
+        <p-chart type="doughnut" [data]="data" [options]="options" style="width: 100px; height: 100px;"/>
+  </div>
+  <div class="flex-grow-1 justify-content-center  font-bold m-2 px-5 py-3 border-round">
+    <span class="text-2xl mb-8">Calorias: {{this.caloriesPerGr}}</span>
+    <div class="flex mt-3 text-xl w-full justify-content-center mt-6">
+      <span>Tamaño de la racion: </span>
+      <p-inputNumber class="w-full" inputId="integeronly" formControlName="this.formIngredient.metric_serving_amount" formControlName="metric_serving_amount" 
+      (ngModelChange)="calculateCalories($event)" />
+    </div>
+    <div class="flex justify-content-between flex-wrap text-xl mt-3">
+      <span class="flex align-items-center justify-content-center font-bold border-round ">Tipo de <br> la racion: </span>
+    <p-dropdown class="align-items-center justify-content-center font-bold border-round mt-3 ml-2"  
+    placeholder="Gr" optionLabel="name" [disabled]="true" formControlName="metric_serving_unit" />
+    </div>
+  </div>
+</div>
+<div class="flex justify-content-end align-items-end gap-2">
+  <p-button label="Cancel" severity="secondary" (click)="showIngredientCard = false"></p-button>
+  <p-button label="Save" (click)="showIngredientCard = false"></p-button>
+</div>
+
+
+</p-dialog>
+</form>
+</div>
+

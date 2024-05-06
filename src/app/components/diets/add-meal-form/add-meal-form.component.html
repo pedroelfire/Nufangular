@@ -31,15 +31,12 @@
           </div>
           <ng-container *ngIf="selectedIngredients.length > 0">
             <div class="ingredient__list">
-              <div
-                class="ingredient"
-                *ngFor="let ingredient of selectedIngredients"
-              >
-                <span>{{ ingredient.food_name }}</span>
-                <span>{{ ingredient.nutrients.calories }} kcal</span>
+              <div class="ingredient" *ngFor="let ingredient of selectedIngredients">
+                  <span>{{ ingredient.food_name }}</span>
+                  <span>{{ ingredient.nutrients.calories }} kcal</span>
               </div>
             </div>
-          </ng-container>
+          </ng-container>          
           <div
             class="ingredient__list--empty"
             *ngIf="selectedIngredients.length === 0"
@@ -55,16 +52,9 @@
         <input
           pInputText
           placeholder="ej. Atún en agua masa drenada"
-          #searchQueryWord="ngModel"
-          ngModel
+          (input)="onChangeQueryInput($event)"
           name="searchQueryWord"
         />
-      </div>
-      <div class="filters">
-        <i class="pi pi-filter"></i>
-        <div class="filter">
-          <span>+ Proteína</span>
-        </div>
       </div>
       <div class="ingredients--empty" *ngIf="food_items.length === 0">
         <span>¡No se encontraron ingredientes!</span>
