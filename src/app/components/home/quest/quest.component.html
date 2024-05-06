@@ -1,1 +1,45 @@
-<p>quest works!</p>
+<div class="flex justify-center items-center gap-2 w-full flex-grow">
+  <div [ngSwitch]="status" class="px-4">
+    <fa-icon
+      [icon]="faQuestion"
+      *ngSwitchCase="'completed'"
+      class="text-3xl text-quest"
+    ></fa-icon>
+    <fa-icon
+      [icon]="faExclamation"
+      *ngSwitchCase="'available'"
+      class="text-lg text-quest"
+    ></fa-icon>
+  </div>
+  <div class="flex flex-col items-start justify-center max-w-64">
+    <div class="flex flex-col gap-2">
+      <h2>El Lector de Etiquetas</h2>
+      <p-rating
+        [(ngModel)]="rating"
+        [cancel]="false"
+        [readonly]="true"
+      ></p-rating>
+    </div>
+
+    <ng-container [ngSwitch]="status">
+      <span
+        *ngSwitchCase="'completed'"
+        class="overflow-ellipsis overflow-hidden"
+        >¡Felicidades! Has leído la etiqueta de 15 productos antes de
+        consumirlos.</span
+      >
+      <span *ngSwitchCase="'available'"
+        >¡Bienvenido! ¿Estás listo para comenzar?</span
+      >
+    </ng-container>
+  </div>
+  <button
+    class="flex flex-col items-start justify-center rounded-md border-solid border-2 border-primary px-1.5"
+  >
+    <span class="text-lg">Reclamar</span>
+    <span class="text-lg">
+      <fa-icon [icon]="faSeedling" class="text-nufito mr-2"></fa-icon>
+      <span class="font-bold text-2xl">15</span>
+    </span>
+  </button>
+</div>

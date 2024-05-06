@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./top-bar.component.scss'],
 })
 export class TopBarComponent {
-  isLoggedIn = false;
+  isLoggedIn = true;
 }

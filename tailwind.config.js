@@ -35,6 +35,8 @@ module.exports = {
       },
       colors: {
         primary: "var(--text-primary)",
+        quest: "var(--quest)",
+        nufito: "var(--surface-primary)",
         // secondary: "var(--secondary)",
         // tertiary: "var(--tertiary)",
         // quaternary: "var(--quaternary)",

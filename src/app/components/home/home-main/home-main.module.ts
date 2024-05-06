@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeMainComponent } from './home-main.component';
 import { QuestModule } from '../quest/quest.module';
 import { JackCardModule } from '../jack-card/jack-card.module';
+import { StatsModule } from '../stats/stats.module';
 import { NgOptimizedImage } from '@angular/common';
 import { ProgressBarModule } from 'primeng/progressbar';
 
@@ -14,6 +15,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
     JackCardModule,
     NgOptimizedImage,
     ProgressBarModule,
+    StatsModule,
   ],
   exports: [HomeMainComponent],
 })
