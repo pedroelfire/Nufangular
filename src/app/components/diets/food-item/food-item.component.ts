@@ -7,7 +7,6 @@ import {
   ElementRef,
 } from '@angular/core';
 import { FoodSearchResult } from 'src/types';
-import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import { BackendURLsService } from 'src/app/services/backend-urls.service';
 import {
   FormGroup,
@@ -23,9 +22,16 @@ import {
   styleUrls: ['./food-item.component.scss'],
 })
 export class FoodItemComponent {
-  // Font Awesome Icon
-  faUtensils = faUtensils;
   ingredientFormIsVisible: boolean = false;
+  isChecked = false;
 
   @Input() food_item!: FoodSearchResult;
+
+  // Event handlers
+  onIngredientChange = (event: any) => {
+    this.isChecked = event.target.checked;
+    if (this.isChecked) {
+      this.ingredientFormIsVisible = true;
+    }
+  };
 }

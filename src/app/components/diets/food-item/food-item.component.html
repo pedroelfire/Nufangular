@@ -1,6 +1,10 @@
 <div class="ingredients__item">
   <div class="item__left-side">
-    <fa-icon [icon]="faUtensils"></fa-icon>
+    <input
+      type="checkbox"
+      [(ngModel)]="isChecked"
+      (change)="onIngredientChange($event)"
+    />
   </div>
   <div class="item__right-side">
     <div class="upper">
@@ -13,5 +17,9 @@
     </div>
   </div>
 </div>
-<app-add-ingredient-form [food_id]="food_item.food_id">
+<app-add-ingredient-form
+  *ngIf="ingredientFormIsVisible"
+  [food_id]="food_item.food_id"
+  (closeIngredientForm)="ingredientFormIsVisible = false"
+>
 </app-add-ingredient-form>

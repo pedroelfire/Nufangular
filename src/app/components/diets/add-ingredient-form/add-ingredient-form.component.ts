@@ -14,8 +14,10 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+
 import { BackendURLsService } from 'src/app/services/backend-urls.service';
-import { FoodSearchResult, Ingredient } from 'src/types';
+
+import { FoodItem } from 'src/types';
 
 @Component({
   selector: 'app-add-ingredient-form',
@@ -23,16 +25,20 @@ import { FoodSearchResult, Ingredient } from 'src/types';
   styleUrls: ['./add-ingredient-form.component.scss'],
 })
 export class AddIngredientFormComponent {
-  isVisible: boolean = false;
   @Input() food_id!: number;
-  // Font Awesome Icon
-  data: any;
-  options: any;
-  food_object: any;
-  food_description: any;
+  @Output() closeIngredientForm = new EventEmitter();
+
+  chartData: any;
+  chartOptions: any;
+
+  food_item!: FoodItem;
+
   initialized: boolean = false; // Variable para controlar si ya se ha inicializado
   caloriesPerGr: number = 0;
 
+  ngOnInit() {
+    this.initForm();
+  }
   constructor(private db: BackendURLsService, private fb: FormBuilder) {}
   @ViewChildren(FormControlName, { read: ElementRef })
   formInputElements?: ElementRef[];
@@ -41,79 +47,69 @@ export class AddIngredientFormComponent {
   @Output() addIngredient = new EventEmitter();
   @Output() removeIngredient = new EventEmitter();
 
-  calculateCalories(event: any) {
-    this.caloriesPerGr =
-      this.food_description.calories /
-      this.food_description.metric_serving_amount;
-    this.caloriesPerGr = this.caloriesPerGr * event;
-    this.caloriesPerGr = Math.round(this.caloriesPerGr);
-  }
+  // calculateCalories(event: any) {
+  //   this.caloriesPerGr =
+  //     this.food_description.calories /
+  //     this.food_description.metric_serving_amount;
+  //   this.caloriesPerGr = this.caloriesPerGr * event;
+  //   this.caloriesPerGr = Math.round(this.caloriesPerGr);
+  // }
 
-  loadChart() {
-    this.formIngredient = this.fb.group({
-      food_id: [this.food_id, [Validators.required]],
-      metric_serving_amount: [
-        this.food_description.metric_serving_amount,
-        [Validators.required],
-      ],
-      metric_serving_unit: [
-        this.food_description.metric_serving_unit,
-        [Validators.required],
-      ],
-    });
+  // loadChart() {
+  //   this.formIngredient = this.fb.group({
+  //     food_id: [this.food_id, [Validators.required]],
+  //     metric_serving_amount: [
+  //       this.food_description.metric_serving_amount,
+  //       [Validators.required],
+  //     ],
+  //     metric_serving_unit: [
+  //       this.food_description.metric_serving_unit,
+  //       [Validators.required],
+  //     ],
+  //   });
 
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
+  // const documentStyle = getComputedStyle(document.documentElement);
+  // const textColor = documentStyle.getPropertyValue('--text-color');
 
-    this.data = {
-      labels: ['Proteinas', 'Carbohidratos', 'Grasas'],
-      datasets: [
-        {
-          data: [
-            this.food_description.protein,
-            this.food_description.carbohydrate,
-            this.food_description.fat,
-          ],
-          backgroundColor: [
-            documentStyle.getPropertyValue('--yellow-500'),
-            documentStyle.getPropertyValue('--blue-500'),
-            documentStyle.getPropertyValue('--purple-500'),
-          ],
-          hoverBackgroundColor: [
-            documentStyle.getPropertyValue('--yellow-500'),
-            documentStyle.getPropertyValue('--blue-500'),
-            documentStyle.getPropertyValue('--purple-500'),
-          ],
-        },
-      ],
-    };
+  // this.chartData = {
+  //   labels: ['Proteinas', 'Carbohidratos', 'Grasas'],
+  //   datasets: [
+  //     {
+  //       data: [
+  //         this.food_description.protein,
+  //         this.food_description.carbohydrate,
+  //         this.food_description.fat,
+  //       ],
+  //       backgroundColor: [
+  //         documentStyle.getPropertyValue('--yellow-500'),
+  //         documentStyle.getPropertyValue('--blue-500'),
+  //         documentStyle.getPropertyValue('--purple-500'),
+  //       ],
+  //       hoverBackgroundColor: [
+  //         documentStyle.getPropertyValue('--yellow-500'),
+  //         documentStyle.getPropertyValue('--blue-500'),
+  //         documentStyle.getPropertyValue('--purple-500'),
+  //       ],
+  //     },
+  //   ],
+  // };
 
-    this.options = {
-      cutout: '60%',
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor,
-          },
-        },
-      },
-    };
-  }
-
-  onSubmit() {}
+  //   this.chartOptions = {
+  //     cutout: '60%',
+  //     plugins: {
+  //       legend: {
+  //         labels: {
+  //           color: textColor,
+  //         },
+  //       },
+  //     },
+  //   };
+  // }
 
   initForm() {
-    this.isVisible = true;
-  }
-
-  handelIngredientCard(ingredient_id: number) {
     this.db.searchIngredient(this.food_id).subscribe({
       next: (response: any) => {
-        this.food_description = response.data.servings.serving[0];
-        this.food_object = response.data;
-        this.caloriesPerGr = response.data.servings.serving[0].calories;
-        console.log(this.food_object);
-        this.loadChart();
+        this.food_item = response.data;
       },
     });
   }

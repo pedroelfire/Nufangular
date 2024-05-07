@@ -1,10 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-
 import { NgForm } from '@angular/forms';
 import { FoodItemsService } from 'src/app/services/food-items.service';
 import { FoodSearchResult } from 'src/types';
-import { ButtonModule } from 'primeng/button';
-import { Subject, fromEvent } from 'rxjs';
+import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 
 @Component({
@@ -21,7 +19,7 @@ export class AddMealFormComponent {
     this.searchQueryFoodItems();
     this.inputSubject
       .pipe(
-        debounceTime(500), // Adjust debounce time as needed
+        debounceTime(500),
         distinctUntilChanged(),
         tap((value) => this.searchQueryFoodItems(value))
       )
