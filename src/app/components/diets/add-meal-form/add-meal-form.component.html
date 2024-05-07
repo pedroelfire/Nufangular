@@ -31,12 +31,15 @@
           </div>
           <ng-container *ngIf="selectedIngredients.length > 0">
             <div class="ingredient__list">
-              <div class="ingredient" *ngFor="let ingredient of selectedIngredients">
-                  <span>{{ ingredient.food_name }}</span>
-                  <span>{{ ingredient.nutrients.calories }} kcal</span>
+              <div
+                class="ingredient"
+                *ngFor="let ingredient of selectedIngredients"
+              >
+                <span>{{ ingredient.food_name }}</span>
+                <span>{{ ingredient.nutrients.calories }} kcal</span>
               </div>
             </div>
-          </ng-container>          
+          </ng-container>
           <div
             class="ingredient__list--empty"
             *ngIf="selectedIngredients.length === 0"
@@ -64,7 +67,6 @@
           *ngFor="let food_item of food_items"
           [food_item]="food_item"
           (addIngredient)="addIngredient($event)"
-          (removeIngredient)="removeIngredient($event)"
         />
       </div>
     </div>

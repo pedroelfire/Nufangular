@@ -12,9 +12,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ChartModule } from 'primeng/chart';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CalendarModule } from 'primeng/calendar';
-
-
-
+import { AddIngredientFormModule } from '../add-ingredient-form/add-ingredient-form.module';
 
 @NgModule({
   declarations: [FoodItemComponent],
@@ -30,8 +28,9 @@ import { CalendarModule } from 'primeng/calendar';
     InputTextModule,
     ChartModule,
     InputNumberModule,
-    CalendarModule, 
-    ReactiveFormsModule
+    CalendarModule,
+    ReactiveFormsModule,
+    AddIngredientFormModule,
   ],
   exports: [FoodItemComponent],
 })

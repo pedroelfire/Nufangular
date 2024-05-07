@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { FoodItemsService } from 'src/app/services/food-items.service';
 import { FoodSearchResult } from 'src/types';
 import { ButtonModule } from 'primeng/button';
+import { Subject, fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-meal-form',
@@ -12,19 +14,25 @@ import { ButtonModule } from 'primeng/button';
 })
 export class AddMealFormComponent {
   food_items: FoodSearchResult[] = [];
+  inputSubject = new Subject<string>();
 
   constructor(private foodItemsService: FoodItemsService) {}
   ngOnInit() {
-    this.searchQueryFoodItems("");
+    this.searchQueryFoodItems();
+    this.inputSubject
+      .pipe(
+        debounceTime(500), // Adjust debounce time as needed
+        distinctUntilChanged(),
+        tap((value) => this.searchQueryFoodItems(value))
+      )
+      .subscribe();
   }
 
-  onChangeQueryInput(event: any){
-    this.searchQueryWord = event.target.value;
-    this.searchQueryFoodItems(this.searchQueryWord)
+  onChangeQueryInput(event: any) {
+    this.inputSubject.next(event.target.value);
   }
 
   @Output() close = new EventEmitter<void>();
-  searchQueryWord = 'Pechuga de pollo';
   selectedIngredients: any[] = [];
   mealSummary: any = {
     calories: 0,
@@ -103,12 +111,10 @@ export class AddMealFormComponent {
     this.createMealSummary();
   }
 
-  searchQueryFoodItems(ingredient: string) {
-    this.foodItemsService
-      .searchFoodItems(ingredient)
-      .subscribe((response) => {
-        this.food_items = response.data;
-      });
+  searchQueryFoodItems(ingredient: string = 'Chicken Breast') {
+    this.foodItemsService.searchFoodItems(ingredient).subscribe((response) => {
+      this.food_items = response.data;
+    });
   }
 
   closeForm() {

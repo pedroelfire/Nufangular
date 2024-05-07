@@ -1,6 +1,21 @@
-import { Component } from '@angular/core';
-import { Ingredient } from 'src/types';
-import { NgForm, ReactiveFormsModule } from '@angular/forms';
+import {
+  Component,
+  ViewChildren,
+  ElementRef,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
+import {
+  NgForm,
+  ReactiveFormsModule,
+  FormBuilder,
+  FormControlName,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { BackendURLsService } from 'src/app/services/backend-urls.service';
+import { FoodSearchResult, Ingredient } from 'src/types';
 
 @Component({
   selector: 'app-add-ingredient-form',
@@ -8,16 +23,98 @@ import { NgForm, ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./add-ingredient-form.component.scss'],
 })
 export class AddIngredientFormComponent {
-  ingredient!: Ingredient;
+  isVisible: boolean = false;
+  @Input() food_id!: number;
+  // Font Awesome Icon
+  data: any;
+  options: any;
+  food_object: any;
+  food_description: any;
+  initialized: boolean = false; // Variable para controlar si ya se ha inicializado
+  caloriesPerGr: number = 0;
 
-  addIngredient(ingredientForm: NgForm) {
-    if (ingredientForm.valid) {
-      const ingredient = ingredientForm.value;
-      console.log(ingredient);
-    } else {
-      console.log('Form is invalid');
-    }
+  constructor(private db: BackendURLsService, private fb: FormBuilder) {}
+  @ViewChildren(FormControlName, { read: ElementRef })
+  formInputElements?: ElementRef[];
+  formIngredient: FormGroup = new FormGroup({});
+
+  @Output() addIngredient = new EventEmitter();
+  @Output() removeIngredient = new EventEmitter();
+
+  calculateCalories(event: any) {
+    this.caloriesPerGr =
+      this.food_description.calories /
+      this.food_description.metric_serving_amount;
+    this.caloriesPerGr = this.caloriesPerGr * event;
+    this.caloriesPerGr = Math.round(this.caloriesPerGr);
   }
 
-  constructor() {}
+  loadChart() {
+    this.formIngredient = this.fb.group({
+      food_id: [this.food_id, [Validators.required]],
+      metric_serving_amount: [
+        this.food_description.metric_serving_amount,
+        [Validators.required],
+      ],
+      metric_serving_unit: [
+        this.food_description.metric_serving_unit,
+        [Validators.required],
+      ],
+    });
+
+    const documentStyle = getComputedStyle(document.documentElement);
+    const textColor = documentStyle.getPropertyValue('--text-color');
+
+    this.data = {
+      labels: ['Proteinas', 'Carbohidratos', 'Grasas'],
+      datasets: [
+        {
+          data: [
+            this.food_description.protein,
+            this.food_description.carbohydrate,
+            this.food_description.fat,
+          ],
+          backgroundColor: [
+            documentStyle.getPropertyValue('--yellow-500'),
+            documentStyle.getPropertyValue('--blue-500'),
+            documentStyle.getPropertyValue('--purple-500'),
+          ],
+          hoverBackgroundColor: [
+            documentStyle.getPropertyValue('--yellow-500'),
+            documentStyle.getPropertyValue('--blue-500'),
+            documentStyle.getPropertyValue('--purple-500'),
+          ],
+        },
+      ],
+    };
+
+    this.options = {
+      cutout: '60%',
+      plugins: {
+        legend: {
+          labels: {
+            color: textColor,
+          },
+        },
+      },
+    };
+  }
+
+  onSubmit() {}
+
+  initForm() {
+    this.isVisible = true;
+  }
+
+  handelIngredientCard(ingredient_id: number) {
+    this.db.searchIngredient(this.food_id).subscribe({
+      next: (response: any) => {
+        this.food_description = response.data.servings.serving[0];
+        this.food_object = response.data;
+        this.caloriesPerGr = response.data.servings.serving[0].calories;
+        console.log(this.food_object);
+        this.loadChart();
+      },
+    });
+  }
 }
