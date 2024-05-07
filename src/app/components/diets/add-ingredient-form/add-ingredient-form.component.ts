@@ -14,6 +14,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { faDisplay } from '@fortawesome/free-solid-svg-icons';
+import { callback } from 'chart.js/dist/helpers/helpers.core';
 
 import { BackendURLsService } from 'src/app/services/backend-urls.service';
 
@@ -35,6 +37,8 @@ export class AddIngredientFormComponent {
 
   initialized: boolean = false; // Variable para controlar si ya se ha inicializado
   caloriesPerGr: number = 0;
+  foodGrams: number = 0;
+  foodUnits: string[] = ['gr'];
 
   ngOnInit() {
     this.initForm();
@@ -44,73 +48,92 @@ export class AddIngredientFormComponent {
   formInputElements?: ElementRef[];
   formIngredient: FormGroup = new FormGroup({});
 
-  @Output() addIngredient = new EventEmitter();
-  @Output() removeIngredient = new EventEmitter();
+  // @Output() addIngredient = new EventEmitter();
 
-  // calculateCalories(event: any) {
-  //   this.caloriesPerGr =
-  //     this.food_description.calories /
-  //     this.food_description.metric_serving_amount;
-  //   this.caloriesPerGr = this.caloriesPerGr * event;
-  //   this.caloriesPerGr = Math.round(this.caloriesPerGr);
-  // }
+  calculateCalories(event: any) {
+    const nutrients = this.food_item.servings.serving[0];
 
-  // loadChart() {
-  //   this.formIngredient = this.fb.group({
-  //     food_id: [this.food_id, [Validators.required]],
-  //     metric_serving_amount: [
-  //       this.food_description.metric_serving_amount,
-  //       [Validators.required],
-  //     ],
-  //     metric_serving_unit: [
-  //       this.food_description.metric_serving_unit,
-  //       [Validators.required],
-  //     ],
-  //   });
+    if (nutrients.metric_serving_unit == 'g') {
+      this.caloriesPerGr =
+        parseFloat(nutrients.calories) /
+        parseFloat(nutrients.metric_serving_amount);
+      this.caloriesPerGr = this.caloriesPerGr * event;
+      this.caloriesPerGr = Math.round(this.caloriesPerGr);
+    }
+  }
 
-  // const documentStyle = getComputedStyle(document.documentElement);
-  // const textColor = documentStyle.getPropertyValue('--text-color');
+  loadChart() {
+    const nutrients = this.food_item.servings.serving[0];
 
-  // this.chartData = {
-  //   labels: ['Proteinas', 'Carbohidratos', 'Grasas'],
-  //   datasets: [
-  //     {
-  //       data: [
-  //         this.food_description.protein,
-  //         this.food_description.carbohydrate,
-  //         this.food_description.fat,
-  //       ],
-  //       backgroundColor: [
-  //         documentStyle.getPropertyValue('--yellow-500'),
-  //         documentStyle.getPropertyValue('--blue-500'),
-  //         documentStyle.getPropertyValue('--purple-500'),
-  //       ],
-  //       hoverBackgroundColor: [
-  //         documentStyle.getPropertyValue('--yellow-500'),
-  //         documentStyle.getPropertyValue('--blue-500'),
-  //         documentStyle.getPropertyValue('--purple-500'),
-  //       ],
-  //     },
-  //   ],
-  // };
+    this.formIngredient = this.fb.group({
+      food_id: [this.food_id, [Validators.required]],
+      metric_serving_amount: [
+        nutrients.metric_serving_amount,
+        [Validators.required],
+      ],
+      metric_serving_unit: [
+        nutrients.metric_serving_unit,
+        [Validators.required],
+      ],
+    });
 
-  //   this.chartOptions = {
-  //     cutout: '60%',
-  //     plugins: {
-  //       legend: {
-  //         labels: {
-  //           color: textColor,
-  //         },
-  //       },
-  //     },
-  //   };
-  // }
+    const documentStyle = getComputedStyle(document.documentElement);
+
+    this.chartData = {
+      labels: ['Proteinas', 'Carbohidratos', 'Grasas'],
+      datasets: [
+        {
+          data: [nutrients.protein, nutrients.carbohydrate, nutrients.fat],
+          backgroundColor: [
+            documentStyle.getPropertyValue('--protein'),
+            documentStyle.getPropertyValue('--carbs'),
+            documentStyle.getPropertyValue('--fat'),
+          ],
+        },
+      ],
+    };
+
+    this.chartOptions = {
+      cutout: '80%',
+      labels: {
+        display: false,
+      },
+      tooltips: {
+        callbacks: {
+          label: function (tooltipItem: any) {
+            return tooltipItem.yLabel;
+          },
+        },
+      },
+
+      // plugins: {
+      //   legend: {
+      //     labels: {
+      //       color: textColor,
+      //     },
+      //   },
+      // },
+    };
+  }
 
   initForm() {
     this.db.searchIngredient(this.food_id).subscribe({
       next: (response: any) => {
         this.food_item = response.data;
+        this.loadChart();
+        this.foodGrams = parseFloat(
+          this.food_item.servings.serving[0].metric_serving_amount
+        );
       },
     });
+  }
+
+  // Event listeners
+  addIngredient() {
+    return;
+  }
+
+  cancel() {
+    this.closeIngredientForm.emit();
   }
 }
