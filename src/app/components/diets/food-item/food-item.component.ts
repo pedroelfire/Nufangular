@@ -6,7 +6,7 @@ import {
   ViewChildren,
   ElementRef,
 } from '@angular/core';
-import { FoodSearchResult } from 'src/types';
+import { FoodSearchResult, FoodItem, MealFormIngredient } from 'src/types';
 import { BackendURLsService } from 'src/app/services/backend-urls.service';
 import {
   FormGroup,
@@ -26,6 +26,7 @@ export class FoodItemComponent {
   isChecked = false;
 
   @Input() food_item!: FoodSearchResult;
+  @Output() addIngredientEvent = new EventEmitter<MealFormIngredient>();
 
   // Event handlers
   onIngredientChange = (event: any) => {
@@ -33,5 +34,18 @@ export class FoodItemComponent {
     if (this.isChecked) {
       this.ingredientFormIsVisible = true;
     }
+  };
+
+  closeIngredientForm = () => {
+    this.ingredientFormIsVisible = false;
+  };
+
+  addIngredient = (food_item: any) => {
+    // this.closeIngredientForm();
+    this.addIngredientEvent.emit(food_item);
+  };
+  cancelAddIngredient = () => {
+    this.closeIngredientForm();
+    this.isChecked = false;
   };
 }

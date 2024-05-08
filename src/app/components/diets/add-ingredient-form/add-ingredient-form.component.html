@@ -9,7 +9,7 @@
       </p-chart>
       <div class="flex flex-col items-center justify-center">
         <span class="text-8xl font-bold">
-          {{ food_item.servings.serving[0].calories }}
+          {{ food_item.calories }}
         </span>
         <span class="text-primary-dim text-sm">Calorías</span>
       </div>
@@ -19,24 +19,20 @@
         >
           <span class="font-bold">Proteína</span>
           <span class="font-bold text-protein">{{
-            food_item.servings.serving[0].protein
+            food_item.macros.protein
           }}</span>
         </div>
         <div
           class="flex flex-col items-center justifiy-center px-0.5 py-1 border-solid border-2 border-primary rounded-md bg-main-accent flex-grow"
         >
           <span class="font-bold">Carbohidratos</span>
-          <span class="font-bold text-carbs">{{
-            food_item.servings.serving[0].carbohydrate
-          }}</span>
+          <span class="font-bold text-carbs">{{ food_item.macros.carbs }}</span>
         </div>
         <div
           class="flex flex-col items-center justifiy-center px-0.5 py-1 border-solid border-2 border-primary rounded-md bg-main-accent flex-grow"
         >
           <span class="font-bold">Grasa</span>
-          <span class="font-bold text-fat">{{
-            food_item.servings.serving[0].fat
-          }}</span>
+          <span class="font-bold text-fat">{{ food_item.macros.fat }}</span>
         </div>
       </div>
     </div>
@@ -47,9 +43,9 @@
         <div class="flex items-center justify-center">
           <input
             type="number"
-            name="foodGrams"
-            [(ngModel)]="foodGrams"
+            formControlName="foodGrams"
             class="px-3 py-2 border-solid border-2 border-primary"
+            (change)="calculateNutrients($event)"
           />
           <p-dropdown [options]="foodUnits"></p-dropdown>
         </div>
@@ -57,13 +53,15 @@
       <div class="flex flex-col items-center justify-center">
         <button
           class="w-full py-2 mt-2 bg-primary text-white rounded-md"
+          id="cancelButton"
           (click)="cancel()"
         >
           <span> Cancelar </span>
         </button>
         <button
           class="w-full py-2 mt-2 bg-primary text-white rounded-md"
-          (click)="addIngredient()"
+          id="addIngredientButton"
+          (click)="accept(food_item)"
         >
           <span>Agregar</span>
         </button>

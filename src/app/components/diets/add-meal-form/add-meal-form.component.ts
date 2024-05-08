@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FoodItemsService } from 'src/app/services/food-items.service';
-import { FoodSearchResult } from 'src/types';
+import { FoodItem, FoodSearchResult, MealFormIngredient } from 'src/types';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 
@@ -96,9 +96,9 @@ export class AddMealFormComponent {
       cutout: '70%',
     };
   }
-  // Event handlers
-  addIngredient(ingredient: any) {
-    this.selectedIngredients.push(ingredient);
+
+  addIngredient(food_item: any) {
+    this.selectedIngredients.push(food_item);
     this.createMealSummary();
   }
 

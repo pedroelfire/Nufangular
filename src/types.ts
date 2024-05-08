@@ -7,7 +7,7 @@ export interface FoodSearchResult {
   food_url: string;
 }
 
-export interface Ingredient {
+export interface MealFormIngredient {
   food_id: number;
   food_name: string;
   calories: number;
@@ -18,6 +18,13 @@ export interface Ingredient {
     carbs: number;
     fat: number;
   };
+}
+
+export interface MealIngredient {
+  food_id: number;
+  metric_serving_amount: number;
+  metric_serving_unit: string;
+  created_by: number;
 }
 
 export interface FoodItem {

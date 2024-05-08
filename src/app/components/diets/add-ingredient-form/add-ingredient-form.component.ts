@@ -7,19 +7,13 @@ import {
   EventEmitter,
 } from '@angular/core';
 import {
-  NgForm,
-  ReactiveFormsModule,
   FormBuilder,
   FormControlName,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { faDisplay } from '@fortawesome/free-solid-svg-icons';
-import { callback } from 'chart.js/dist/helpers/helpers.core';
-
 import { BackendURLsService } from 'src/app/services/backend-urls.service';
-
-import { FoodItem } from 'src/types';
+import { FoodItem, MealFormIngredient } from 'src/types';
 
 @Component({
   selector: 'app-add-ingredient-form',
@@ -28,17 +22,17 @@ import { FoodItem } from 'src/types';
 })
 export class AddIngredientFormComponent {
   @Input() food_id!: number;
-  @Output() closeIngredientForm = new EventEmitter();
+  @Output() cancelAddIngredient = new EventEmitter();
+  @Output() addIngredientEvent = new EventEmitter<MealFormIngredient>();
 
   chartData: any;
   chartOptions: any;
 
-  food_item!: FoodItem;
+  food_item!: MealFormIngredient;
 
   initialized: boolean = false; // Variable para controlar si ya se ha inicializado
   caloriesPerGr: number = 0;
-  foodGrams: number = 0;
-  foodUnits: string[] = ['gr'];
+  foodUnits: string[] = [];
 
   ngOnInit() {
     this.initForm();
@@ -48,31 +42,26 @@ export class AddIngredientFormComponent {
   formInputElements?: ElementRef[];
   formIngredient: FormGroup = new FormGroup({});
 
-  // @Output() addIngredient = new EventEmitter();
-
   calculateCalories(event: any) {
-    const nutrients = this.food_item.servings.serving[0];
+    this.caloriesPerGr =
+      this.food_item.calories / this.food_item.metric_serving_amount;
+    this.caloriesPerGr = this.caloriesPerGr * event;
+    this.caloriesPerGr = Math.round(this.caloriesPerGr);
+  }
 
-    if (nutrients.metric_serving_unit == 'g') {
-      this.caloriesPerGr =
-        parseFloat(nutrients.calories) /
-        parseFloat(nutrients.metric_serving_amount);
-      this.caloriesPerGr = this.caloriesPerGr * event;
-      this.caloriesPerGr = Math.round(this.caloriesPerGr);
-    }
+  calculateNutrients(event: any) {
+    console.log(event);
   }
 
   loadChart() {
-    const nutrients = this.food_item.servings.serving[0];
-
     this.formIngredient = this.fb.group({
       food_id: [this.food_id, [Validators.required]],
       metric_serving_amount: [
-        nutrients.metric_serving_amount,
+        this.food_item.metric_serving_amount,
         [Validators.required],
       ],
       metric_serving_unit: [
-        nutrients.metric_serving_unit,
+        this.food_item.metric_serving_unit,
         [Validators.required],
       ],
     });
@@ -83,7 +72,11 @@ export class AddIngredientFormComponent {
       labels: ['Proteinas', 'Carbohidratos', 'Grasas'],
       datasets: [
         {
-          data: [nutrients.protein, nutrients.carbohydrate, nutrients.fat],
+          data: [
+            this.food_item.macros.protein,
+            this.food_item.macros.carbs,
+            this.food_item.macros.fat,
+          ],
           backgroundColor: [
             documentStyle.getPropertyValue('--protein'),
             documentStyle.getPropertyValue('--carbs'),
@@ -119,21 +112,32 @@ export class AddIngredientFormComponent {
   initForm() {
     this.db.searchIngredient(this.food_id).subscribe({
       next: (response: any) => {
-        this.food_item = response.data;
+        const data: FoodItem = response.data;
+        this.food_item = {
+          food_id: parseInt(data.food_id),
+          food_name: data.food_name,
+          calories: parseFloat(data.servings.serving[0].calories),
+          metric_serving_amount: parseFloat(
+            data.servings.serving[0].metric_serving_amount
+          ),
+          metric_serving_unit: data.servings.serving[0].metric_serving_unit,
+          macros: {
+            protein: parseFloat(data.servings.serving[0].protein),
+            carbs: parseFloat(data.servings.serving[0].carbohydrate),
+            fat: parseFloat(data.servings.serving[0].fat),
+          },
+        };
         this.loadChart();
-        this.foodGrams = parseFloat(
-          this.food_item.servings.serving[0].metric_serving_amount
-        );
+        this.foodUnits.push(this.food_item.metric_serving_unit);
       },
     });
   }
 
-  // Event listeners
-  addIngredient() {
-    return;
+  accept(food_item: MealFormIngredient) {
+    this.addIngredientEvent.emit(food_item);
   }
 
   cancel() {
-    this.closeIngredientForm.emit();
+    this.cancelAddIngredient.emit();
   }
 }
