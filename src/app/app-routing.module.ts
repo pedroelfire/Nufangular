@@ -5,7 +5,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { CreateDietPlanComponent } from './components/diets/create-diet-plan/create-diet-plan.component';
 import { NutritionistDashboardComponent } from './components/dashboard/nutritionist-dashboard/nutritionist-dashboard.component';
 import { HomeMainComponent } from './components/home/home-main/home-main.component';
-import { QuestComponent } from './components/home/quest/quest.component';
+import { DiaryMainComponent } from './components/diary/diary-main/diary-main.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,6 +15,7 @@ const routes: Routes = [
     children: [{ path: 'create', component: CreateDietPlanComponent }],
   },
   { path: 'dashboard', component: NutritionistDashboardComponent },
+  { path: 'diary', component: DiaryMainComponent },
   { path: '', component: HomeMainComponent },
 ];
 
