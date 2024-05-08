@@ -43,9 +43,9 @@
         <div class="flex items-center justify-center">
           <input
             type="number"
-            formControlName="foodGrams"
+            [formControl]="foodAmount"
+            (input)="calculateCalories(); calculateMacros()"
             class="px-3 py-2 border-solid border-2 border-primary"
-            (change)="calculateNutrients($event)"
           />
           <p-dropdown [options]="foodUnits"></p-dropdown>
         </div>

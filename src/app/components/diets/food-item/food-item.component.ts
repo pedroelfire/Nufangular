@@ -40,10 +40,6 @@ export class FoodItemComponent {
     this.ingredientFormIsVisible = false;
   };
 
-  addIngredient = (food_item: any) => {
-    // this.closeIngredientForm();
-    this.addIngredientEvent.emit(food_item);
-  };
   cancelAddIngredient = () => {
     this.closeIngredientForm();
     this.isChecked = false;

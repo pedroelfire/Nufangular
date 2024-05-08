@@ -21,6 +21,6 @@
   *ngIf="ingredientFormIsVisible"
   [food_id]="food_item.food_id"
   (cancelAddIngredient)="cancelAddIngredient()"
-  (addIngredientEvent)="addIngredient($event)"
+  (addIngredientEvent)="this.closeIngredientForm()"
 >
 </app-add-ingredient-form>

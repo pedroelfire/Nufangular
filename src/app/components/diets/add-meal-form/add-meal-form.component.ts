@@ -1,8 +1,10 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FoodItemsService } from 'src/app/services/food-items.service';
+import { IngredientDataService } from 'src/app/services/ingredient-data.service';
 import { FoodItem, FoodSearchResult, MealFormIngredient } from 'src/types';
-import { Subject } from 'rxjs';
+
+import { Subscription, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 
 @Component({
@@ -13,8 +15,12 @@ import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 export class AddMealFormComponent {
   food_items: FoodSearchResult[] = [];
   inputSubject = new Subject<string>();
+  ingredientSubscription!: Subscription;
 
-  constructor(private foodItemsService: FoodItemsService) {}
+  constructor(
+    private foodItemsService: FoodItemsService,
+    private ingredientDataService: IngredientDataService
+  ) {}
   ngOnInit() {
     this.searchQueryFoodItems();
     this.inputSubject
@@ -24,6 +30,12 @@ export class AddMealFormComponent {
         tap((value) => this.searchQueryFoodItems(value))
       )
       .subscribe();
+
+    this.ingredientSubscription =
+      this.ingredientDataService.ingredientAdded$.subscribe((foodItem) => {
+        // Handle the new ingredient data (foodItem) here
+        this.addIngredient(foodItem);
+      });
   }
 
   onChangeQueryInput(event: any) {
@@ -98,8 +110,9 @@ export class AddMealFormComponent {
   }
 
   addIngredient(food_item: any) {
-    this.selectedIngredients.push(food_item);
-    this.createMealSummary();
+    // this.selectedIngredients.push(food_item);
+    console.log(food_item);
+    // this.createMealSummary();
   }
 
   removeIngredient(food_id: number) {

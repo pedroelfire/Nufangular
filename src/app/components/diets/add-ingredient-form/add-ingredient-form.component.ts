@@ -8,11 +8,13 @@ import {
 } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
   FormControlName,
   FormGroup,
   Validators,
 } from '@angular/forms';
 import { BackendURLsService } from 'src/app/services/backend-urls.service';
+import { IngredientDataService } from 'src/app/services/ingredient-data.service';
 import { FoodItem, MealFormIngredient } from 'src/types';
 
 @Component({
@@ -23,34 +25,50 @@ import { FoodItem, MealFormIngredient } from 'src/types';
 export class AddIngredientFormComponent {
   @Input() food_id!: number;
   @Output() cancelAddIngredient = new EventEmitter();
-  @Output() addIngredientEvent = new EventEmitter<MealFormIngredient>();
+  @Output() addIngredientEvent = new EventEmitter();
+
+  foodAmount = new FormControl();
 
   chartData: any;
   chartOptions: any;
-
   food_item!: MealFormIngredient;
-
-  initialized: boolean = false; // Variable para controlar si ya se ha inicializado
-  caloriesPerGr: number = 0;
+  caloriesPerUnit: number = 0;
+  macrosPerUnit: { protein: number; carbs: number; fat: number } = {
+    protein: 0,
+    carbs: 0,
+    fat: 0,
+  };
   foodUnits: string[] = [];
 
   ngOnInit() {
     this.initForm();
   }
-  constructor(private db: BackendURLsService, private fb: FormBuilder) {}
+  constructor(
+    private db: BackendURLsService,
+    private fb: FormBuilder,
+    private ingredientDataService: IngredientDataService
+  ) {}
   @ViewChildren(FormControlName, { read: ElementRef })
   formInputElements?: ElementRef[];
   formIngredient: FormGroup = new FormGroup({});
 
-  calculateCalories(event: any) {
-    this.caloriesPerGr =
-      this.food_item.calories / this.food_item.metric_serving_amount;
-    this.caloriesPerGr = this.caloriesPerGr * event;
-    this.caloriesPerGr = Math.round(this.caloriesPerGr);
+  calculateCalories() {
+    console.log('Calculando calorías');
   }
 
-  calculateNutrients(event: any) {
-    console.log(event);
+  calculateMacros() {
+    console.log('Calculando macros');
+  }
+
+  calculateNutrients() {
+    this.caloriesPerUnit =
+      this.food_item.calories / this.food_item.metric_serving_amount;
+    this.macrosPerUnit = {
+      protein:
+        this.food_item.macros.protein / this.food_item.metric_serving_amount,
+      carbs: this.food_item.macros.carbs / this.food_item.metric_serving_amount,
+      fat: this.food_item.macros.fat / this.food_item.metric_serving_amount,
+    };
   }
 
   loadChart() {
@@ -129,12 +147,14 @@ export class AddIngredientFormComponent {
         };
         this.loadChart();
         this.foodUnits.push(this.food_item.metric_serving_unit);
+        this.calculateNutrients();
       },
     });
   }
 
   accept(food_item: MealFormIngredient) {
-    this.addIngredientEvent.emit(food_item);
+    this.addIngredientEvent.emit();
+    this.ingredientDataService.emitIngredientAdded(food_item);
   }
 
   cancel() {
