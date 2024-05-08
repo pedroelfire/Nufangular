@@ -141,20 +141,39 @@ export class AddIngredientFormComponent {
     this.db.searchIngredient(this.food_id).subscribe({
       next: (response: any) => {
         const data: FoodItem = response.data;
-        this.food_item = {
-          food_id: parseInt(data.food_id),
-          food_name: data.food_name,
-          calories: parseFloat(data.servings.serving[0].calories),
-          metric_serving_amount: parseFloat(
-            data.servings.serving[0].metric_serving_amount
-          ),
-          metric_serving_unit: data.servings.serving[0].metric_serving_unit,
-          macros: {
-            protein: parseFloat(data.servings.serving[0].protein),
-            carbs: parseFloat(data.servings.serving[0].carbohydrate),
-            fat: parseFloat(data.servings.serving[0].fat),
-          },
-        };
+
+        if (data.servings.serving instanceof Array) {
+          this.food_item = {
+            food_id: parseInt(data.food_id),
+            food_name: data.food_name,
+            calories: parseFloat(data.servings.serving[0].calories),
+            metric_serving_amount: parseFloat(
+              data.servings.serving[0].metric_serving_amount
+            ),
+            metric_serving_unit: data.servings.serving[0].metric_serving_unit,
+            macros: {
+              protein: parseFloat(data.servings.serving[0].protein),
+              carbs: parseFloat(data.servings.serving[0].carbohydrate),
+              fat: parseFloat(data.servings.serving[0].fat),
+            },
+          };
+        } else {
+          this.food_item = {
+            food_id: parseInt(data.food_id),
+            food_name: data.food_name,
+            calories: parseFloat(data.servings.serving.calories),
+            metric_serving_amount: parseFloat(
+              data.servings.serving.metric_serving_amount
+            ),
+            metric_serving_unit: data.servings.serving.metric_serving_unit,
+            macros: {
+              protein: parseFloat(data.servings.serving.protein),
+              carbs: parseFloat(data.servings.serving.carbohydrate),
+              fat: parseFloat(data.servings.serving.fat),
+            },
+          };
+        }
+
         this.foodAmount.setValue(this.food_item.metric_serving_amount);
         this.loadChart();
         this.foodUnits.push(this.food_item.metric_serving_unit);

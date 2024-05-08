@@ -36,11 +36,11 @@ export interface FoodItem {
 }
 
 export interface Serving {
-  serving: ServingItem[];
+  serving: ServingItem[] | ServingItem;
 }
 
 export interface ServingItem {
-  calcium: string; // Example: '14'
+  calcium: string;
   calories: string;
   carbohydrate: string;
   cholesterol: string;
