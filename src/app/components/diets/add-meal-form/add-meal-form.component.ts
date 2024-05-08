@@ -43,7 +43,7 @@ export class AddMealFormComponent {
   }
 
   @Output() close = new EventEmitter<void>();
-  selectedIngredients: any[] = [];
+  selectedIngredients: MealFormIngredient[] = [];
   mealSummary: any = {
     calories: 0,
     total_fat: 0,
@@ -60,21 +60,21 @@ export class AddMealFormComponent {
     }
   }
 
-  createMealSummary() {
-    this.mealSummary = {
-      calories: 0,
-      total_fat: 0,
-      carbohydrates: 0,
-      protein: 0,
-    };
+  // createMealSummary() {
+  //   this.mealSummary = {
+  //     calories: 0,
+  //     total_fat: 0,
+  //     carbohydrates: 0,
+  //     protein: 0,
+  //   };
 
-    this.selectedIngredients.forEach((ingredient) => {
-      this.mealSummary.calories += ingredient.nutrients.calories;
-      this.mealSummary.total_fat += ingredient.nutrients.total_fat;
-      this.mealSummary.carbohydrates += ingredient.nutrients.carbohydrates;
-      this.mealSummary.protein += ingredient.nutrients.protein;
-    });
-  }
+  //   this.selectedIngredients.forEach((ingredient) => {
+  //     this.mealSummary.calories += ingredient.nutrients.calories;
+  //     this.mealSummary.total_fat += ingredient.nutrients.total_fat;
+  //     this.mealSummary.carbohydrates += ingredient.nutrients.carbohydrates;
+  //     this.mealSummary.protein += ingredient.nutrients.protein;
+  //   });
+  // }
 
   getMacrosChartData() {
     return {
@@ -110,16 +110,14 @@ export class AddMealFormComponent {
   }
 
   addIngredient(food_item: any) {
-    // this.selectedIngredients.push(food_item);
-    console.log(food_item);
-    // this.createMealSummary();
+    this.selectedIngredients.push(food_item);
   }
 
   removeIngredient(food_id: number) {
     this.selectedIngredients = this.selectedIngredients.filter(
       (item) => item.food_id != food_id
     );
-    this.createMealSummary();
+    // this.createMealSummary();
   }
 
   searchQueryFoodItems(ingredient: string = 'Chicken Breast') {
@@ -130,5 +128,9 @@ export class AddMealFormComponent {
 
   closeForm() {
     this.close.emit();
+  }
+
+  ngOnDestroy() {
+    this.ingredientSubscription.unsubscribe();
   }
 }

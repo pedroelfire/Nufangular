@@ -53,11 +53,21 @@ export class AddIngredientFormComponent {
   formIngredient: FormGroup = new FormGroup({});
 
   calculateCalories() {
-    console.log('Calculando calorías');
+    this.food_item.calories = Math.round(
+      this.caloriesPerUnit * this.foodAmount.value
+    );
   }
 
   calculateMacros() {
-    console.log('Calculando macros');
+    this.food_item.macros.protein = Math.round(
+      (this.macrosPerUnit.protein * this.foodAmount.value * 100) / 100
+    );
+    this.food_item.macros.carbs = Math.round(
+      (this.macrosPerUnit.carbs * this.foodAmount.value * 100) / 100
+    );
+    this.food_item.macros.fat = Math.round(
+      (this.macrosPerUnit.fat * this.foodAmount.value * 100) / 100
+    );
   }
 
   calculateNutrients() {
@@ -145,6 +155,7 @@ export class AddIngredientFormComponent {
             fat: parseFloat(data.servings.serving[0].fat),
           },
         };
+        this.foodAmount.setValue(this.food_item.metric_serving_amount);
         this.loadChart();
         this.foodUnits.push(this.food_item.metric_serving_unit);
         this.calculateNutrients();
