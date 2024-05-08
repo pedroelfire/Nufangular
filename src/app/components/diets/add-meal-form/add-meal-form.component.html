@@ -17,16 +17,15 @@
         </div>
         <div class="meal__ingredients">
           <div class="meal__name">
-            <label for="mealName" class="meal__name-label"
+            <label for="mealName" class="meal__name-label" e
               >Nombre de la comida</label
             >
             <input
               pInputText
               placeholder="ej. Desayuno"
               name="mealName"
-              #name="ngModel"
-              ngModel
-              class="meal__name-input"
+              [formControl]="mealName"
+              class="meal__name-input border-solid rounded-md border-2 border-primary"
             />
           </div>
           <ng-container *ngIf="selectedIngredients.length > 0">
@@ -65,12 +64,17 @@
       <div class="ingredients" *ngIf="food_items.length > 0">
         <app-food-item
           *ngFor="let food_item of food_items"
+          (removeIngredientEvent)="removeIngredient($event)"
           [food_item]="food_item"
+          [selectedIngredients]="selectedIngredients"
         />
       </div>
     </div>
-    <div class="control-panel">
-      <button class="submit-btn" type="submit">
+    <div class="control-panel flex w-full items-center justify-end">
+      <button
+        class="submit-btn border-2 border-solid border-primary bg-surface-primary rounded-md px-1 py-1.25 flex items-center justify-center"
+        type="submit"
+      >
         <span>Crear</span>
       </button>
     </div>

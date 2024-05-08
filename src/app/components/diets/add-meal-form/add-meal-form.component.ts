@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl } from '@angular/forms';
 import { FoodItemsService } from 'src/app/services/food-items.service';
 import { IngredientDataService } from 'src/app/services/ingredient-data.service';
 import { FoodItem, FoodSearchResult, MealFormIngredient } from 'src/types';
@@ -16,6 +16,10 @@ export class AddMealFormComponent {
   food_items: FoodSearchResult[] = [];
   inputSubject = new Subject<string>();
   ingredientSubscription!: Subscription;
+  chartData: any;
+  chartOptions: any;
+
+  mealName = new FormControl('');
 
   constructor(
     private foodItemsService: FoodItemsService,
@@ -25,7 +29,7 @@ export class AddMealFormComponent {
     this.searchQueryFoodItems();
     this.inputSubject
       .pipe(
-        debounceTime(500),
+        debounceTime(300),
         distinctUntilChanged(),
         tap((value) => this.searchQueryFoodItems(value))
       )
@@ -44,6 +48,7 @@ export class AddMealFormComponent {
 
   @Output() close = new EventEmitter<void>();
   selectedIngredients: MealFormIngredient[] = [];
+
   mealSummary: any = {
     calories: 0,
     total_fat: 0,
@@ -53,7 +58,12 @@ export class AddMealFormComponent {
 
   createMeal(mealForm: NgForm) {
     if (mealForm.valid) {
-      const meal = mealForm.value;
+      const meal = {
+        name: this.mealName.value,
+        ingredients: this.selectedIngredients,
+        meal_time: new Date(),
+        created_by: 1,
+      };
       console.log(meal);
     } else {
       console.log('Form is invalid');
@@ -76,44 +86,12 @@ export class AddMealFormComponent {
   //   });
   // }
 
-  getMacrosChartData() {
-    return {
-      labels: ['Grasa', 'Carbohidratos', 'Proteína'],
-      datasets: [
-        {
-          label: 'Macronutrientes (g)',
-          data: [
-            this.mealSummary.total_fat,
-            this.mealSummary.carbohydrates,
-            this.mealSummary.protein,
-          ],
-          backgroundColor: [
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-          ],
-          borderColor: [
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-          ],
-          borderWidth: 1,
-        },
-      ],
-    };
-  }
-
-  getChartOptions() {
-    return {
-      cutout: '70%',
-    };
-  }
-
   addIngredient(food_item: any) {
     this.selectedIngredients.push(food_item);
   }
 
   removeIngredient(food_id: number) {
+    console.log(food_id);
     this.selectedIngredients = this.selectedIngredients.filter(
       (item) => item.food_id != food_id
     );

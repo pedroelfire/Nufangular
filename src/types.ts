@@ -1,3 +1,16 @@
+export interface Meal {
+  id: number;
+  name: string;
+  description: string;
+  date: string;
+  time: string;
+  total_calories: number;
+  total_protein: number;
+  total_carbs: number;
+  total_fat: number;
+  ingredients: MealIngredient[];
+}
+
 export interface FoodSearchResult {
   brand_name: string;
   food_description: string;

@@ -20,7 +20,6 @@ export class BackendURLsService {
   }
 
   createMealURL(): string {
-    // Pasar un objeto food_id con food_name, metric_serving_amount, metric_serving_unit y createdBy
     return `${this.apiBaseURL}/diets/createIngredientsMeal/`;
   }
 }

@@ -18,4 +18,10 @@ export class FoodItemsService {
     return this.http.post(apiEndpoint, {
       query_search: query,
     });
-  }}
+  }
+
+  createMeal(meal: any): Observable<any> {
+    const apiEndpoint = this.backendURLs.createMealURL();
+    return this.http.post(apiEndpoint, meal);
+  }
+}
