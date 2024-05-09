@@ -1,1 +1,165 @@
-<p>diary-main works!</p>
+<div
+  class="px-8 py-12 rounded-lg bg-main-accent flex flex-col items-center justify-center gap-4 flex-grow"
+>
+  <h1>Diario</h1>
+  <span>Registra tus comidas del día</span>
+</div>
+<main
+  class="flex items-center justify-center flex-grow-[6] px-12 py-16 w-full h-full"
+>
+  <!-- Panel de comidas -->
+  <div
+    class="flex flex-col items-center justify-center flex-grow-[4] px-8 py-12"
+  >
+    <!-- Fechas -->
+    <div class="flex flex-col items-center justify-center gap-2 w-full">
+      <!-- Week bar -->
+      <div class="flex items-center justify-between w-full">
+        <button
+          class="px-3 py-2 flex items-center justify-center rounded-lg border-2 border-solid border-primary"
+        >
+          <span>Marzo</span>
+        </button>
+        <button
+          class="px-3 py-2 flex items-center justify-center rounded-lg border-2 border-solid border-primary"
+        >
+          <span>Abril</span>
+        </button>
+        <button
+          class="px-3 py-2 flex items-center justify-center rounded-lg border-2 border-solid border-primary"
+        >
+          <span>Mayo</span>
+        </button>
+        <button
+          class="px-3 py-2 flex items-center justify-center rounded-lg border-2 border-solid border-primary"
+        >
+          <span>Junio</span>
+        </button>
+        <button
+          class="px-3 py-2 flex items-center justify-center rounded-lg border-2 border-solid border-primary"
+        >
+          <span>Julio</span>
+        </button>
+      </div>
+      <div class="flex items-center justify-between w-full">
+        <span class="border-2 border-solid border-primary p-2 rounded-md"
+          >13</span
+        >
+        <span class="border-2 border-solid border-primary p-2 rounded-md"
+          >14</span
+        >
+        <span class="border-2 border-solid border-primary p-2 rounded-md"
+          >15</span
+        >
+        <span class="border-2 border-solid border-primary p-2 rounded-md"
+          >16</span
+        >
+        <span class="border-2 border-solid border-primary p-2 rounded-md"
+          >17</span
+        >
+        <span class="border-2 border-solid border-primary p-2 rounded-md"
+          >18</span
+        >
+        <span class="border-2 border-solid border-primary p-2 rounded-md"
+          >19</span
+        >
+      </div>
+    </div>
+
+    <h2 class="self-start text-2xl font-bold text-primary">Comidas del día</h2>
+    <!-- Comidas del día -->
+    <div class="flex flex-col items-center justify-center gap-2 w-full">
+      <!-- Meal -->
+      <button
+        class="border-solid border-2 border-primary px-2 py-3 bg-surface-primary flex flex-col items-center justify-center w-full h-full"
+      >
+        <div class="flex items-start justify-center w-full">
+          <!-- Title and time -->
+          <div class="flex-grow-[2]">
+            <div class="flex justify-between items-center">
+              <h3 class="font-bold text-2xl text-primary">Desayuno</h3>
+              <div class="flex items-center justify-center">
+                <i class="pi pi-clock"></i>
+                <span>08:00 am</span>
+              </div>
+            </div>
+          </div>
+          <!-- Meal summary -->
+          <div class="flex items-center justify-end gap-4 flex-grow">
+            <!-- Calories -->
+            <div class="flex flex-col items-center justify-center">
+              <span class="text-4xl font-bold text-primary">1240</span>
+              <span class="text-sm text-primary-dim">Calorías</span>
+            </div>
+            <!-- Macros -->
+            <div
+              class="flex flex-col items-center justify-center gap-2 max-w-42"
+            >
+              <!-- Macro card -->
+              <div
+                class="flex items-center justify-between p-2 border-solid border-2 border-primary rounded-md w-full gap-1"
+              >
+                <span class="font-bold">Proteína</span>
+                <span class="text-protein text-lg font-bold">68 gr</span>
+              </div>
+              <div
+                class="flex items-center justify-between p-2 border-solid border-2 border-primary rounded-md w-full gap-1"
+              >
+                <span class="font-bold">Carbohidratos</span>
+                <span class="text-carbs text-lg font-bold">124 gr</span>
+              </div>
+              <div
+                class="flex items-center justify-between p-2 border-solid border-2 border-primary rounded-md w-full gap-1"
+              >
+                <span class="font-bold">Grasa</span>
+                <span class="text-fat text-lg font-bold">47 gr</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Meal details -->
+        <!-- ingredient -->
+        <button class="flex items-center justify-center w-full">
+          <!-- Ingredient calories -->
+          <div class="flex flex-col items-center justify-center flex-grow">
+            <span>Cals</span>
+            <span>234</span>
+          </div>
+          <!-- Ingredient details -->
+          <div
+            class="w-full flex flex-col items-center justify-start flex-grow-[5]"
+          >
+            <!-- Ingredient Name and grams -->
+            <div class="flex items-center justify-start py-1 gap-1 w-full">
+              <span class="text-primary">Arroz</span>
+              <span class="text-primary font-bold">200 gr</span>
+            </div>
+            <!-- Ingredient macros -->
+            <div class="flex items-center justify-start w-full">
+              <div class="flex items-center justify-center gap-2 w-16">
+                <!-- circle -->
+                <div class="w-2 h-2 rounded-full bg-protein"></div>
+                <span class="font-bold text-primary">25 gr</span>
+              </div>
+            </div>
+          </div>
+        </button>
+      </button>
+    </div>
+  </div>
+  <!-- Panel de control -->
+  <div
+    class="flex flex-col flex-grow bg-main border-2 border-solid border-primary rounded-lg px-8 py-12"
+  >
+    <div>
+      <span>Resumen de hoy</span>
+    </div>
+    <div>
+      <span>Detalles de la comida</span>
+    </div>
+    <div>
+      <button>Pregúntale a Jack</button>
+      <button>Agregar Comida</button>
+    </div>
+  </div>
+</main>
