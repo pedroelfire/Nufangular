@@ -1,17 +1,23 @@
 <div
-  class="flex flex-col items-center justify-center h-full w-full bg-main px-6 gap-2"
+  class="flex flex-col flex-grow items-center justify-center h-full w-full bg-main px-6 gap-2 mt-24"
 >
   <h1 class="self-start text-xl md:text-3xl font-bold">
     ¡Bienvenido a Nufogy!
   </h1>
-  <h2 class="self-start text-lg font-bold">Desafíos</h2>
-  <div
-    class="border-solid border-primary border-2 rounded-2xl px-3 py-2 flex flex-col w-full"
-  >
-    <app-quest></app-quest>
+
+  <div class="md:flex gap-4 flex-grow">
+    <div class="flex flex-col gap-2">
+      <h2 class="self-start text-lg font-bold">Desafíos</h2>
+      <div
+        class="border-solid border-primary border-2 rounded-2xl px-3 py-2 flex flex-col w-full"
+      >
+        <app-quest></app-quest>
+      </div>
+      <app-stats></app-stats>
+    </div>
+    <div class="flex flex-col self-start h-full gap-2">
+      <h2 class="self-start text-lg font-bold">Prueba a Jack</h2>
+      <app-jack-card></app-jack-card>
+    </div>
   </div>
-  <h2 class="self-start text-lg font-bold">Prueba a Jack</h2>
-  <app-jack-card></app-jack-card>
-  <!-- Stats -->
-  <app-stats></app-stats>
 </div>
