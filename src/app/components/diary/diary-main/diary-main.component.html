@@ -1,91 +1,28 @@
 <div
-  class="px-8 py-12 rounded-lg bg-main-accent flex flex-col items-center justify-center gap-4 flex-grow"
+  class="rounded-lg bg-main-accent flex flex-col items-center justify-center gap-4 flex-grow my-16"
 >
   <h1>Diario</h1>
   <span>Registra tus comidas del día</span>
 </div>
-<main
-  class="flex items-center justify-center flex-grow-[6] px-12 py-16 w-full h-full"
->
+<main class="flex items-start justify-center w-full h-full mx-0 md:mx-auto">
   <!-- Panel de comidas -->
-  <div
-    class="flex flex-col items-center justify-center flex-grow-[4] px-8 py-12"
-  >
+  <div class="flex flex-col items-center justify-center">
     <!-- Fechas -->
-    <div class="flex flex-col items-center justify-center gap-2 w-full">
-      <!-- Week bar -->
-      <div class="flex items-center justify-between w-full">
-        <button
-          class="px-3 py-2 flex items-center justify-center rounded-lg border-2 border-solid border-primary"
-        >
-          <span>Marzo</span>
-        </button>
-        <button
-          class="px-3 py-2 flex items-center justify-center rounded-lg border-2 border-solid border-primary"
-        >
-          <span>Abril</span>
-        </button>
-        <button
-          class="px-3 py-2 flex items-center justify-center rounded-lg border-2 border-solid border-primary"
-        >
-          <span>Mayo</span>
-        </button>
-        <button
-          class="px-3 py-2 flex items-center justify-center rounded-lg border-2 border-solid border-primary"
-        >
-          <span>Junio</span>
-        </button>
-        <button
-          class="px-3 py-2 flex items-center justify-center rounded-lg border-2 border-solid border-primary"
-        >
-          <span>Julio</span>
-        </button>
+    <app-week-bar></app-week-bar>
+    <div class="mx-8 flex flex-col items-center justify-center">
+      <h2 class="self-start text-2xl font-bold text-primary">
+        Comidas del día
+      </h2>
+      <!-- Comidas del día -->
+      <div class="flex flex-col items-center justify-center gap-2 w-full">
+        <!-- Meal -->
+        <app-meal-item></app-meal-item>
       </div>
-      <div class="flex items-center justify-between w-full">
-        <span class="border-2 border-solid border-primary p-2 rounded-md"
-          >13</span
-        >
-        <span class="border-2 border-solid border-primary p-2 rounded-md"
-          >14</span
-        >
-        <span class="border-2 border-solid border-primary p-2 rounded-md"
-          >15</span
-        >
-        <span class="border-2 border-solid border-primary p-2 rounded-md"
-          >16</span
-        >
-        <span class="border-2 border-solid border-primary p-2 rounded-md"
-          >17</span
-        >
-        <span class="border-2 border-solid border-primary p-2 rounded-md"
-          >18</span
-        >
-        <span class="border-2 border-solid border-primary p-2 rounded-md"
-          >19</span
-        >
-      </div>
-    </div>
-
-    <h2 class="self-start text-2xl font-bold text-primary">Comidas del día</h2>
-    <!-- Comidas del día -->
-    <div class="flex flex-col items-center justify-center gap-2 w-full">
-      <!-- Meal -->
-      <!-- <app-meal-item></app-meal-item> -->
     </div>
   </div>
-  <!-- Panel de control -->
-  <div
-    class="flex flex-col flex-grow bg-main border-2 border-solid border-primary rounded-lg px-8 py-12"
-  >
-    <div>
-      <span>Resumen de hoy</span>
-    </div>
-    <div>
-      <span>Detalles de la comida</span>
-    </div>
-    <div>
-      <button>Pregúntale a Jack</button>
-      <button>Agregar Comida</button>
-    </div>
+  <!-- meal summary -->
+  <div class="flex flex-col items-start justify-center">
+    <app-meal-summary></app-meal-summary>
+    <app-diary-jack></app-diary-jack>
   </div>
 </main>

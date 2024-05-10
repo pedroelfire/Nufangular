@@ -13,6 +13,7 @@ import { CreateDietPlanModule } from './components/diets/create-diet-plan/create
 import { BottomTabsModule } from './shared/bottom-tabs/bottom-tabs.module';
 import { HomeMainModule } from './components/home/home-main/home-main.module';
 import { DataViewModule } from 'primeng/dataview';
+import { DiaryMainModule } from './components/diary/diary-main/diary-main.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DataViewModule } from 'primeng/dataview';
     TopBarModule,
     // HomeMainModule,
     DataViewModule,
+    // DiaryMainModule,
   ],
   bootstrap: [AppComponent],
 })
