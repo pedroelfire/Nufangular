@@ -1,13 +1,7 @@
 export interface Meal {
-  id: number;
-  name: string;
-  description: string;
-  date: string;
-  time: string;
-  total_calories: number;
-  total_protein: number;
-  total_carbs: number;
-  total_fat: number;
+  name: string | null;
+  meal_time: Date;
+  created_by: number;
   ingredients: MealIngredient[];
 }
 
@@ -35,8 +29,9 @@ export interface MealFormIngredient {
 
 export interface MealIngredient {
   food_id: number;
-  metric_serving_amount: number;
+  data: MealFormIngredient;
   metric_serving_unit: string;
+  metric_serving_amount: number;
   created_by: number;
 }
 

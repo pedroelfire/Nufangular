@@ -2,7 +2,12 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { NgForm, FormControl } from '@angular/forms';
 import { FoodItemsService } from 'src/app/services/food-items.service';
 import { IngredientDataService } from 'src/app/services/ingredient-data.service';
-import { FoodItem, FoodSearchResult, MealFormIngredient } from 'src/types';
+import {
+  FoodItem,
+  FoodSearchResult,
+  Meal,
+  MealFormIngredient,
+} from 'src/types';
 
 import { Subscription, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
@@ -58,13 +63,22 @@ export class AddMealFormComponent {
 
   createMeal(mealForm: NgForm) {
     if (mealForm.valid) {
-      const meal = {
+      const meal: Meal = {
         name: this.mealName.value,
-        ingredients: this.selectedIngredients,
+        ingredients: this.selectedIngredients.map((ingredient) => ({
+          food_id: ingredient.food_id,
+          data: ingredient,
+          metric_serving_unit: ingredient.metric_serving_unit,
+          metric_serving_amount: ingredient.metric_serving_amount,
+          created_by: 1,
+        })),
+
         meal_time: new Date(),
         created_by: 1,
       };
-      console.log(meal);
+      this.foodItemsService.createMeal(meal).subscribe((response) => {
+        console.log(response);
+      });
     } else {
       console.log('Form is invalid');
     }
