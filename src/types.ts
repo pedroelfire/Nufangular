@@ -1,6 +1,6 @@
 export interface Meal {
   name: string | null;
-  meal_time: Date;
+  meal_time: string;
   created_by: number;
   ingredients: MealIngredient[];
 }

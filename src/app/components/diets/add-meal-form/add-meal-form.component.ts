@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { NgForm, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FoodItemsService } from 'src/app/services/food-items.service';
 import { IngredientDataService } from 'src/app/services/ingredient-data.service';
 import {
@@ -8,9 +8,9 @@ import {
   Meal,
   MealFormIngredient,
 } from 'src/types';
-
 import { Subscription, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-add-meal-form',
@@ -23,13 +23,19 @@ export class AddMealFormComponent {
   ingredientSubscription!: Subscription;
   chartData: any;
   chartOptions: any;
+  defaultDate = new Date().setHours(8, 0, 0);
 
-  mealName = new FormControl('');
+  mealForm: FormGroup;
 
   constructor(
     private foodItemsService: FoodItemsService,
     private ingredientDataService: IngredientDataService
-  ) {}
+  ) {
+    this.mealForm = new FormGroup({
+      mealName: new FormControl('', Validators.required),
+      mealTime: new FormControl(this.defaultDate, Validators.required),
+    });
+  }
   ngOnInit() {
     this.searchQueryFoodItems();
     this.inputSubject
@@ -61,10 +67,12 @@ export class AddMealFormComponent {
     protein: 0,
   };
 
-  createMeal(mealForm: NgForm) {
-    if (mealForm.valid) {
-      const meal: Meal = {
-        name: this.mealName.value,
+  submitCreateMeal() {
+    if (this.mealForm.valid && this.selectedIngredients.length > 0) {
+      const selectedDate = this.mealForm.get('mealTime')?.value;
+
+      const meal = {
+        name: this.mealForm.get('mealName')?.value,
         ingredients: this.selectedIngredients.map((ingredient) => ({
           food_id: ingredient.food_id,
           data: ingredient,
@@ -72,12 +80,11 @@ export class AddMealFormComponent {
           metric_serving_amount: ingredient.metric_serving_amount,
           created_by: 1,
         })),
-
-        meal_time: new Date(),
+        meal_time: format(selectedDate, 'HH:mm:ss'),
         created_by: 1,
       };
       this.foodItemsService.createMeal(meal).subscribe((response) => {
-        console.log(response);
+        this.closeForm();
       });
     } else {
       console.log('Form is invalid');

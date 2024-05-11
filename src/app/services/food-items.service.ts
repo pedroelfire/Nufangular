@@ -20,7 +20,7 @@ export class FoodItemsService {
     });
   }
 
-  createMeal(meal: Meal): Observable<any> {
+  createMeal(meal: any): Observable<any> {
     const apiEndpoint = this.backendURLs.createMealURL();
     return this.http.post(apiEndpoint, meal);
   }

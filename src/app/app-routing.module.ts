@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
 import { CreateDietPlanComponent } from './components/diets/create-diet-plan/create-diet-plan.component';
 import { NutritionistDashboardComponent } from './components/dashboard/nutritionist-dashboard/nutritionist-dashboard.component';
 import { HomeMainComponent } from './components/home/home-main/home-main.component';
@@ -9,7 +8,7 @@ import { DiaryMainComponent } from './components/diary/diary-main/diary-main.com
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  // { path: 'register', component: RegisterComponent },
   {
     path: 'diets',
     children: [{ path: 'create', component: CreateDietPlanComponent }],

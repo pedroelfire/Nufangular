@@ -1,10 +1,14 @@
+<h1 class="text-4xl font-bold my-4">Nufogy</h1>
+
 <form
-  class="login-form"
+  class="login-form border-solid border-2 border-primary rounded-lg px-4 py-5 flex flex-col items-center justify-center bg-surface-primary"
   action="submit"
   [formGroup]="loginForm"
   (ngSubmit)="onSubmit()"
 >
-  <h1 class="login-form__title">Iniciar Sesión</h1>
+  <h1 class="login-form__title text-2xl font-bold text-primary">
+    Iniciar Sesión
+  </h1>
   <ng-container class="input-field-container" [ngSwitch]="step">
     <span class="p-float-label" *ngSwitchCase="'username'">
       <input

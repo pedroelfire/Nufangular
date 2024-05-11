@@ -1,5 +1,5 @@
 <div class="overlay">
-  <form class="meal" #mealForm="ngForm" (ngSubmit)="createMeal(mealForm)">
+  <form class="meal" [formGroup]="mealForm" (ngSubmit)="submitCreateMeal()">
     <button (click)="closeForm()" class="close-btn">
       <i class="pi pi-times-circle"></i>
     </button>
@@ -16,17 +16,43 @@
           <span class="label">Kcal</span>
         </div>
         <div class="meal__ingredients">
-          <div class="meal__name">
-            <label for="mealName" class="meal__name-label" e
-              >Nombre de la comida</label
-            >
-            <input
-              pInputText
-              placeholder="ej. Desayuno"
-              name="mealName"
-              [formControl]="mealName"
-              class="meal__name-input border-solid rounded-md border-2 border-primary"
-            />
+          <div class="flex flex-row items-center justify-between">
+            <div class="meal__name">
+              <label for="mealName" class="meal__name-label font-bold"
+                >Nombre de la comida</label
+              >
+              <input
+                pInputText
+                placeholder="ej. Desayuno"
+                name="mealName"
+                formControlName="mealName"
+                class="meal__name-input border-solid rounded-md border-2 border-primary"
+              />
+            </div>
+            <div class="flex flex-col items-start justify-center gap-2">
+              <label for="mealTime">
+                <span class="meal__time-label font-bold text-primary"
+                  >Hora de la comida</span
+                >
+                <p-calendar
+                  formControlName="mealTime"
+                  [showIcon]="true"
+                  [timeOnly]="true"
+                  inputId="templatedisplay"
+                  name="mealTime"
+                >
+                  <ng-template
+                    pTemplate="inputicon"
+                    let-clickCallBack="clickCallBack"
+                  >
+                    <i
+                      class="pi pi-user pointer-events-none"
+                      (click)="clickCallBack($event)"
+                    ></i>
+                  </ng-template>
+                </p-calendar>
+              </label>
+            </div>
           </div>
           <ng-container *ngIf="selectedIngredients.length > 0">
             <div class="ingredient__list">
@@ -56,6 +82,7 @@
           placeholder="ej. Atún en agua masa drenada"
           (input)="onChangeQueryInput($event)"
           name="searchQueryWord"
+          class="border-solid border-2 border-primary rounded-md"
         />
       </div>
       <div class="ingredients--empty" *ngIf="food_items.length === 0">

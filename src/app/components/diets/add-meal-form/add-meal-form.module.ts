@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
 import { AddMealFormComponent } from './add-meal-form.component';
 import { FoodItemModule } from '../food-item/food-item.module';
 import { ChartModule } from 'primeng/chart';
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     ChartModule,
     FoodItemModule,
     HttpClientModule,
+    CalendarModule,
   ],
   exports: [AddMealFormComponent],
 })
