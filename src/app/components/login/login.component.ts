@@ -20,12 +20,6 @@ export class LoginComponent {
     });
   }
 
-  step = 'username';
-
-  validUser = () => {
-    this.step = 'password';
-  };
-
   onSubmit(): void {
     if (this.loginForm.valid) {
       const username = this.loginForm.value.username;
