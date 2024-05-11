@@ -32,6 +32,10 @@ module.exports = {
           DEFAULT: "var(--text-secondary)",
           dim: "var(--text-secondary-dim)",
         },
+        link: {
+          DEFAULT: "var(--link)",
+          accessed: "var(--link-accessed)",
+        },
       },
       colors: {
         primary: "var(--text-primary)",

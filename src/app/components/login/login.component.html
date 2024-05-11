@@ -1,4 +1,4 @@
-<h1 class="text-4xl font-bold my-4">Nufogy</h1>
+<h1 class="text-4xl font-bold my-24">Nufogy</h1>
 
 <form
   class="login-form border-solid border-2 border-primary rounded-lg px-4 py-5 flex flex-col items-center justify-center bg-surface-primary"
@@ -9,52 +9,54 @@
   <h1 class="login-form__title text-2xl font-bold text-primary">
     Iniciar Sesión
   </h1>
-  <ng-container class="input-field-container" [ngSwitch]="step">
-    <span class="p-float-label" *ngSwitchCase="'username'">
-      <input
-        pInputText
-        name="username"
-        id="username"
-        formControlName="username"
-        required
-        type="text"
-        class="login-form_field username-field"
-      />
-      <label for="username">Correo electrónico o teléfono</label>
-    </span>
-    <span class="p-float-label" *ngSwitchCase="'password'">
-      <input
-        pInputText
-        name="password"
-        id="password"
-        formControlName="password"
-        required
-        type="password"
-        class="login-form_field password-field"
-      />
-      <label for="password">Ingresa tu contraseña</label>
-    </span>
-  </ng-container>
-  <span class="login-form__msg">
+
+  <div class="flex flex-col items-center justify-center gap-2 w-full">
+    <label for="username" class="self-start">
+      <span class="text-sm text-primary font-bold">
+        Correo electrónico o usuario
+      </span>
+    </label>
+    <input
+      type="text"
+      name="username"
+      class="border-solid border-2 border-primary rounded-lg px-1 py-1.5 bg-main w-full"
+      placeholder="pedroelfire@ejemplo.com"
+      autocomplete="off"
+    />
+  </div>
+  <div class="flex flex-col items-center justify-center gap-2 w-full">
+    <label for="password" class="self-start">
+      <span class="text-sm text-primary font-bold"> Contraseña </span>
+    </label>
+    <input
+      type="password"
+      name="password"
+      class="border-solid border-2 border-primary rounded-lg px-1 py-1.5 bg-main w-full"
+    />
+  </div>
+
+  <div class="flex items-center justify-start w-full gap-1 my-1">
+    <input type="checkbox" name="rememberUserAndPassword" />
+    <span class="text-primary"> Recordarme en este dispositivo </span>
+  </div>
+
+  <span class="login-form__msg text-sm">
     <span>¿No tienes una cuenta?&nbsp;</span>
-    <a href="" class="guest_link">Continua como invitado</a>
+    <a href="" class="guest_link text-link underline">Continua como invitado</a>
   </span>
 
-  <div class="login-form__btns">
-    <button class="btn register-btn">
-      <span>Crear cuenta</span>
+  <div class="login-form__btns mt-6 flex items-center justify-between w-full">
+    <button class="bg-transparent px-2 py-3">
+      <a routerLink="./register" class="font-bold">
+        <span>Crear cuenta</span>
+      </a>
     </button>
-    <ng-container [ngSwitch]="step">
-      <button
-        class="btn ok-btn"
-        (click)="validUser()"
-        *ngSwitchCase="'username'"
-      >
-        <span>Siguiente</span>
-      </button>
-      <button class="btn ok-btn" type="submit" *ngSwitchCase="'password'">
-        <span>Terminar</span>
-      </button>
-    </ng-container>
+
+    <button
+      class="border-solid border-2 border-primary rounded-3xl bg-surface-primary-accent px-2 py-1.5"
+      type="submit"
+    >
+      <span class="font-bold">Siguiente</span>
+    </button>
   </div>
 </form>

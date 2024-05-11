@@ -1,4 +1,3 @@
-
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 
@@ -53,12 +52,16 @@
   --sunflower: #e6cd30;
   --xoxo: #d88491;
   --fleur-de-lis: #a48abb;
+  --neptune: #6fb3b3;
+  --wisteria: #a46fb3;
 
   // Tokenization
   --protein: var(--xoxo);
   --carbs: var(--fleur-de-lis);
   --fat: var(--digital-yellow);
   --quest: var(--sunflower);
+  --link: var(--neptune);
+  --link-accessed: var(--wisteria);
 
   --bg-main: var(--porcelain);
   --bg-main-accent: var(--cararra);
