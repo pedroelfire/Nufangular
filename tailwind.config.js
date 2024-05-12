@@ -12,6 +12,7 @@ module.exports = {
           primary: {
             DEFAULT: "var(--surface-primary)",
             accent: "var(--surface-primary-accent)",
+            "accent-2": "var(--surface-primary-accent-2)",
           },
           secondary: {
             DEFAULT: "var(--surface-secondary)",
@@ -35,6 +36,21 @@ module.exports = {
         link: {
           DEFAULT: "var(--link)",
           accessed: "var(--link-accessed)",
+        },
+        surface: {
+          primary: {
+            DEFAULT: "var(--surface-primary)",
+            accent: "var(--surface-primary-accent)",
+            "accent-2": "var(--surface-primary-accent-2)",
+          },
+          secondary: {
+            DEFAULT: "var(--surface-secondary)",
+            accent: "var(--surface-secondary-accent)",
+          },
+          tertiary: {
+            DEFAULT: "var(--surface-tertiary)",
+            accent: "var(--surface-tertiary-accent)",
+          },
         },
       },
       colors: {

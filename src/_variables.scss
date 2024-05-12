@@ -54,6 +54,10 @@
   --fleur-de-lis: #a48abb;
   --neptune: #6fb3b3;
   --wisteria: #a46fb3;
+  --shamrock: #31d2a4;
+  --green-pea: #215a4a;
+  --blue-dianne: #21455a;
+  --lilac-blush: #9782d8;
 
   // Tokenization
   --protein: var(--xoxo);
@@ -62,12 +66,14 @@
   --quest: var(--sunflower);
   --link: var(--neptune);
   --link-accessed: var(--wisteria);
+  --jack: var(--blue-dianne);
 
   --bg-main: var(--porcelain);
   --bg-main-accent: var(--cararra);
 
   --surface-primary: var(--light-blue);
   --surface-primary-accent: var(--lavender-gray);
+  --surface-primary-accent-2: var(--lilac-blush);
 
   --surface-secondary: var(--pastel-blue);
   --surface-secondary-accent: var(--blush);
