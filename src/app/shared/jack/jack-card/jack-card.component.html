@@ -15,29 +15,14 @@
   </div>
   <!-- Chat -->
   <div class="relative flex flex-col flex-grow overflow-y-auto">
+    <!-- Contenedor de mensajes -->
     <div class="w-full h-full flex flex-col gap-2">
-      <h2 class="text-3xl font-bold text-primary" *ngIf="">
+      <h2 class="text-3xl font-bold text-primary">
         Hola Pedro, ¿en qué puedo ayudarte hoy?
       </h2>
+
+      <app-jack-message></app-jack-message>
     </div>
-    <!-- <div class="flex flex-col items-start justify-center flex-grow-[3]">
-      <button
-        class="flex items-center justify-center rounded-3xl border-solid border-2 border-primary px-3 py-2"
-      >
-        <i class="pi pi-sparkles"></i>
-        <span> ¿Cuál es mi lista de compras? </span>
-      </button>
-    </div> -->
-    <!-- <div class="flex items-center justify-center flex-grow">
-      <button
-        class="rounded-full w-16 h-16 p-2 border-solid border-2 border-primary flex items-center justify-center bg-surface-primary-accent"
-      >
-        <i
-          class="pi pi-microphone"
-          style="color: var(--text-primary); font-size: 2rem"
-        ></i>
-      </button>
-    </div> -->
     <!-- Control Panel -->
     <div class="relative bottom-4 w-full">
       <app-jack-message-composer></app-jack-message-composer>

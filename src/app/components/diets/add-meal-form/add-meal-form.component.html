@@ -7,11 +7,12 @@
       <h1>Crear comida</h1>
       <div class="meal__layout">
         <div class="meal__calories">
-          <!-- <p-chart
+          <p-chart
             type="doughnut"
-            [data]="getMacrosChartData()"
-            [options]="getChartOptions()"
-          ></p-chart> -->
+            [data]="chartData"
+            [options]="chartOptions"
+            [plugins]="[emptyDoughnutPlugin]"
+          ></p-chart>
           <span class="amount">{{ mealSummary.calories }}</span>
           <span class="label">Kcal</span>
         </div>
@@ -26,7 +27,8 @@
                 placeholder="ej. Desayuno"
                 name="mealName"
                 formControlName="mealName"
-                class="meal__name-input border-solid rounded-md border-2 border-primary"
+                class="meal__name-input border-solid rounded-md border-2 border-primary mr-2"
+                autocomplete="off"
               />
             </div>
             <div class="flex flex-col items-start justify-center gap-2">

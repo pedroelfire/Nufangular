@@ -58,15 +58,22 @@
   --green-pea: #215a4a;
   --blue-dianne: #21455a;
   --lilac-blush: #9782d8;
+  --conifer: #7fdf4b;
+  --cinabar: #e5342f;
+  --ronchi: #eeba56;
+  --corn: #dab200;
 
   // Tokenization
   --protein: var(--xoxo);
   --carbs: var(--fleur-de-lis);
-  --fat: var(--digital-yellow);
+  --fat: var(--corn);
   --quest: var(--sunflower);
   --link: var(--neptune);
   --link-accessed: var(--wisteria);
   --jack: var(--blue-dianne);
+  --success: var(--conifer);
+  --error: var(--cinabar);
+  --warning: var(--ronchi);
 
   --bg-main: var(--porcelain);
   --bg-main-accent: var(--cararra);

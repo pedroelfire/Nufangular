@@ -9,7 +9,7 @@ import { BottomTabsModule } from './shared/bottom-tabs/bottom-tabs.module';
 import { HomeMainModule } from './components/home/home-main/home-main.module';
 import { DiaryMainModule } from './components/diary/diary-main/diary-main.module';
 import { LoginModule } from './components/login/login.module';
-import { JackBubbleModule } from './shared/jack-bubble/jack-bubble.module';
+import { JackBubbleModule } from './shared/jack/jack-bubble/jack-bubble.module';
 
 @NgModule({
   declarations: [AppComponent],

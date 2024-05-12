@@ -3,69 +3,79 @@
     [formGroup]="formIngredient"
     class="bg-main flex flex-col items-start justify-center px-5 py-3 h-[42rem] w-[32rem] rounded-lg"
   >
-    <h2 class="text-3xl font-bold text-primary">{{ food_item.food_name }}</h2>
-    <div class="flex flex-col items-center justify-center w-full h-full">
-      <p-chart type="doughnut" [data]="chartData" [options]="chartOptions">
-      </p-chart>
-      <div class="flex flex-col items-center justify-center">
-        <span class="text-7xl font-bold">
-          {{ food_item.calories }}
-        </span>
-        <span class="text-primary-dim text-sm">Calorías</span>
+    <ng-container *ngIf="foodItemLoaded">
+      <h2 class="text-3xl font-bold text-primary">{{ food_item.food_name }}</h2>
+      <div class="flex flex-col items-center justify-center w-full h-full">
+        <p-chart type="doughnut" [data]="chartData" [options]="chartOptions">
+        </p-chart>
+        <div class="flex flex-col items-center justify-center">
+          <span class="text-7xl font-bold">
+            {{ food_item.calories }}
+          </span>
+          <span class="text-primary-dim text-sm">Calorías</span>
+        </div>
+        <div class="flex justify-center items-center gap-0.5">
+          <div
+            class="flex flex-col items-center justifiy-center px-0.5 py-1 border-solid border-2 border-primary rounded-md bg-main-accent flex-grow"
+          >
+            <span class="font-bold">Proteína</span>
+            <span class="font-bold text-protein">{{
+              food_item.macros.protein
+            }}</span>
+          </div>
+          <div
+            class="flex flex-col items-center justifiy-center px-0.5 py-1 border-solid border-2 border-primary rounded-md bg-main-accent flex-grow"
+          >
+            <span class="font-bold">Carbohidratos</span>
+            <span class="font-bold text-carbs">{{
+              food_item.macros.carbs
+            }}</span>
+          </div>
+          <div
+            class="flex flex-col items-center justifiy-center px-0.5 py-1 border-solid border-2 border-primary rounded-md bg-main-accent flex-grow"
+          >
+            <span class="font-bold">Grasa</span>
+            <span class="font-bold text-fat">{{ food_item.macros.fat }}</span>
+          </div>
+        </div>
       </div>
-      <div class="flex justify-center items-center gap-0.5">
-        <div
-          class="flex flex-col items-center justifiy-center px-0.5 py-1 border-solid border-2 border-primary rounded-md bg-main-accent flex-grow"
-        >
-          <span class="font-bold">Proteína</span>
-          <span class="font-bold text-protein">{{
-            food_item.macros.protein
-          }}</span>
-        </div>
-        <div
-          class="flex flex-col items-center justifiy-center px-0.5 py-1 border-solid border-2 border-primary rounded-md bg-main-accent flex-grow"
-        >
-          <span class="font-bold">Carbohidratos</span>
-          <span class="font-bold text-carbs">{{ food_item.macros.carbs }}</span>
-        </div>
-        <div
-          class="flex flex-col items-center justifiy-center px-0.5 py-1 border-solid border-2 border-primary rounded-md bg-main-accent flex-grow"
-        >
-          <span class="font-bold">Grasa</span>
-          <span class="font-bold text-fat">{{ food_item.macros.fat }}</span>
-        </div>
-      </div>
-    </div>
 
-    <div class="flex items-center justify-between">
-      <div class="flex flex-col items-center justify-center w-full">
-        <label for="foodGrams" class="text-primary text-2xl">Cantidad</label>
-        <div class="flex items-center justify-center">
-          <input
-            type="number"
-            [formControl]="foodAmount"
-            (input)="calculateCalories(); calculateMacros()"
-            class="px-3 py-2 border-solid border-2 border-primary"
-          />
-          <p-dropdown [options]="foodUnits"></p-dropdown>
+      <div class="flex items-center justify-between w-full gap-1">
+        <div
+          class="flex flex-col items-center justify-center w-[calc(50%-0.125rem)]"
+        >
+          <label for="foodGrams" class="text-primary text-2xl self-start"
+            >Cantidad</label
+          >
+          <div class="flex items-center justify-center">
+            <input
+              type="number"
+              [formControl]="foodAmount"
+              (input)="calculateCalories(); calculateMacros(); loadChart()"
+              class="px-3 py-2 border-solid border-2 border-primary rounded-lg mr-2 w-full"
+            />
+            <p-dropdown [options]="foodUnits"></p-dropdown>
+          </div>
+        </div>
+        <div
+          class="flex flex-col items-center justify-center w-[calc(50%-0.125rem)]"
+        >
+          <button
+            class="w-full py-2 mt-2 bg-error text-primary rounded-md"
+            id="cancelButton"
+            (click)="cancel()"
+          >
+            <span> Cancelar </span>
+          </button>
+          <button
+            class="w-full py-2 mt-2 bg-success text-primary rounded-md"
+            id="addIngredientButton"
+            (click)="accept(food_item)"
+          >
+            <span>Agregar</span>
+          </button>
         </div>
       </div>
-      <div class="flex flex-col items-center justify-center">
-        <button
-          class="w-full py-2 mt-2 bg-primary text-white rounded-md"
-          id="cancelButton"
-          (click)="cancel()"
-        >
-          <span> Cancelar </span>
-        </button>
-        <button
-          class="w-full py-2 mt-2 bg-primary text-white rounded-md"
-          id="addIngredientButton"
-          (click)="accept(food_item)"
-        >
-          <span>Agregar</span>
-        </button>
-      </div>
-    </div>
+    </ng-container>
   </form>
 </div>

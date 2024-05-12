@@ -27,6 +27,8 @@ export class AddIngredientFormComponent {
   @Output() cancelAddIngredient = new EventEmitter();
   @Output() addIngredientEvent = new EventEmitter();
 
+  foodItemLoaded: boolean = false;
+
   foodAmount = new FormControl();
 
   chartData: any;
@@ -173,7 +175,7 @@ export class AddIngredientFormComponent {
             },
           };
         }
-
+        this.foodItemLoaded = true;
         this.foodAmount.setValue(this.food_item.metric_serving_amount);
         this.loadChart();
         this.foodUnits.push(this.food_item.metric_serving_unit);
