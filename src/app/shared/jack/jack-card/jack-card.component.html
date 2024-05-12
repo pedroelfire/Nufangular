@@ -17,15 +17,21 @@
   <div class="relative flex flex-col flex-grow overflow-y-auto">
     <!-- Contenedor de mensajes -->
     <div class="w-full h-full flex flex-col gap-2">
-      <h2 class="text-3xl font-bold text-primary">
+      <h2 class="text-3xl font-bold text-primary" *ngIf="messages.length === 0">
         Hola Pedro, ¿en qué puedo ayudarte hoy?
       </h2>
-
-      <app-jack-message></app-jack-message>
+      <ng-container *ngFor="let message of messages">
+        <app-jack-message
+          [message]="message"
+          [isLoading]="!jackReplied"
+        ></app-jack-message>
+      </ng-container>
     </div>
     <!-- Control Panel -->
     <div class="relative bottom-4 w-full">
-      <app-jack-message-composer></app-jack-message-composer>
+      <app-jack-message-composer
+        (newMessageEvent)="newMessageHandler($event)"
+      ></app-jack-message-composer>
     </div>
   </div>
 </div>

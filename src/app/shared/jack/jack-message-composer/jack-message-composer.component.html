@@ -1,6 +1,12 @@
-<div class="relative flex items-center">
+<form
+  action="submit"
+  class="relative flex items-center"
+  [formGroup]="messageForm"
+  (ngSubmit)="submitMessage()"
+>
   <textarea
     name="message"
+    formControlName="message"
     class="w-full h-14 overflow-hidden resize-none p-2 border rounded-3xl pr-[5rem]"
   ></textarea>
   <div class="flex items-center justify-around w-20 absolute right-2">
@@ -11,8 +17,9 @@
     </button>
     <button
       class="font-bold p-2 bg-transparent h-8 w-8 rounded-full flex items-center justify-center"
+      type="submit"
     >
       <i class="pi pi-send" style="font-size: 1.5rem"></i>
     </button>
   </div>
-</div>
+</form>

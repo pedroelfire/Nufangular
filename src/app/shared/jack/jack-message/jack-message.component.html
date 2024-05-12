@@ -1,1 +1,20 @@
-<div></div>
+<div
+  class="flex items-center justify-start w-full px-2 py-3 gap-2 mb-2 border-b-2 border-solid border-primary"
+>
+  <!-- Avatar -->
+  <div class="flex items-start justify-center h-full">
+    <fa-icon
+      [icon]="faUserCircle"
+      style="font-size: 2rem; color: var(--text-primary)"
+    ></fa-icon>
+  </div>
+  <!-- Content -->
+  <div class="flex flex-col items-center justify-center h-full w-full">
+    <ng-container *ngIf="isLoading">
+      <i class="pi pi-spin pi-spinner"></i>
+    </ng-container>
+    <div *ngIf="!isLoading" class="self-start justify-self-start">
+      {{ message }}
+    </div>
+  </div>
+</div>
