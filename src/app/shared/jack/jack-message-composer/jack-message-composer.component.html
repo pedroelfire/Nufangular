@@ -10,18 +10,29 @@
     class="w-full h-14 overflow-hidden resize-none p-2 border rounded-3xl pr-[5rem]"
   ></textarea>
   <div class="flex items-center justify-around w-20 absolute right-2">
-    <button
-      class="font-bold p-2 bg-surface-primary-accent-2 h-8 w-8 rounded-full flex items-center justify-center mr-2"
-      type="button"
-      (click)="handleMicClick()"
+    <div
+      class="relative p-2 h-8 w-8 rounded-full flex items-center justify-center mr-2"
     >
-      <i
-        class="pi pi-microphone"
-        style="font-size: 1.5rem"
-        *ngIf="!isRecording"
-      ></i>
-      <i class="pi pi-stop" style="font-size: 1rem" *ngIf="isRecording"></i>
-    </button>
+      <div
+        class="absolute left-0 right-0 mx-auto h-8 w-8 p-2 bg-surface-primary-accent-2 rounded-full"
+        [ngClass]="isRecording ? 'animate-ping' : ''"
+      ></div>
+      <div
+        class="absolute left-0 right-0 mx-auto h-8 w-8 p-2 bg-surface-primary-accent-2 rounded-full"
+      ></div>
+      <button
+        class="absolute text-primary p-2 bg-transparent h-8 w-8 rounded-full flex items-center justify-center left-0 right- mx-auto"
+        type="button"
+        (click)="handleMicClick()"
+      >
+        <i
+          class="pi pi-microphone"
+          style="font-size: 1.5rem"
+          *ngIf="!isRecording"
+        ></i>
+        <i class="pi pi-stop" style="font-size: 1rem" *ngIf="isRecording"></i>
+      </button>
+    </div>
     <button
       class="font-bold p-2 bg-transparent h-8 w-8 rounded-full flex items-center justify-center"
       type="submit"
