@@ -1,6 +1,36 @@
-<div *ngIf="displayed">
-  <ul>
-    <li>Chat más reciente</li>
+<div *ngIf="displayed" class="overlay rounded-2xl">
+  <ul
+    class="flex flex-col items-center justify-start h-full w-[90%] gap-1 bg-main-accent absolute top-0 left-0 z-[11] pt-[3.75rem] pb-3 px-2 rounded-2xl rounded-r-none translate-x-[-90%] transition-transform duration-300 ease-in-out"
+    [class.translate-x-0]="displayed"
+  >
+    <li class="w-full">
+      <button
+        class="flex items-center justify-start px-1 py-3 border-solid border-2 border-primary rounded-lg w-full h-full gap-2"
+      >
+        <i
+          class="pi pi-envelope"
+          style="
+            font-size: 1.25rem;
+            color: var(--text-primary);
+            margin-left: 0.25rem;
+            vertical-align: middle;
+          "
+        ></i>
+        <span
+          class="text-nowrap overflow-hidden text-ellipsis w-full align-middle text-start"
+        >
+          Conversación 3
+        </span>
+        <i
+          class="pi pi-ellipsis-v"
+          style="
+            font-size: 1rem;
+            vertical-align: middle;
+            color: var(--text-primary);
+          "
+        ></i>
+      </button>
+    </li>
     <li>Chat</li>
     <li>Chat</li>
     <li>Chat</li>

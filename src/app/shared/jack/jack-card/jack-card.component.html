@@ -2,17 +2,8 @@
   class="border-solid border-primary border-2 rounded-2xl px-3 py-2 flex flex-col w-[23.4375rem] h-[50.75rem] bg-surface-primary gap-4 flex-grow mx-2 absolute"
   *ngIf="isDisplayed"
 >
-  <!-- Header -->
-  <div class="flex items-center justify-between">
-    <app-jack-side-bar-btn></app-jack-side-bar-btn>
-    <h3 class="self-start text-2xl font-bold">
-      <span class="text-surface-primary-accent-2">Jack:&nbsp;</span>
-      Asistente Virtual
-    </h3>
-    <button>
-      <i class="pi pi-plus-circle" style="font-size: 2rem"></i>
-    </button>
-  </div>
+  <app-jack-side-bar-btn></app-jack-side-bar-btn>
+
   <!-- Chat -->
   <div class="relative flex flex-col flex-grow overflow-y-auto">
     <!-- Contenedor de mensajes -->

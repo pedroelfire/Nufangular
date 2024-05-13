@@ -1,8 +1,20 @@
-<button (click)="toggleSideBarMenu()">
-  <span>
-    <i class="pi pi-bars" style="font-size: 2rem"></i>
-  </span>
-</button>
+<!-- Header -->
+<div class="flex items-center justify-between w-full">
+  <div class="relative flex items-center justify-between z-[13] gap-2">
+    <button (click)="toggleSideBarMenu()">
+      <span>
+        <i class="pi pi-bars" style="font-size: 2rem"></i>
+      </span>
+    </button>
+    <h3 class="self-start text-2xl font-bold">
+      <span class="text-surface-primary-accent-2">Jack:&nbsp;</span>
+      Asistente Virtual
+    </h3>
+  </div>
+  <button>
+    <i class="pi pi-plus-circle" style="font-size: 2rem"></i>
+  </button>
+</div>
 <app-jack-side-bar-menu
   [displayed]="isSideBarDisplayed"
 ></app-jack-side-bar-menu>

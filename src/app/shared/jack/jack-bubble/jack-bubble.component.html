@@ -1,10 +1,12 @@
-<button
-  class="border-2 border-solid border-primary rounded-full p-4 w-16 h-16 flex items-center justify-center"
-  (click)="toggleJackCard()"
->
-  <fa-icon
-    [icon]="faRobot"
-    style="color: var(--jack); font-size: 2.5rem"
-  ></fa-icon>
-</button>
-<app-jack-card [isDisplayed]="jackCardDisplayed"></app-jack-card>
+<div class="relative">
+  <button
+    class="border-2 border-solid border-primary rounded-full p-4 w-16 h-16 flex items-center justify-center"
+    (click)="toggleJackCard()"
+  >
+    <fa-icon
+      [icon]="faRobot"
+      style="color: var(--jack); font-size: 2.5rem"
+    ></fa-icon>
+  </button>
+  <app-jack-card [isDisplayed]="jackCardDisplayed"></app-jack-card>
+</div>
