@@ -61,6 +61,7 @@
               <div
                 class="ingredient"
                 *ngFor="let ingredient of selectedIngredients"
+                (click)="handleIngredientClick(ingredient)"
               >
                 <span>{{ ingredient.food_name }}</span>
                 <span>{{ ingredient.calories }} kcal</span>
@@ -85,6 +86,7 @@
           (input)="onChangeQueryInput($event)"
           name="searchQueryWord"
           class="border-solid border-2 border-primary rounded-md"
+          autocomplete="off"
         />
       </div>
       <div class="ingredients--empty" *ngIf="food_items.length === 0">

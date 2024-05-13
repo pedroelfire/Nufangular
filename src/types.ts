@@ -8,7 +8,7 @@ export interface Meal {
 export interface FoodSearchResult {
   brand_name: string;
   food_description: string;
-  food_id: number;
+  food_id: string;
   food_name: string;
   food_type: string;
   food_url: string;

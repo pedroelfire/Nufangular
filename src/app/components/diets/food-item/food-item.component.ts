@@ -12,18 +12,31 @@ export class FoodItemComponent {
   @Output() addIngredientEvent = new EventEmitter<MealFormIngredient>();
   @Output() removeIngredientEvent = new EventEmitter<number>();
 
+  food_id!: number;
   ingredientFormIsVisible: boolean = false;
   isChecked = false;
 
-  // Como verificar si un ingredient ya forma parte de selectedIngredients para que isChecked se inicialice como true?
-  // ngOnInit() {
-  //   this.isChecked =
-  //     this.selectedIngredients.length > 0
-  //       ? this.selectedIngredients
-  //           .map((i) => i.food_id)
-  //           .includes(this.food_item.food_id)
-  //       : false;
-  // }
+  ngOnInit() {
+    this.food_id = parseInt(this.food_item.food_id);
+
+    this.isChecked = this.selectedIngredients.some(
+      (i) => i.food_id === this.food_id
+    );
+  }
+
+  ngOnChanges(changes: any): void {
+    if (changes['selectedIngredients']) {
+      this.onSelectedIngredientsChange(
+        changes['selectedIngredients'].currentValue
+      );
+    }
+  }
+
+  onSelectedIngredientsChange = (selectedIngredients: MealFormIngredient[]) => {
+    this.isChecked = selectedIngredients.some(
+      (i) => i.food_id === this.food_id
+    );
+  };
 
   onIngredientChange = (event: any) => {
     this.isChecked = event.target.checked;
@@ -31,7 +44,7 @@ export class FoodItemComponent {
       this.ingredientFormIsVisible = true;
     } else if (!this.isChecked) {
       this.ingredientFormIsVisible = false;
-      this.removeIngredientEvent.emit(this.food_item.food_id);
+      this.removeIngredientEvent.emit(this.food_id);
     }
   };
 

@@ -160,6 +160,10 @@ export class AddMealFormComponent {
     });
   }
 
+  handleIngredientClick(ingredient: MealFormIngredient) {
+    this.removeIngredient(ingredient.food_id);
+  }
+
   addIngredient(food_item: any) {
     this.selectedIngredients.push(food_item);
     this.createMealSummary();

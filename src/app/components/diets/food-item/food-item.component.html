@@ -19,7 +19,7 @@
 </div>
 <app-add-ingredient-form
   *ngIf="ingredientFormIsVisible"
-  [food_id]="food_item.food_id"
+  [food_id]="food_id"
   (cancelAddIngredient)="cancelAddIngredient()"
   (addIngredientEvent)="this.closeIngredientForm()"
 >
