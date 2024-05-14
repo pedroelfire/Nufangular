@@ -15,11 +15,15 @@ export class BackendURLsService {
 
   searchIngredient(food_id: number): Observable<any> {
     return this.http.get(
-      `${this.apiBaseURL}/diets/searchIngredient/${food_id}/`
+      `${this.apiBaseURL}/diets/searchIngredients/${food_id}/`
     );
   }
 
   createMealURL(): string {
     return `${this.apiBaseURL}/diets/createIngredientsMeal/`;
+  }
+
+  getDietsByNutritionistURL(nutritionistID: number): string {
+    return `${this.apiBaseURL}/dietsNutritionist/${nutritionistID}/`;
   }
 }

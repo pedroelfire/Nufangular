@@ -13,8 +13,8 @@ const routes: Routes = [
   {
     path: 'diets',
     component: DietsSummaryComponent,
-    children: [{ path: 'create', component: CreateDietPlanComponent }],
   },
+  { path: 'create', component: CreateDietPlanComponent },
   { path: 'dashboard', component: NutritionistDashboardComponent },
   { path: 'diary', component: DiaryMainComponent },
   { path: '', component: HomeMainComponent },
