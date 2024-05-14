@@ -10,10 +10,10 @@ import { DiaryMainComponent } from './components/diary/diary-main/diary-main.com
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   // { path: 'register', component: RegisterComponent },
-  {
-    path: 'diets',
-    component: DietsSummaryComponent,
-  },
+  // {
+  //   path: 'diets',
+  //   component: DietsSummaryComponent,
+  // },
   { path: 'diets/create', component: CreateDietPlanComponent },
   { path: 'dashboard', component: NutritionistDashboardComponent },
   { path: 'diary', component: DiaryMainComponent },

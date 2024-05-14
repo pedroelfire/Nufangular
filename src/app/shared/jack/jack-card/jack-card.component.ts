@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { JackService } from 'src/app/services/jack.service';
+import { Message } from 'src/types';
 
 @Component({
   selector: 'app-jack-card',
@@ -8,25 +10,27 @@ import { Component, Input } from '@angular/core';
 export class JackCardComponent {
   @Input() isDisplayed!: boolean;
 
-  jackReplied = false;
+  conversationID: number = 1;
 
-  messages = ['Hola, Jack', "Hello, I'm Jack!"];
+  // Not waiting for Jack to reply
+  jackReplied = true;
 
-  newMessageHandler(msg: any) {
-    console.log(msg);
-    this.messages.push(msg);
-    this.jackReplied = false;
-    setTimeout(() => {
-      this.jackReplied = true;
-    }, 1000);
+  constructor(private db: JackService) {}
+
+  messages!: Message[];
+
+  ngOnInit() {
+    this.messages = this.db.fetchConversation(this.conversationID);
+  }
+
+  newMessageHandler(msg: Message) {
+    // this.jackReplied = false;
+
+    // TODO: Send message to Jack and wait for reply
 
     if (this.jackReplied) {
-      setTimeout(() => {
-        this.messages.push(
-          "I'm sorry, I'm just a demo bot. I don't have the ability to reply to your message."
-        );
-      }, 2000);
-    } else {
+      console.log(msg);
+      this.messages.push(msg);
     }
   }
 }

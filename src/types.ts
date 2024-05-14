@@ -72,3 +72,14 @@ export interface ServingItem {
   vitamin_a: string;
   vitamin_c: string;
 }
+
+// Jack Types
+export interface Message {
+  role: string;
+  message: string;
+}
+
+export interface Conversation {
+  id: number;
+  messages: Message[];
+}

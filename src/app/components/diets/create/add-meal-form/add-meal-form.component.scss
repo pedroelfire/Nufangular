@@ -53,14 +53,6 @@ form {
       width: 100%;
     }
 
-    .meal__name {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: var(--card-my);
-      padding: 1rem 0;
-    }
-
     .meal__ingredients {
       flex-grow: 6;
     }
@@ -76,12 +68,6 @@ form {
     height: 100%;
     overflow: hidden;
   }
-}
-
-.meal__name-input {
-  flex-grow: 1;
-  border-radius: var(--card-radius);
-  padding: var(--input-py) var(--input-px);
 }
 
 .meal__calories {

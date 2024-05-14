@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AudioRecordingService } from 'src/app/services/audio-recording.service';
+import { Message } from 'src/types';
 
 @Component({
   selector: 'app-jack-message-composer',
@@ -9,7 +10,7 @@ import { AudioRecordingService } from 'src/app/services/audio-recording.service'
   styleUrls: ['./jack-message-composer.component.scss'],
 })
 export class JackMessageComposerComponent {
-  @Output() newMessageEvent = new EventEmitter<string>();
+  @Output() newMessageEvent = new EventEmitter<Message>();
 
   messageForm: FormGroup;
   isRecording = false;
@@ -59,8 +60,10 @@ export class JackMessageComposerComponent {
 
   submitMessage() {
     if (this.messageForm.valid) {
-      const message = this.messageForm.get('message')?.value;
-      console.log('submitMessage', message);
+      const message: Message = {
+        role: 'user',
+        message: this.messageForm.get('message')?.value,
+      };
 
       this.newMessageEvent.emit(message);
       this.messageForm.reset();
