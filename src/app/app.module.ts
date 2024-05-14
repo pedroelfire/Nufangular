@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TopBarModule } from './shared/top-bar/top-bar.module';
 import { HeaderModule } from './shared/header/header.module';
-import { CreateDietPlanModule } from './components/diets/create-diet-plan/create-diet-plan.module';
+import { CreateDietPlanModule } from './components/diets/create/create-diet-plan/create-diet-plan.module';
 import { BottomTabsModule } from './shared/bottom-tabs/bottom-tabs.module';
 import { HomeMainModule } from './components/home/home-main/home-main.module';
 import { DiaryMainModule } from './components/diary/diary-main/diary-main.module';
