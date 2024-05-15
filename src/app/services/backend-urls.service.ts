@@ -10,12 +10,12 @@ export class BackendURLsService {
   constructor(private http: HttpClient) {}
 
   getListIngredientsURL(): string {
-    return `${this.apiBaseURL}/diets/searchListIngredients/`;
+    return `${this.apiBaseURL}/diets/searchIngredients/`;
   }
 
   searchIngredient(food_id: number): Observable<any> {
     return this.http.get(
-      `${this.apiBaseURL}/diets/searchIngredient/${food_id}/`
+      `${this.apiBaseURL}/diets/searchIngredients/${food_id}/`
     );
   }
 
