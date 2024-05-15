@@ -24,13 +24,19 @@ export class JackCardComponent {
   }
 
   newMessageHandler(msg: Message) {
-    // this.jackReplied = false;
+    this.jackReplied = false;
+    this.messages.push(msg);
 
     // TODO: Send message to Jack and wait for reply
 
+    this.jackReplied = true;
     if (this.jackReplied) {
-      console.log(msg);
-      this.messages.push(msg);
+      const response: Message = {
+        role: 'jack',
+        message: 'I am Jack, how can I help you?',
+      };
+
+      this.messages.push(response);
     }
   }
 }

@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  logoURL = 'assets/nufogy_logo.svg#logo';
+  viewBox = '0 0 76.211888 76.211891';
   isLoggedIn = true;
 
   checkLogInStatus = () => {

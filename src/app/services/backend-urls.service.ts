@@ -22,4 +22,12 @@ export class BackendURLsService {
   createMealURL(): string {
     return `${this.apiBaseURL}/diets/createIngredientsMeal/`;
   }
+
+  getJackConversationURL(conversationID: number): string {
+    return `${this.apiBaseURL}/jack/conversation/${conversationID}/`;
+  }
+
+  getJackQuestionURL(): string {
+    return `${this.apiBaseURL}/jack/question/`;
+  }
 }
