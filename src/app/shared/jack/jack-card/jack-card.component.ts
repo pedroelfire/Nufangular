@@ -38,15 +38,17 @@ export class JackCardComponent {
   messages!: Message[];
 
   ngOnInit() {
-    // Combine the initial conversation ID with the ID change stream
-    this.conversationID$
+    this.db.fetchConversation(this.conversationID).subscribe((response) => {
+      this.messages = response.data;
+    });
+
+    // Subscribe to the conversationCreated$ observable
+    this.db.conversationCreated$
       .pipe(
-        startWith(this.conversationID), // Begin with the current conversation ID
-        switchMap((id) => this.db.fetchConversation(id)), // Fetch data for new IDs
         takeUntil(this.destroy$) // Unsubscribe on component destruction
       )
-      .subscribe((response) => {
-        this.messages = response.data;
+      .subscribe((conversationId) => {
+        this.handleConversationIDChange(conversationId); // Update the conversation
       });
   }
 

@@ -1,8 +1,12 @@
 <header class="hidden md:flex nav-bar">
-  <a routerLink="./" class="nav-bar__link">
-    <svg xmlns="http://www.w3.org/2000/svg" [attr.viewBox]="viewBox">
-      <use [attr.href]="logoURL"></use>
-    </svg>
+  <a routerLink="./" class="nav-bar__link" class="h-full">
+    <img
+      ngSrc="assets/nufogy_logo.webp"
+      alt="Logo de Nufogy"
+      class="h-full w-auto"
+      width="128"
+      height="128"
+    />
   </a>
   <a routerLink="./diary" class="nav-bar__link">Diario</a>
   <a routerLink="./diets/create" class="nav-bar__link">Planes Alimenticios</a>

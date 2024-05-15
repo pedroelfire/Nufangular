@@ -12,7 +12,19 @@ export class JackSideBarBtnComponent {
   constructor(private conversationDataService: JackService) {}
 
   toggleSideBarMenu() {
-    this.isSideBarDisplayed = !this.isSideBarDisplayed;
+    if (this.isSideBarDisplayed) {
+      this.closeSideBarMenu();
+    } else {
+      this.openSideBarMenu();
+    }
+  }
+
+  closeSideBarMenu() {
+    this.isSideBarDisplayed = false;
+  }
+
+  openSideBarMenu() {
+    this.isSideBarDisplayed = true;
   }
 
   createConversation() {

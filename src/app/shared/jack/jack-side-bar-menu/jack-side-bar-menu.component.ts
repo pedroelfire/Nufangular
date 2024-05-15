@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { JackService } from 'src/app/services/jack.service';
 import { Conversation } from 'src/types';
@@ -21,6 +21,7 @@ import { Conversation } from 'src/types';
 })
 export class JackSideBarMenuComponent {
   @Input() displayed!: boolean;
+  @Output() closeMenuEvent = new EventEmitter<void>();
 
   conversations: Conversation[] = [];
 
@@ -28,8 +29,12 @@ export class JackSideBarMenuComponent {
 
   ngOnInit() {
     this.db.fetchConversationsList().subscribe((response) => {
-      console.log(response);
       this.conversations = response;
     });
+  }
+
+  selectConversation(conversationID: number) {
+    this.db.emitConversationCreated(conversationID);
+    this.closeMenuEvent.emit();
   }
 }
