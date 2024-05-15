@@ -85,3 +85,8 @@ export interface Conversation {
   id: number;
   made_by: number;
 }
+
+export interface conversationMessagesResponse {
+  message: string;
+  data: Message[];
+}

@@ -1,7 +1,8 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AudioRecordingService } from 'src/app/services/audio-recording.service';
+import { JackService } from 'src/app/services/jack.service';
 import { Message } from 'src/types';
 
 @Component({
@@ -10,6 +11,7 @@ import { Message } from 'src/types';
   styleUrls: ['./jack-message-composer.component.scss'],
 })
 export class JackMessageComposerComponent {
+  @Input() conversationID!: number;
   @Output() newMessageEvent = new EventEmitter<Message>();
 
   messageForm: FormGroup;
@@ -18,7 +20,10 @@ export class JackMessageComposerComponent {
   audioUrl: string | null = null;
   private subscription!: Subscription;
 
-  constructor(private audioRecordingService: AudioRecordingService) {
+  constructor(
+    private audioRecordingService: AudioRecordingService,
+    private db: JackService
+  ) {
     this.messageForm = new FormGroup({
       message: new FormControl('', [
         Validators.required,
@@ -60,10 +65,13 @@ export class JackMessageComposerComponent {
 
   submitMessage() {
     if (this.messageForm.valid) {
-      const message: Message = {
-        role: 'user',
-        message: this.messageForm.get('message')?.value,
+      const message: any = {
+        question: this.messageForm.get('message')?.value,
+        conversation: 1,
+        response: '',
       };
+
+      this.db.sendUserMessage(message);
 
       this.newMessageEvent.emit(message);
       this.messageForm.reset();
