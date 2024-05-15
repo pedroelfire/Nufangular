@@ -18,18 +18,12 @@
         <app-jack-message
           *ngFor="let message of messages; let isLast = last"
           [message]="message"
+          [waitingForResponse]="!jackReplied"
+          [isLast]="isLast"
           [ngClass]="{ 'pb-16': isLast, 'border-none': isLast }"
         ></app-jack-message>
         <!-- Bottom of the chat -->
         <div #chatBottom></div>
-        <!-- Waiting for Jack reply loading spinner -->
-        <div
-          class="flex flex-col self-start items-center justify-center h-full w-full"
-        >
-          <ng-container *ngIf="!jackReplied">
-            <i class="pi pi-spin pi-spinner"></i>
-          </ng-container>
-        </div>
       </ng-container>
     </div>
     <!-- Control Panel -->

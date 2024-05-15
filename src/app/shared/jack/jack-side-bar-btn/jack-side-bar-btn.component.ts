@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { JackService } from 'src/app/services/jack.service';
 
 @Component({
   selector: 'app-jack-side-bar-btn',
@@ -8,7 +9,13 @@ import { Component } from '@angular/core';
 export class JackSideBarBtnComponent {
   isSideBarDisplayed = false;
 
+  constructor(private conversationDataService: JackService) {}
+
   toggleSideBarMenu() {
     this.isSideBarDisplayed = !this.isSideBarDisplayed;
+  }
+
+  createConversation() {
+    this.conversationDataService.emitConversationCreated(0);
   }
 }

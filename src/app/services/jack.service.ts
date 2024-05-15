@@ -1,18 +1,25 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BackendURLsService } from './backend-urls.service';
-import { Message, conversationMessagesResponse } from 'src/types';
+import { Conversation, Message, conversationMessagesResponse } from 'src/types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JackService {
-  // Todo: Implement Jack's API calls.
   constructor(
     private http: HttpClient,
     private backendURLs: BackendURLsService
   ) {}
+
+  private conversationCreatedSoruce = new Subject<number>();
+
+  conversationCreated$ = this.conversationCreatedSoruce.asObservable();
+
+  emitConversationCreated(userID: number) {
+    this.conversationCreatedSoruce.next(userID);
+  }
 
   // POST users msg. Response: Jack's Response.
   sendUserMessage(message: Message) {
@@ -24,5 +31,11 @@ export class JackService {
   fetchConversation(conversationID: number) {
     const endpoint = this.backendURLs.getJackConversationURL(conversationID);
     return this.http.get<conversationMessagesResponse>(endpoint);
+  }
+
+  // GET. List of conversations. Response: Array of conversations.
+  fetchConversationsList() {
+    const endpoint = this.backendURLs.getJackConversationsListURL();
+    return this.http.get<Conversation[]>(endpoint);
   }
 }

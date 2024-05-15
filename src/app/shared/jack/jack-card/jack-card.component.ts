@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { JackService } from 'src/app/services/jack.service';
 import { Message } from 'src/types';
+import { Subject, switchMap, startWith, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-jack-card',
@@ -20,8 +21,11 @@ export class JackCardComponent {
   @ViewChild('fixedElement') fixedElementRef!: ElementRef;
   @ViewChild('chatBottom') chatBottomRef!: ElementRef;
 
+  // How to fetch last conversation when the component is loaded
   conversationID: number = 1;
   private resizeObserver!: ResizeObserver;
+  private destroy$ = new Subject<void>(); // For cleanup
+  private conversationID$ = new Subject<number>(); // To trigger new conversation fetches
 
   // Not waiting for Jack to reply
   jackReplied = true;
@@ -34,9 +38,16 @@ export class JackCardComponent {
   messages!: Message[];
 
   ngOnInit() {
-    this.db.fetchConversation(this.conversationID).subscribe((response) => {
-      this.messages = response.data;
-    });
+    // Combine the initial conversation ID with the ID change stream
+    this.conversationID$
+      .pipe(
+        startWith(this.conversationID), // Begin with the current conversation ID
+        switchMap((id) => this.db.fetchConversation(id)), // Fetch data for new IDs
+        takeUntil(this.destroy$) // Unsubscribe on component destruction
+      )
+      .subscribe((response) => {
+        this.messages = response.data;
+      });
   }
 
   ngAfterViewInit() {
@@ -71,6 +82,9 @@ export class JackCardComponent {
   ngOnDestroy() {
     this.resizeObserver.disconnect(); // Disconnect observer when the component is destroyed
     window.removeEventListener('resize', this.positionFixedElement); // Remove the resize event listener
+
+    this.destroy$.next(); // Signal to unsubscribe
+    this.destroy$.complete(); // Complete the subject
   }
 
   positionFixedElement() {
@@ -86,11 +100,16 @@ export class JackCardComponent {
     }
   }
 
+  handleConversationIDChange(id: number) {
+    this.conversationID$.next(id); // Trigger a new fetch
+  }
+
   newMessageHandler(msg: Message) {
     this.jackReplied = false;
     this.messages.push(msg);
 
     this.db.sendUserMessage(msg).subscribe((response) => {
+      console.log(response);
       this.messages[this.messages.length - 1].response = response.response;
       this.jackReplied = true;
     });

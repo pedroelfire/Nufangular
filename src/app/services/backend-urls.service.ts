@@ -23,6 +23,10 @@ export class BackendURLsService {
     return `${this.apiBaseURL}/diets/createIngredientsMeal/`;
   }
 
+  getJackConversationsListURL(): string {
+    return `${this.apiBaseURL}/jack/conversations/`;
+  }
+
   getJackConversationURL(conversationID: number): string {
     return `${this.apiBaseURL}/jack/conversationMessages/${conversationID}/`;
   }

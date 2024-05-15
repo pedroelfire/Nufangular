@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { JackService } from 'src/app/services/jack.service';
+import { Conversation } from 'src/types';
 
 @Component({
   selector: 'app-jack-side-bar-menu',
@@ -19,4 +21,15 @@ import { trigger, transition, style, animate } from '@angular/animations';
 })
 export class JackSideBarMenuComponent {
   @Input() displayed!: boolean;
+
+  conversations: Conversation[] = [];
+
+  constructor(private db: JackService) {}
+
+  ngOnInit() {
+    this.db.fetchConversationsList().subscribe((response) => {
+      console.log(response);
+      this.conversations = response;
+    });
+  }
 }

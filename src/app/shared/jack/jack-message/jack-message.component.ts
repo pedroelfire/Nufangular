@@ -10,6 +10,8 @@ import { Message } from 'src/types';
 })
 export class JackMessageComponent {
   @Input() message!: Message;
+  @Input() waitingForResponse!: boolean;
+  @Input() isLast!: boolean;
 
   faUserCircle = faUserCircle;
   faRobot = faRobot;
