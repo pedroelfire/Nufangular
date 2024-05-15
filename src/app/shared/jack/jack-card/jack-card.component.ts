@@ -60,11 +60,13 @@ export class JackCardComponent {
       }, 0); // Execute immediately after the current event loop
     });
 
-    // Observe changes in the container's size
-    this.resizeObserver = new ResizeObserver(() => {
-      this.positionFixedElement();
-    });
-    this.resizeObserver.observe(this.containerRef.nativeElement);
+    if (this.containerRef) {
+      // Observe changes in the container's size
+      this.resizeObserver = new ResizeObserver(() => {
+        this.positionFixedElement();
+      });
+      this.resizeObserver.observe(this.containerRef.nativeElement);
+    }
 
     // Add an event listener for window resize
     window.addEventListener('resize', () => this.positionFixedElement());
@@ -74,10 +76,12 @@ export class JackCardComponent {
   ngAfterViewChecked() {
     // Call positionFixedElement again after Angular has completed its change detection cycle
     this.positionFixedElement();
-    this.chatBottomRef.nativeElement.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
-    });
+    if (this.chatBottomRef) {
+      this.chatBottomRef.nativeElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      });
+    }
     this.changeDetectorRef.detectChanges(); // Trigger change detection explicitly
   }
 
