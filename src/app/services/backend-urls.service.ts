@@ -24,7 +24,7 @@ export class BackendURLsService {
   }
 
   getJackConversationURL(conversationID: number): string {
-    return `${this.apiBaseURL}/jack/conversation/${conversationID}/`;
+    return `${this.apiBaseURL}/jack/conversationMessages/${conversationID}/`;
   }
 
   getJackQuestionURL(): string {

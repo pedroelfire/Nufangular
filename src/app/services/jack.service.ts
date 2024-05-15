@@ -24,11 +24,14 @@ export class JackService {
   // GET. Init conversation. Response: Array of messages.
   fetchConversation(conversationID: number) {
     const endpoint = this.backendURLs.getJackConversationURL(conversationID);
+    this.http.get(endpoint).subscribe((response) => {
+      console.log(response);
+    });
 
-    return [
-      { role: 'jack', message: 'Hello, I am Jack!' },
-      { role: 'user', message: 'Hi, Jack!' },
-      { role: 'jack', message: 'How can I help you?' },
-    ];
+    // return [
+    //   { role: 'jack', message: 'Hello, I am Jack!' },
+    //   { role: 'user', message: 'Hi, Jack!' },
+    //   { role: 'jack', message: 'How can I help you?' },
+    // ];
   }
 }

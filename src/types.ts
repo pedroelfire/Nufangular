@@ -75,11 +75,13 @@ export interface ServingItem {
 
 // Jack Types
 export interface Message {
-  role: string;
-  message: string;
+  id: number;
+  question: string;
+  conversation: number;
+  response: string;
 }
 
 export interface Conversation {
   id: number;
-  messages: Message[];
+  made_by: number;
 }
