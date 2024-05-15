@@ -28,6 +28,6 @@ export class BackendURLsService {
   }
 
   getJackQuestionURL(): string {
-    return `${this.apiBaseURL}/jack/question/`;
+    return `${this.apiBaseURL}/jack/questions/`;
   }
 }

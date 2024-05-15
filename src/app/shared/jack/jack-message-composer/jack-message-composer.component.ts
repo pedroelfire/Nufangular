@@ -20,10 +20,7 @@ export class JackMessageComposerComponent {
   audioUrl: string | null = null;
   private subscription!: Subscription;
 
-  constructor(
-    private audioRecordingService: AudioRecordingService,
-    private db: JackService
-  ) {
+  constructor(private audioRecordingService: AudioRecordingService) {
     this.messageForm = new FormGroup({
       message: new FormControl('', [
         Validators.required,
@@ -67,11 +64,8 @@ export class JackMessageComposerComponent {
     if (this.messageForm.valid) {
       const message: any = {
         question: this.messageForm.get('message')?.value,
-        conversation: 1,
-        response: '',
+        conversation: this.conversationID,
       };
-
-      this.db.sendUserMessage(message);
 
       this.newMessageEvent.emit(message);
       this.messageForm.reset();

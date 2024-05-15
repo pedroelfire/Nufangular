@@ -18,6 +18,7 @@ export class JackCardComponent {
 
   @ViewChild('container') containerRef!: ElementRef;
   @ViewChild('fixedElement') fixedElementRef!: ElementRef;
+  @ViewChild('chatBottom') chatBottomRef!: ElementRef;
 
   conversationID: number = 1;
   private resizeObserver!: ResizeObserver;
@@ -44,6 +45,11 @@ export class JackCardComponent {
       setTimeout(() => {
         this.positionFixedElement();
       }, 0); // Execute immediately after the current event loop
+    });
+
+    this.chatBottomRef.nativeElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
     });
 
     // Observe changes in the container's size
@@ -85,16 +91,9 @@ export class JackCardComponent {
     this.jackReplied = false;
     this.messages.push(msg);
 
-    // TODO: Send message to Jack and wait for reply
-
-    this.jackReplied = true;
-    // if (this.jackReplied) {
-    //   const response: Message = {
-    //     role: 'jack',
-    //     message: 'I am Jack, how can I help you?',
-    //   };
-
-    //   this.messages.push(response);
-    // }
+    this.db.sendUserMessage(msg).subscribe((response) => {
+      this.messages[this.messages.length - 1].response = response.response;
+      this.jackReplied = true;
+    });
   }
 }

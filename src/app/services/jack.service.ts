@@ -17,9 +17,7 @@ export class JackService {
   // POST users msg. Response: Jack's Response.
   sendUserMessage(message: Message) {
     const endpoint = this.backendURLs.getJackQuestionURL();
-    this.http.post<Message>(endpoint, message).subscribe((response) => {
-      console.log(response);
-    });
+    return this.http.post<Message>(endpoint, message);
   }
 
   // GET. Init conversation. Response: Array of messages.
