@@ -22,7 +22,7 @@ export class JackCardComponent {
   @ViewChild('chatBottom') chatBottomRef!: ElementRef;
 
   // How to fetch last conversation when the component is loaded
-  conversationID: number = 1;
+  conversationID: number = 3;
   private resizeObserver!: ResizeObserver;
   private destroy$ = new Subject<void>(); // For cleanup
   private conversationID$ = new Subject<number>(); // To trigger new conversation fetches
@@ -111,12 +111,12 @@ export class JackCardComponent {
   }
 
   newMessageHandler(msg: Message) {
-    this.jackReplied = false;
     this.messages.push(msg);
 
     this.db.sendUserMessage(msg).subscribe((response) => {
       console.log(response);
       this.messages[this.messages.length - 1].response = response.response;
+      console.log(this.messages)
       this.jackReplied = true;
     });
   }
