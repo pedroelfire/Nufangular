@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faRobot } from '@fortawesome/free-solid-svg-icons';
+import { Message } from 'src/types';
 
 @Component({
   selector: 'app-jack-message',
@@ -8,8 +9,10 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./jack-message.component.scss'],
 })
 export class JackMessageComponent {
-  @Input() message!: string;
-  @Input() isLoading!: boolean;
+  @Input() message!: Message;
+  @Input() waitingForResponse!: boolean;
+  @Input() isLast!: boolean;
 
   faUserCircle = faUserCircle;
+  faRobot = faRobot;
 }

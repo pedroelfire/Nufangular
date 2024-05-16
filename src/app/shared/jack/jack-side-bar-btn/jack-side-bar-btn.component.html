@@ -11,10 +11,11 @@
       Asistente Virtual
     </h3>
   </div>
-  <button>
+  <button (click)="createConversation()">
     <i class="pi pi-plus-circle" style="font-size: 2rem"></i>
   </button>
 </div>
 <app-jack-side-bar-menu
   [displayed]="isSideBarDisplayed"
+  (closeMenuEvent)="closeSideBarMenu()"
 ></app-jack-side-bar-menu>

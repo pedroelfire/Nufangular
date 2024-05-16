@@ -5,22 +5,31 @@
   <app-jack-side-bar-btn></app-jack-side-bar-btn>
 
   <!-- Chat -->
-  <div class="relative flex flex-col flex-grow overflow-y-auto">
+  <div
+    class="relative flex flex-col flex-grow overflow-y-auto pb-16"
+    #container
+  >
     <!-- Contenedor de mensajes -->
     <div class="w-full h-full flex flex-col gap-2">
       <h2 class="text-3xl font-bold text-primary" *ngIf="messages.length === 0">
         Hola Pedro, ¿en qué puedo ayudarte hoy?
       </h2>
-      <ng-container *ngFor="let message of messages">
+      <ng-container>
         <app-jack-message
+          *ngFor="let message of messages; let isLast = last"
           [message]="message"
-          [isLoading]="!jackReplied"
+          [waitingForResponse]="!jackReplied"
+          [isLast]="isLast"
+          [ngClass]="{ 'pb-16': isLast, 'border-none': isLast }"
         ></app-jack-message>
+        <!-- Bottom of the chat -->
+        <div #chatBottom></div>
       </ng-container>
     </div>
     <!-- Control Panel -->
-    <div class="relative bottom-4 w-full">
+    <div class="fixed bottom-0 w-[21.6875rem]" #fixedElement>
       <app-jack-message-composer
+        [conversationID]="conversationID"
         (newMessageEvent)="newMessageHandler($event)"
       ></app-jack-message-composer>
     </div>

@@ -1,5 +1,9 @@
 <div class="overlay">
-  <form class="meal" [formGroup]="mealForm" (ngSubmit)="submitCreateMeal()">
+  <form
+    class="meal overflow-y-auto"
+    [formGroup]="mealForm"
+    (ngSubmit)="submitCreateMeal()"
+  >
     <button (click)="closeForm()" class="close-btn">
       <i class="pi pi-times-circle"></i>
     </button>
@@ -16,44 +20,45 @@
           <span class="amount">{{ mealSummary.calories }}</span>
           <span class="label">Kcal</span>
         </div>
-        <div class="meal__ingredients">
+        <div class="meal__ingredients flex flex-col gap-2 px-1">
           <div class="flex flex-row items-center justify-between">
-            <div class="meal__name">
-              <label for="mealName" class="meal__name-label font-bold"
-                >Nombre de la comida</label
-              >
+            <div class="flex flex-col items-start justify-end gap-2">
+              <label for="mealName" class="meal__name-label font-bold">
+                Nombre de la comida
+              </label>
               <input
                 pInputText
                 placeholder="ej. Desayuno"
                 name="mealName"
                 formControlName="mealName"
-                class="meal__name-input border-solid rounded-md border-2 border-primary mr-2"
+                class="border-solid py-1 px-2 rounded-sm border-2 border-primary mr-2"
                 autocomplete="off"
               />
             </div>
-            <div class="flex flex-col items-start justify-center gap-2">
+            <div class="flex flex-col items-start justify-end gap-2 h-full">
               <label for="mealTime">
                 <span class="meal__time-label font-bold text-primary"
                   >Hora de la comida</span
                 >
-                <p-calendar
-                  formControlName="mealTime"
-                  [showIcon]="true"
-                  [timeOnly]="true"
-                  inputId="templatedisplay"
-                  name="mealTime"
-                >
-                  <ng-template
-                    pTemplate="inputicon"
-                    let-clickCallBack="clickCallBack"
-                  >
-                    <i
-                      class="pi pi-user pointer-events-none"
-                      (click)="clickCallBack($event)"
-                    ></i>
-                  </ng-template>
-                </p-calendar>
               </label>
+              <p-calendar
+                formControlName="mealTime"
+                [showIcon]="true"
+                [timeOnly]="true"
+                inputId="templatedisplay"
+                name="mealTime"
+                class="py-1 border-solid border-2 border-primary rounded-sm"
+              >
+                <ng-template
+                  pTemplate="inputicon"
+                  let-clickCallBack="clickCallBack"
+                >
+                  <i
+                    class="pi pi-user pointer-events-none"
+                    (click)="clickCallBack($event)"
+                  ></i>
+                </ng-template>
+              </p-calendar>
             </div>
           </div>
           <ng-container *ngIf="selectedIngredients.length > 0">
@@ -103,7 +108,7 @@
     </div>
     <div class="control-panel flex w-full items-center justify-end">
       <button
-        class="submit-btn border-2 border-solid border-primary bg-surface-primary rounded-md px-1 py-1.25 flex items-center justify-center my-2"
+        class="submit-btn border-2 border-solid border-primary bg-surface-primary rounded-2xl px-3 py-2 flex items-center justify-center my-2"
         type="submit"
       >
         <span>Crear</span>

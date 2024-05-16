@@ -1,7 +1,15 @@
 <header class="hidden md:flex nav-bar">
-  <a routerLink="./" class="nav-bar__link">Nufogy</a>
+  <a routerLink="./" class="nav-bar__link" class="h-full">
+    <img
+      ngSrc="assets/nufogy_logo.webp"
+      alt="Logo de Nufogy"
+      class="h-full w-auto"
+      width="128"
+      height="128"
+    />
+  </a>
   <a routerLink="./diary" class="nav-bar__link">Diario</a>
-  <a routerLink="./diets" class="nav-bar__link">Planes Alimenticios</a>
+  <a routerLink="./diets/create" class="nav-bar__link">Planes Alimenticios</a>
   <a routerLink="./dashboard" class="nav-bar__link">Dashboard</a>
   <a routerLink="./login" class="nav-bar__link login" [ngSwitch]="isLoggedIn">
     <i *ngSwitchCase="true" class="pi pi-user"></i>

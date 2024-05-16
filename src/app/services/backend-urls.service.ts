@@ -10,7 +10,7 @@ export class BackendURLsService {
   constructor(private http: HttpClient) {}
 
   getListIngredientsURL(): string {
-    return `${this.apiBaseURL}/diets/searchListIngredients/`;
+    return `${this.apiBaseURL}/diets/searchIngredients/`;
   }
 
   searchIngredient(food_id: number): Observable<any> {
@@ -23,7 +23,15 @@ export class BackendURLsService {
     return `${this.apiBaseURL}/diets/createIngredientsMeal/`;
   }
 
-  getDietsByNutritionistURL(nutritionistID: number): string {
-    return `${this.apiBaseURL}/dietsNutritionist/${nutritionistID}/`;
+  getJackConversationsListURL(): string {
+    return `${this.apiBaseURL}/jack/conversations/`;
+  }
+
+  getJackConversationURL(conversationID: number): string {
+    return `${this.apiBaseURL}/jack/conversationMessages/${conversationID}/`;
+  }
+
+  getJackQuestionURL(): string {
+    return `${this.apiBaseURL}/jack/questions/`;
   }
 }
