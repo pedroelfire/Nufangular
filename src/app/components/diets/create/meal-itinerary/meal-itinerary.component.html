@@ -25,8 +25,19 @@
 <div class="meals-day-view gap-2">
   <h2 class="text-2xl font-bold self-start">Comidas</h2>
   <div class="meals items-start">
-    <div class="meal-container overflow-auto">
-      <app-meal-item></app-meal-item>
+    <div
+      class="meal-container flex flex-col max-h-[35rem] gap-2 overflow-auto"
+      *ngIf="meals.length > 0"
+    >
+      <app-meal-item *ngFor="let meal of meals" [meal]="meal"></app-meal-item>
+    </div>
+    <div
+      class="meal-container overflow-auto border-dashed border-2 border-primary w-full h-48 flex items-center justify-center rounded-xl px-4 py-2"
+      *ngIf="meals.length === 0"
+    >
+      <p class="text-center text-lg text-primary font-bold">
+        No hay comidas registradas
+      </p>
     </div>
 
     <div class="control-panel w-full">

@@ -136,7 +136,7 @@ export class AddMealFormComponent {
         created_by: 1,
       };
       this.foodItemsService.createMeal(meal).subscribe((response) => {
-        console.log(response);
+        this.foodItemsService.emitMealAdded(response.data);
         this.closeForm();
       });
     } else {

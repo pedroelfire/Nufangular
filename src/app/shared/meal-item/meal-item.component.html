@@ -6,10 +6,10 @@
 
     <div class="flex flex-col items-center justify-start w-full">
       <div class="flex justify-between items-start flex-grow w-full">
-        <h3 class="font-bold text-2xl text-primary">Desayuno</h3>
+        <h3 class="font-bold text-2xl text-primary">{{ meal.name }}</h3>
         <div class="flex items-center justify-center">
           <i class="pi pi-clock"></i>
-          <span>08:00 am</span>
+          <span>{{ meal.meal_time }}</span>
         </div>
       </div>
       <!-- Buttons -->
@@ -33,7 +33,9 @@
     <div class="flex items-center justify-end gap-4 flex-grow">
       <!-- Calories -->
       <div class="flex flex-col items-center justify-center">
-        <span class="text-4xl font-bold text-primary">1240</span>
+        <span class="text-4xl font-bold text-primary">{{
+          mealSummary.totalCalories
+        }}</span>
         <span class="text-sm text-primary-dim">Calorías</span>
       </div>
       <!-- Macros -->
@@ -45,24 +47,33 @@
           class="flex items-center justify-between p-2 border-solid border-2 border-primary rounded-md w-full gap-1"
         >
           <span class="font-bold">Proteína</span>
-          <span class="text-protein text-lg font-bold">68 gr</span>
+          <span class="text-protein text-lg font-bold"
+            >{{ mealSummary.totalProtein }} gr</span
+          >
         </div>
         <div
           class="flex items-center justify-between p-2 border-solid border-2 border-primary rounded-md w-full gap-1"
         >
           <span class="font-bold">Carbohidratos</span>
-          <span class="text-carbs text-lg font-bold">124 gr</span>
+          <span class="text-carbs text-lg font-bold"
+            >{{ mealSummary.totalCarbs }} gr</span
+          >
         </div>
         <div
           class="flex items-center justify-between p-2 border-solid border-2 border-primary rounded-md w-full gap-1"
         >
           <span class="font-bold">Grasa</span>
-          <span class="text-fat text-lg font-bold">47 gr</span>
+          <span class="text-fat text-lg font-bold"
+            >{{ mealSummary.totalFat }} gr</span
+          >
         </div>
       </div>
     </div>
   </div>
-  <div class="w-full flex flex-col max-h-48">
-    <app-ingredient-item></app-ingredient-item>
+  <div class="w-full flex flex-col max-h-48 overflow-auto gap-2">
+    <app-ingredient-item
+      *ngFor="let ingredient of meal.ingredients"
+      [ingredient]="ingredient"
+    ></app-ingredient-item>
   </div>
 </button>
